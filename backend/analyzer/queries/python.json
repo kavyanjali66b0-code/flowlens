@@ -1,0 +1,4 @@
+{
+  "note": "Python uses AST parsing in analyzer; no tree-sitter queries required currently.",
+  "core": []
+}

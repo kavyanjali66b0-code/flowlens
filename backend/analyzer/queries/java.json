@@ -1,0 +1,8 @@
+{
+  "core": [
+    "(class_declaration name: (identifier) @class_name)",
+    "(annotation name: (identifier) @ann_name)",
+    "(marker_annotation name: (identifier) @ann_name)",
+    "(annotation name: (identifier) @map_ann (annotation_argument_list (string_literal) @map_path))"
+  ]
+}

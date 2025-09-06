@@ -1,0 +1,19 @@
+{
+  "jsx": [
+    "(jsx_opening_element name: (identifier) @jsx_name)",
+    "(jsx_self_closing_element name: (identifier) @jsx_name)"
+  ],
+  "core": [
+    "(function_declaration name: (identifier) @func_name)",
+    "(export_statement (function_declaration name: (identifier) @func_name))",
+    "(lexical_declaration (variable_declarator name: (identifier) @var_func value: (arrow_function)))",
+    "(lexical_declaration (variable_declarator name: (identifier) @var_func value: (function_expression)))",
+    "(class_declaration name: (identifier) @class_name)",
+    "(method_definition name: (property_identifier) @func_name)",
+    "(import_statement source: (string) @import_path)"
+  ],
+  "calls": [
+    "(call_expression function: (identifier) @callee)",
+    "(call_expression function: (member_expression object: (identifier) @obj property: (property_identifier) @prop))"
+  ]
+}

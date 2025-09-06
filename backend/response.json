@@ -1,0 +1,694 @@
+
+
+{
+  "job_id": "6de865ac-16c8-4339-811c-1642b47716cc",
+  "result": {
+    "graph": {
+      "edges": [],
+      "metadata": {
+        "edge_types": [],
+        "node_types": [
+          "module"
+        ],
+        "total_edges": 0,
+        "total_nodes": 64
+      },
+      "nodes": [
+        {
+          "file": "src\\main.tsx",
+          "id": "src\\main_tsx_module_15aeb954",
+          "metadata": {
+            "c4_level": "container",
+            "is_entry": true
+          },
+          "name": "main",
+          "type": "module"
+        },
+        {
+          "file": "src\\App.tsx",
+          "id": "src\\App_tsx_module_cd5ae942",
+          "metadata": {
+            "c4_level": "container",
+            "is_entry": false
+          },
+          "name": "App",
+          "type": "module"
+        },
+        {
+          "file": "src\\components\\FlowCanvas.tsx",
+          "id": "src\\components\\FlowCanvas_tsx_module_94b67ac9",
+          "metadata": {
+            "c4_level": "component",
+            "is_entry": false
+          },
+          "name": "FlowCanvas",
+          "type": "module"
+        },
+        {
+          "file": "src\\components\\Inspector.tsx",
+          "id": "src\\components\\Inspector_tsx_module_350193f3",
+          "metadata": {
+            "c4_level": "component",
+            "is_entry": false
+          },
+          "name": "Inspector",
+          "type": "module"
+        },
+        {
+          "file": "src\\components\\MermaidNode.tsx",
+          "id": "src\\components\\MermaidNode_tsx_module_3299423f",
+          "metadata": {
+            "c4_level": "component",
+            "is_entry": false
+          },
+          "name": "MermaidNode",
+          "type": "module"
+        },
+        {
+          "file": "src\\components\\ui\\accordion.tsx",
+          "id": "src\\components\\ui\\accordion_tsx_module_ad7a06d3",
+          "metadata": {
+            "c4_level": "component",
+            "is_entry": false
+          },
+          "name": "accordion",
+          "type": "module"
+        },
+        {
+          "file": "src\\components\\ui\\alert-dialog.tsx",
+          "id": "src\\components\\ui\\alert-dialog_tsx_module_d027a678",
+          "metadata": {
+            "c4_level": "component",
+            "is_entry": false
+          },
+          "name": "alert-dialog",
+          "type": "module"
+        },
+        {
+          "file": "src\\components\\ui\\alert.tsx",
+          "id": "src\\components\\ui\\alert_tsx_module_c19f716f",
+          "metadata": {
+            "c4_level": "component",
+            "is_entry": false
+          },
+          "name": "alert",
+          "type": "module"
+        },
+        {
+          "file": "src\\components\\ui\\aspect-ratio.tsx",
+          "id": "src\\components\\ui\\aspect-ratio_tsx_module_fba7f172",
+          "metadata": {
+            "c4_level": "component",
+            "is_entry": false
+          },
+          "name": "aspect-ratio",
+          "type": "module"
+        },
+        {
+          "file": "src\\components\\ui\\avatar.tsx",
+          "id": "src\\components\\ui\\avatar_tsx_module_2de188d7",
+          "metadata": {
+            "c4_level": "component",
+            "is_entry": false
+          },
+          "name": "avatar",
+          "type": "module"
+        },
+        {
+          "file": "src\\components\\ui\\badge.tsx",
+          "id": "src\\components\\ui\\badge_tsx_module_4eb785db",
+          "metadata": {
+            "c4_level": "component",
+            "is_entry": false
+          },
+          "name": "badge",
+          "type": "module"
+        },
+        {
+          "file": "src\\components\\ui\\breadcrumb.tsx",
+          "id": "src\\components\\ui\\breadcrumb_tsx_module_078fc642",
+          "metadata": {
+            "c4_level": "component",
+            "is_entry": false
+          },
+          "name": "breadcrumb",
+          "type": "module"
+        },
+        {
+          "file": "src\\components\\ui\\button.tsx",
+          "id": "src\\components\\ui\\button_tsx_module_fe56f425",
+          "metadata": {
+            "c4_level": "component",
+            "is_entry": false
+          },
+          "name": "button",
+          "type": "module"
+        },
+        {
+          "file": "src\\components\\ui\\calendar.tsx",
+          "id": "src\\components\\ui\\calendar_tsx_module_a0c97b62",
+          "metadata": {
+            "c4_level": "component",
+            "is_entry": false
+          },
+          "name": "calendar",
+          "type": "module"
+        },
+        {
+          "file": "src\\components\\ui\\card.tsx",
+          "id": "src\\components\\ui\\card_tsx_module_9d988721",
+          "metadata": {
+            "c4_level": "component",
+            "is_entry": false
+          },
+          "name": "card",
+          "type": "module"
+        },
+        {
+          "file": "src\\components\\ui\\carousel.tsx",
+          "id": "src\\components\\ui\\carousel_tsx_module_b676846e",
+          "metadata": {
+            "c4_level": "component",
+            "is_entry": false
+          },
+          "name": "carousel",
+          "type": "module"
+        },
+        {
+          "file": "src\\components\\ui\\chart.tsx",
+          "id": "src\\components\\ui\\chart_tsx_module_c7492f15",
+          "metadata": {
+            "c4_level": "component",
+            "is_entry": false
+          },
+          "name": "chart",
+          "type": "module"
+        },
+        {
+          "file": "src\\components\\ui\\checkbox.tsx",
+          "id": "src\\components\\ui\\checkbox_tsx_module_3fe83402",
+          "metadata": {
+            "c4_level": "component",
+            "is_entry": false
+          },
+          "name": "checkbox",
+          "type": "module"
+        },
+        {
+          "file": "src\\components\\ui\\collapsible.tsx",
+          "id": "src\\components\\ui\\collapsible_tsx_module_fb4d9f90",
+          "metadata": {
+            "c4_level": "component",
+            "is_entry": false
+          },
+          "name": "collapsible",
+          "type": "module"
+        },
+        {
+          "file": "src\\components\\ui\\command.tsx",
+          "id": "src\\components\\ui\\command_tsx_module_ebed34b7",
+          "metadata": {
+            "c4_level": "component",
+            "is_entry": false
+          },
+          "name": "command",
+          "type": "module"
+        },
+        {
+          "file": "src\\components\\ui\\context-menu.tsx",
+          "id": "src\\components\\ui\\context-menu_tsx_module_f09491ed",
+          "metadata": {
+            "c4_level": "component",
+            "is_entry": false
+          },
+          "name": "context-menu",
+          "type": "module"
+        },
+        {
+          "file": "src\\components\\ui\\dialog.tsx",
+          "id": "src\\components\\ui\\dialog_tsx_module_f469ec78",
+          "metadata": {
+            "c4_level": "component",
+            "is_entry": false
+          },
+          "name": "dialog",
+          "type": "module"
+        },
+        {
+          "file": "src\\components\\ui\\drawer.tsx",
+          "id": "src\\components\\ui\\drawer_tsx_module_4c6a167d",
+          "metadata": {
+            "c4_level": "component",
+            "is_entry": false
+          },
+          "name": "drawer",
+          "type": "module"
+        },
+        {
+          "file": "src\\components\\ui\\dropdown-menu.tsx",
+          "id": "src\\components\\ui\\dropdown-menu_tsx_module_81be8383",
+          "metadata": {
+            "c4_level": "component",
+            "is_entry": false
+          },
+          "name": "dropdown-menu",
+          "type": "module"
+        },
+        {
+          "file": "src\\components\\ui\\form.tsx",
+          "id": "src\\components\\ui\\form_tsx_module_c8c68db1",
+          "metadata": {
+            "c4_level": "component",
+            "is_entry": false
+          },
+          "name": "form",
+          "type": "module"
+        },
+        {
+          "file": "src\\components\\ui\\hover-card.tsx",
+          "id": "src\\components\\ui\\hover-card_tsx_module_f2f8eb34",
+          "metadata": {
+            "c4_level": "component",
+            "is_entry": false
+          },
+          "name": "hover-card",
+          "type": "module"
+        },
+        {
+          "file": "src\\components\\ui\\input-otp.tsx",
+          "id": "src\\components\\ui\\input-otp_tsx_module_35facf8a",
+          "metadata": {
+            "c4_level": "component",
+            "is_entry": false
+          },
+          "name": "input-otp",
+          "type": "module"
+        },
+        {
+          "file": "src\\components\\ui\\input.tsx",
+          "id": "src\\components\\ui\\input_tsx_module_96224da6",
+          "metadata": {
+            "c4_level": "component",
+            "is_entry": false
+          },
+          "name": "input",
+          "type": "module"
+        },
+        {
+          "file": "src\\components\\ui\\label.tsx",
+          "id": "src\\components\\ui\\label_tsx_module_2b2eb6a3",
+          "metadata": {
+            "c4_level": "component",
+            "is_entry": false
+          },
+          "name": "label",
+          "type": "module"
+        },
+        {
+          "file": "src\\components\\ui\\menubar.tsx",
+          "id": "src\\components\\ui\\menubar_tsx_module_ea61630f",
+          "metadata": {
+            "c4_level": "component",
+            "is_entry": false
+          },
+          "name": "menubar",
+          "type": "module"
+        },
+        {
+          "file": "src\\components\\ui\\navigation-menu.tsx",
+          "id": "src\\components\\ui\\navigation-menu_tsx_module_110f9a5a",
+          "metadata": {
+            "c4_level": "component",
+            "is_entry": false
+          },
+          "name": "navigation-menu",
+          "type": "module"
+        },
+        {
+          "file": "src\\components\\ui\\pagination.tsx",
+          "id": "src\\components\\ui\\pagination_tsx_module_204bf709",
+          "metadata": {
+            "c4_level": "component",
+            "is_entry": false
+          },
+          "name": "pagination",
+          "type": "module"
+        },
+        {
+          "file": "src\\components\\ui\\popover.tsx",
+          "id": "src\\components\\ui\\popover_tsx_module_6c95fb60",
+          "metadata": {
+            "c4_level": "component",
+            "is_entry": false
+          },
+          "name": "popover",
+          "type": "module"
+        },
+        {
+          "file": "src\\components\\ui\\progress.tsx",
+          "id": "src\\components\\ui\\progress_tsx_module_6661a1e8",
+          "metadata": {
+            "c4_level": "component",
+            "is_entry": false
+          },
+          "name": "progress",
+          "type": "module"
+        },
+        {
+          "file": "src\\components\\ui\\radio-group.tsx",
+          "id": "src\\components\\ui\\radio-group_tsx_module_6e74cd2d",
+          "metadata": {
+            "c4_level": "component",
+            "is_entry": false
+          },
+          "name": "radio-group",
+          "type": "module"
+        },
+        {
+          "file": "src\\components\\ui\\resizable.tsx",
+          "id": "src\\components\\ui\\resizable_tsx_module_e71402c2",
+          "metadata": {
+            "c4_level": "component",
+            "is_entry": false
+          },
+          "name": "resizable",
+          "type": "module"
+        },
+        {
+          "file": "src\\components\\ui\\scroll-area.tsx",
+          "id": "src\\components\\ui\\scroll-area_tsx_module_474825c9",
+          "metadata": {
+            "c4_level": "component",
+            "is_entry": false
+          },
+          "name": "scroll-area",
+          "type": "module"
+        },
+        {
+          "file": "src\\components\\ui\\select.tsx",
+          "id": "src\\components\\ui\\select_tsx_module_81d64610",
+          "metadata": {
+            "c4_level": "component",
+            "is_entry": false
+          },
+          "name": "select",
+          "type": "module"
+        },
+        {
+          "file": "src\\components\\ui\\separator.tsx",
+          "id": "src\\components\\ui\\separator_tsx_module_f5948aa1",
+          "metadata": {
+            "c4_level": "component",
+            "is_entry": false
+          },
+          "name": "separator",
+          "type": "module"
+        },
+        {
+          "file": "src\\components\\ui\\sheet.tsx",
+          "id": "src\\components\\ui\\sheet_tsx_module_83532f06",
+          "metadata": {
+            "c4_level": "component",
+            "is_entry": false
+          },
+          "name": "sheet",
+          "type": "module"
+        },
+        {
+          "file": "src\\components\\ui\\sidebar.tsx",
+          "id": "src\\components\\ui\\sidebar_tsx_module_f2b8e2e7",
+          "metadata": {
+            "c4_level": "component",
+            "is_entry": false
+          },
+          "name": "sidebar",
+          "type": "module"
+        },
+        {
+          "file": "src\\components\\ui\\skeleton.tsx",
+          "id": "src\\components\\ui\\skeleton_tsx_module_d1a39768",
+          "metadata": {
+            "c4_level": "component",
+            "is_entry": false
+          },
+          "name": "skeleton",
+          "type": "module"
+        },
+        {
+          "file": "src\\components\\ui\\slider.tsx",
+          "id": "src\\components\\ui\\slider_tsx_module_f8fc6031",
+          "metadata": {
+            "c4_level": "component",
+            "is_entry": false
+          },
+          "name": "slider",
+          "type": "module"
+        },
+        {
+          "file": "src\\components\\ui\\sonner.tsx",
+          "id": "src\\components\\ui\\sonner_tsx_module_7af95e2d",
+          "metadata": {
+            "c4_level": "component",
+            "is_entry": false
+          },
+          "name": "sonner",
+          "type": "module"
+        },
+        {
+          "file": "src\\components\\ui\\switch.tsx",
+          "id": "src\\components\\ui\\switch_tsx_module_4ad2ef71",
+          "metadata": {
+            "c4_level": "component",
+            "is_entry": false
+          },
+          "name": "switch",
+          "type": "module"
+        },
+        {
+          "file": "src\\components\\ui\\table.tsx",
+          "id": "src\\components\\ui\\table_tsx_module_b1621181",
+          "metadata": {
+            "c4_level": "component",
+            "is_entry": false
+          },
+          "name": "table",
+          "type": "module"
+        },
+        {
+          "file": "src\\components\\ui\\tabs.tsx",
+          "id": "src\\components\\ui\\tabs_tsx_module_913777be",
+          "metadata": {
+            "c4_level": "component",
+            "is_entry": false
+          },
+          "name": "tabs",
+          "type": "module"
+        },
+        {
+          "file": "src\\components\\ui\\textarea.tsx",
+          "id": "src\\components\\ui\\textarea_tsx_module_b1019696",
+          "metadata": {
+            "c4_level": "component",
+            "is_entry": false
+          },
+          "name": "textarea",
+          "type": "module"
+        },
+        {
+          "file": "src\\components\\ui\\toast.tsx",
+          "id": "src\\components\\ui\\toast_tsx_module_26090d71",
+          "metadata": {
+            "c4_level": "component",
+            "is_entry": false
+          },
+          "name": "toast",
+          "type": "module"
+        },
+        {
+          "file": "src\\components\\ui\\toaster.tsx",
+          "id": "src\\components\\ui\\toaster_tsx_module_6e56dfbd",
+          "metadata": {
+            "c4_level": "component",
+            "is_entry": false
+          },
+          "name": "toaster",
+          "type": "module"
+        },
+        {
+          "file": "src\\components\\ui\\toggle-group.tsx",
+          "id": "src\\components\\ui\\toggle-group_tsx_module_f70d7517",
+          "metadata": {
+            "c4_level": "component",
+            "is_entry": false
+          },
+          "name": "toggle-group",
+          "type": "module"
+        },
+        {
+          "file": "src\\components\\ui\\toggle.tsx",
+          "id": "src\\components\\ui\\toggle_tsx_module_2491ca2e",
+          "metadata": {
+            "c4_level": "component",
+            "is_entry": false
+          },
+          "name": "toggle",
+          "type": "module"
+        },
+        {
+          "file": "src\\components\\ui\\tooltip.tsx",
+          "id": "src\\components\\ui\\tooltip_tsx_module_1f68d1ae",
+          "metadata": {
+            "c4_level": "component",
+            "is_entry": false
+          },
+          "name": "tooltip",
+          "type": "module"
+        },
+        {
+          "file": "src\\components\\ui\\use-toast.ts",
+          "id": "src\\components\\ui\\use-toast_ts_module_703f406a",
+          "metadata": {
+            "c4_level": "component",
+            "is_entry": false
+          },
+          "name": "use-toast",
+          "type": "module"
+        },
+        {
+          "file": "src\\data\\mockData.ts",
+          "id": "src\\data\\mockData_ts_module_7a0346ff",
+          "metadata": {
+            "c4_level": "code",
+            "is_entry": false
+          },
+          "name": "mockData",
+          "type": "module"
+        },
+        {
+          "file": "src\\hooks\\use-mobile.tsx",
+          "id": "src\\hooks\\use-mobile_tsx_module_b11f1442",
+          "metadata": {
+            "c4_level": "code",
+            "is_entry": false
+          },
+          "name": "use-mobile",
+          "type": "module"
+        },
+        {
+          "file": "src\\hooks\\use-toast.ts",
+          "id": "src\\hooks\\use-toast_ts_module_fab58fed",
+          "metadata": {
+            "c4_level": "code",
+            "is_entry": false
+          },
+          "name": "use-toast",
+          "type": "module"
+        },
+        {
+          "file": "src\\integrations\\supabase\\client.ts",
+          "id": "src\\integrations\\supabase\\client_ts_module_cd9d0fb0",
+          "metadata": {
+            "c4_level": "code",
+            "is_entry": false
+          },
+          "name": "client",
+          "type": "module"
+        },
+        {
+          "file": "src\\integrations\\supabase\\types.ts",
+          "id": "src\\integrations\\supabase\\types_ts_module_e5ac9e6a",
+          "metadata": {
+            "c4_level": "code",
+            "is_entry": false
+          },
+          "name": "types",
+          "type": "module"
+        },
+        {
+          "file": "src\\lib\\utils.ts",
+          "id": "src\\lib\\utils_ts_module_bfc74e87",
+          "metadata": {
+            "c4_level": "code",
+            "is_entry": false
+          },
+          "name": "utils",
+          "type": "module"
+        },
+        {
+          "file": "src\\pages\\Dashboard.tsx",
+          "id": "src\\pages\\Dashboard_tsx_module_9a201b1f",
+          "metadata": {
+            "c4_level": "component",
+            "is_entry": false
+          },
+          "name": "Dashboard",
+          "type": "module"
+        },
+        {
+          "file": "src\\pages\\Home.tsx",
+          "id": "src\\pages\\Home_tsx_module_3f9a8402",
+          "metadata": {
+            "c4_level": "component",
+            "is_entry": false
+          },
+          "name": "Home",
+          "type": "module"
+        },
+        {
+          "file": "src\\pages\\Index.tsx",
+          "id": "src\\pages\\Index_tsx_module_435f519c",
+          "metadata": {
+            "c4_level": "container",
+            "is_entry": false
+          },
+          "name": "Index",
+          "type": "module"
+        },
+        {
+          "file": "src\\pages\\NotFound.tsx",
+          "id": "src\\pages\\NotFound_tsx_module_58bb607e",
+          "metadata": {
+            "c4_level": "component",
+            "is_entry": false
+          },
+          "name": "NotFound",
+          "type": "module"
+        }
+      ]
+    },
+    "project_info": {
+      "config_files": [
+        {
+          "path": "vite.config.ts",
+          "type": "vite.config"
+        },
+        {
+          "path": "package.json",
+          "type": "package.json"
+        },
+        {
+          "path": "index.html",
+          "type": "index.html"
+        }
+      ],
+      "entry_points": [
+        {
+          "source": "index.html",
+          "type": "html_script",
+          "value": "src/main.tsx"
+        },
+        {
+          "source": "convention",
+          "type": "react_main",
+          "value": "src/main.tsx"
+        }
+      ],
+      "framework": "react",
+      "language": "typescript",
+      "name": "C:/Users/Vandh/OneDrive/Desktop/28-08",
+      "path": "C:/Users/Vandh/OneDrive/Desktop/28-08",
+      "type": "react_vite"
+    }
+  },
+  "status": "completed"
+}

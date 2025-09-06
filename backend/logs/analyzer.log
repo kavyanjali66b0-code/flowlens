@@ -1,0 +1,1766 @@
+2025-09-04 11:41:04 - root - INFO - Logging configured with level: INFO
+2025-09-04 11:41:25 - root - INFO - Logging configured with level: INFO
+2025-09-04 11:41:43 - root - INFO - Logging configured with level: INFO
+2025-09-04 11:45:16 - root - INFO - Logging configured with level: INFO
+2025-09-04 11:45:51 - root - INFO - Logging configured with level: INFO
+2025-09-04 11:46:14 - root - INFO - Logging configured with level: INFO
+2025-09-04 11:46:32 - root - INFO - Logging configured with level: INFO
+2025-09-04 11:47:30 - root - INFO - Logging configured with level: INFO
+2025-09-04 11:48:25 - root - INFO - Logging configured with level: INFO
+2025-09-04 11:51:53 - root - INFO - Logging configured with level: INFO
+2025-09-04 11:54:08 - root - INFO - Logging configured with level: INFO
+2025-09-04 11:55:05 - root - INFO - Logging configured with level: INFO
+2025-09-04 11:55:19 - root - INFO - Logging configured with level: INFO
+2025-09-04 11:57:38 - root - INFO - Logging configured with level: INFO
+2025-09-04 11:57:38 - root - INFO - Logging configured with level: INFO
+2025-09-04 11:57:38 - root - INFO - Logging configured with level: INFO
+2025-09-04 11:57:56 - root - INFO - Logging configured with level: INFO
+2025-09-04 11:57:56 - root - INFO - Logging configured with level: INFO
+2025-09-04 11:57:56 - root - INFO - Logging configured with level: INFO
+2025-09-04 11:58:28 - root - INFO - Logging configured with level: INFO
+2025-09-04 11:58:28 - root - INFO - Logging configured with level: INFO
+2025-09-04 11:58:28 - root - INFO - Logging configured with level: INFO
+2025-09-04 12:01:59 - root - INFO - Logging configured with level: INFO
+2025-09-04 12:01:59 - root - INFO - Logging configured with level: INFO
+2025-09-04 12:01:59 - root - INFO - Logging configured with level: INFO
+2025-09-04 12:01:59 - werkzeug - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+2025-09-04 12:01:59 - werkzeug - INFO - [33mPress CTRL+C to quit[0m
+2025-09-04 12:01:59 - werkzeug - INFO -  * Restarting with stat
+2025-09-04 12:01:59 - root - INFO - Logging configured with level: INFO
+2025-09-04 12:02:00 - root - INFO - Logging configured with level: INFO
+2025-09-04 12:02:00 - root - INFO - Logging configured with level: INFO
+2025-09-04 12:02:00 - werkzeug - WARNING -  * Debugger is active!
+2025-09-04 12:02:00 - werkzeug - INFO -  * Debugger PIN: 884-593-877
+2025-09-04 12:02:00 - root - INFO - Logging configured with level: INFO
+2025-09-04 12:02:00 - root - INFO - Logging configured with level: INFO
+2025-09-04 12:02:00 - root - INFO - Logging configured with level: INFO
+2025-09-04 12:02:00 - root - INFO - Logging configured with level: INFO
+2025-09-04 12:02:00 - root - INFO - Logging configured with level: INFO
+2025-09-04 12:02:00 - root - INFO - Logging configured with level: INFO
+2025-09-04 12:02:00 - root - INFO - Logging configured with level: INFO
+2025-09-04 12:02:00 - root - INFO - Logging configured with level: INFO
+2025-09-04 12:02:00 - root - INFO - Logging configured with level: INFO
+2025-09-04 12:02:00 - root - INFO - Logging configured with level: INFO
+2025-09-04 12:02:00 - root - INFO - Logging configured with level: INFO
+2025-09-04 12:02:00 - root - INFO - Logging configured with level: INFO
+2025-09-04 12:02:00 - root - INFO - Logging configured with level: INFO
+2025-09-04 12:02:00 - root - INFO - Logging configured with level: INFO
+2025-09-04 12:02:00 - root - INFO - Logging configured with level: INFO
+2025-09-04 12:02:01 - root - INFO - Logging configured with level: INFO
+2025-09-04 12:02:01 - root - INFO - Logging configured with level: INFO
+2025-09-04 12:03:11 - root - INFO - Received parse request for: C:/Users/Vandh/OneDrive/Desktop/28-08
+2025-09-04 12:03:11 - root - ERROR - Parse endpoint failed
+Traceback (most recent call last):
+  File "C:\Users\Vandh\OneDrive\Desktop\V2.0\.venv\Lib\site-packages\celery\local.py", line 292, in _get_current_object
+    return object.__getattribute__(self, '__thing')
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AttributeError: 'PromiseProxy' object has no attribute '__thing'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\Vandh\OneDrive\Desktop\V2.0\dev-scope\run.py", line 51, in parse_codebase
+    task = run_analysis.delay(folder_path)
+           ^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Vandh\OneDrive\Desktop\V2.0\.venv\Lib\site-packages\celery\local.py", line 143, in __getattr__
+    return getattr(self._get_current_object(), name)
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Vandh\OneDrive\Desktop\V2.0\.venv\Lib\site-packages\celery\local.py", line 294, in _get_current_object
+    return self.__evaluate__()
+           ^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Vandh\OneDrive\Desktop\V2.0\.venv\Lib\site-packages\celery\local.py", line 324, in __evaluate__
+    thing = Proxy._get_current_object(self)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Vandh\OneDrive\Desktop\V2.0\.venv\Lib\site-packages\celery\local.py", line 105, in _get_current_object
+    return loc(*self.__args, **self.__kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Vandh\OneDrive\Desktop\V2.0\.venv\Lib\site-packages\celery\app\base.py", line 492, in _task_from_fun
+    task.bind(self)  # connects task to this app
+    ^^^^^^^^^^^^^^^
+  File "C:\Users\Vandh\OneDrive\Desktop\V2.0\.venv\Lib\site-packages\celery\app\task.py", line 355, in bind
+    setattr(cls, attr_name, conf[config_name])
+                            ~~~~^^^^^^^^^^^^^
+  File "C:\Users\Vandh\OneDrive\Desktop\V2.0\.venv\Lib\site-packages\celery\utils\collections.py", line 391, in __getitem__
+    return getitem(k)
+           ^^^^^^^^^^
+  File "C:\Users\Vandh\OneDrive\Desktop\V2.0\.venv\Lib\site-packages\celery\utils\collections.py", line 249, in __getitem__
+    return mapping[_key]
+           ~~~~~~~^^^^^^
+  File "C:\Program Files\WindowsApps\PythonSoftwareFoundation.Python.3.11_3.11.2544.0_x64__qbz5n2kfra8p0\Lib\collections\__init__.py", line 1122, in __getitem__
+    if key in self.data:
+              ^^^^^^^^^
+  File "C:\Users\Vandh\OneDrive\Desktop\V2.0\.venv\Lib\site-packages\kombu\utils\objects.py", line 40, in __get__
+    return super().__get__(instance, owner)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Program Files\WindowsApps\PythonSoftwareFoundation.Python.3.11_3.11.2544.0_x64__qbz5n2kfra8p0\Lib\functools.py", line 1001, in __get__
+    val = self.func(instance)
+          ^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Vandh\OneDrive\Desktop\V2.0\.venv\Lib\site-packages\celery\app\base.py", line 136, in data
+    return self.callback()
+           ^^^^^^^^^^^^^^^
+  File "C:\Users\Vandh\OneDrive\Desktop\V2.0\.venv\Lib\site-packages\celery\app\base.py", line 981, in _finalize_pending_conf
+    conf = self._conf = self._load_config()
+                        ^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Vandh\OneDrive\Desktop\V2.0\.venv\Lib\site-packages\celery\app\base.py", line 999, in _load_config
+    settings = detect_settings(
+               ^^^^^^^^^^^^^^^^
+  File "C:\Users\Vandh\OneDrive\Desktop\V2.0\.venv\Lib\site-packages\celery\app\utils.py", line 274, in detect_settings
+    raise ImproperlyConfigured(info.mix_error.format(renames='\n'.join(
+celery.exceptions.ImproperlyConfigured: 
+
+Cannot mix new and old setting keys, please rename the
+following settings to the new format:
+
+CELERY_RESULT_BACKEND                -> result_backend
+
+
+2025-09-04 12:03:11 - werkzeug - INFO - 127.0.0.1 - - [04/Sep/2025 12:03:11] "[35m[1mPOST /parse HTTP/1.1[0m" 500 -
+2025-09-04 12:04:26 - werkzeug - INFO -  * Detected change in 'C:\\Users\\Vandh\\OneDrive\\Desktop\\V2.0\\dev-scope\\run.py', reloading
+2025-09-04 12:04:26 - werkzeug - INFO -  * Restarting with stat
+2025-09-04 12:04:26 - root - INFO - Logging configured with level: INFO
+2025-09-04 12:04:26 - root - INFO - Logging configured with level: INFO
+2025-09-04 12:04:26 - werkzeug - WARNING -  * Debugger is active!
+2025-09-04 12:04:26 - werkzeug - INFO -  * Debugger PIN: 884-593-877
+2025-09-04 12:05:44 - root - INFO - Logging configured with level: INFO
+2025-09-04 12:05:45 - root - INFO - Logging configured with level: INFO
+2025-09-04 12:05:45 - root - INFO - Logging configured with level: INFO
+2025-09-04 12:05:45 - werkzeug - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+2025-09-04 12:05:45 - werkzeug - INFO - [33mPress CTRL+C to quit[0m
+2025-09-04 12:05:45 - werkzeug - INFO -  * Restarting with stat
+2025-09-04 12:05:45 - root - INFO - Logging configured with level: INFO
+2025-09-04 12:05:45 - root - INFO - Logging configured with level: INFO
+2025-09-04 12:05:45 - root - INFO - Logging configured with level: INFO
+2025-09-04 12:05:45 - werkzeug - WARNING -  * Debugger is active!
+2025-09-04 12:05:45 - werkzeug - INFO -  * Debugger PIN: 884-593-877
+2025-09-04 12:05:46 - root - INFO - Logging configured with level: INFO
+2025-09-04 12:05:46 - root - INFO - Logging configured with level: INFO
+2025-09-04 12:05:46 - root - INFO - Logging configured with level: INFO
+2025-09-04 12:05:46 - root - INFO - Logging configured with level: INFO
+2025-09-04 12:05:46 - root - INFO - Logging configured with level: INFO
+2025-09-04 12:05:46 - root - INFO - Logging configured with level: INFO
+2025-09-04 12:05:46 - root - INFO - Logging configured with level: INFO
+2025-09-04 12:05:46 - root - INFO - Logging configured with level: INFO
+2025-09-04 12:05:46 - root - INFO - Logging configured with level: INFO
+2025-09-04 12:05:46 - root - INFO - Logging configured with level: INFO
+2025-09-04 12:05:46 - root - INFO - Logging configured with level: INFO
+2025-09-04 12:05:46 - root - INFO - Logging configured with level: INFO
+2025-09-04 12:05:46 - root - INFO - Logging configured with level: INFO
+2025-09-04 12:05:46 - root - INFO - Logging configured with level: INFO
+2025-09-04 12:05:46 - root - INFO - Logging configured with level: INFO
+2025-09-04 12:05:46 - root - INFO - Logging configured with level: INFO
+2025-09-04 12:05:46 - root - INFO - Logging configured with level: INFO
+2025-09-04 12:05:46 - root - INFO - Logging configured with level: INFO
+2025-09-04 12:05:47 - root - INFO - Logging configured with level: INFO
+2025-09-04 12:05:47 - root - INFO - Logging configured with level: INFO
+2025-09-04 12:05:50 - root - INFO - Received parse request for: C:/Users/Vandh/OneDrive/Desktop/28-08
+2025-09-04 12:05:50 - root - INFO - Queued analysis task with ID: ee1b4ca9-d904-47da-a4e1-82145f536be2
+2025-09-04 12:05:50 - werkzeug - INFO - 127.0.0.1 - - [04/Sep/2025 12:05:50] "[35m[1mPOST /parse HTTP/1.1[0m" 202 -
+2025-09-04 12:05:51 - root - INFO - Logging configured with level: INFO
+2025-09-04 12:05:51 - root - INFO - Logging configured with level: INFO
+2025-09-04 12:05:51 - root - INFO - Logging configured with level: INFO
+2025-09-04 12:05:51 - root - INFO - Logging configured with level: INFO
+2025-09-04 12:05:51 - root - INFO - Logging configured with level: INFO
+2025-09-04 12:05:52 - root - INFO - Logging configured with level: INFO
+2025-09-04 12:05:59 - werkzeug - INFO - 127.0.0.1 - - [04/Sep/2025 12:05:59] "GET /status/ee1b4ca9-d904-47da-a4e1-82145f536be2 HTTP/1.1" 200 -
+2025-09-04 12:06:02 - werkzeug - INFO - 127.0.0.1 - - [04/Sep/2025 12:06:02] "GET /status/ee1b4ca9-d904-47da-a4e1-82145f536be2 HTTP/1.1" 200 -
+2025-09-04 12:06:14 - werkzeug - INFO - 127.0.0.1 - - [04/Sep/2025 12:06:14] "GET /status/ee1b4ca9-d904-47da-a4e1-82145f536be2 HTTP/1.1" 200 -
+2025-09-04 12:06:15 - werkzeug - INFO - 127.0.0.1 - - [04/Sep/2025 12:06:15] "GET /status/ee1b4ca9-d904-47da-a4e1-82145f536be2 HTTP/1.1" 200 -
+2025-09-04 12:06:19 - werkzeug - INFO - 127.0.0.1 - - [04/Sep/2025 12:06:19] "GET /status/ee1b4ca9-d904-47da-a4e1-82145f536be2 HTTP/1.1" 200 -
+2025-09-04 12:06:24 - root - INFO - Received parse request for: C:/Users/Vandh/OneDrive/Desktop/28-08
+2025-09-04 12:06:24 - root - INFO - Queued analysis task with ID: 517d8885-ed84-44ad-a4ff-c4e01cd4e3da
+2025-09-04 12:06:24 - werkzeug - INFO - 127.0.0.1 - - [04/Sep/2025 12:06:24] "[35m[1mPOST /parse HTTP/1.1[0m" 202 -
+2025-09-04 12:06:36 - werkzeug - INFO - 127.0.0.1 - - [04/Sep/2025 12:06:36] "GET /status/ee1b4ca9-d904-47da-a4e1-82145f536be2 HTTP/1.1" 200 -
+2025-09-04 12:06:37 - werkzeug - INFO - 127.0.0.1 - - [04/Sep/2025 12:06:37] "GET /status/ee1b4ca9-d904-47da-a4e1-82145f536be2 HTTP/1.1" 200 -
+2025-09-04 12:06:41 - werkzeug - INFO - 127.0.0.1 - - [04/Sep/2025 12:06:41] "GET /status/ee1b4ca9-d904-47da-a4e1-82145f536be2 HTTP/1.1" 200 -
+2025-09-04 12:06:44 - werkzeug - INFO - 127.0.0.1 - - [04/Sep/2025 12:06:44] "GET /status/ee1b4ca9-d904-47da-a4e1-82145f536be HTTP/1.1" 200 -
+2025-09-04 12:06:47 - root - INFO - Received parse request for: C:/Users/Vandh/OneDrive/Desktop/28-08
+2025-09-04 12:06:47 - root - INFO - Queued analysis task with ID: 8590d71e-8927-4664-9aa1-9a14dc26f956
+2025-09-04 12:06:47 - werkzeug - INFO - 127.0.0.1 - - [04/Sep/2025 12:06:47] "[35m[1mPOST /parse HTTP/1.1[0m" 202 -
+2025-09-04 12:06:54 - werkzeug - INFO - 127.0.0.1 - - [04/Sep/2025 12:06:54] "GET /status/8590d71e-8927-4664-9aa1-9a14dc26f956 HTTP/1.1" 200 -
+2025-09-04 12:07:29 - werkzeug - INFO - 127.0.0.1 - - [04/Sep/2025 12:07:29] "GET /status/8590d71e-8927-4664-9aa1-9a14dc26f956 HTTP/1.1" 200 -
+2025-09-04 12:08:01 - werkzeug - INFO -  * Detected change in 'C:\\Users\\Vandh\\OneDrive\\Desktop\\V2.0\\dev-scope\\start.py', reloading
+2025-09-04 12:08:01 - werkzeug - INFO -  * Restarting with stat
+2025-09-04 12:08:02 - root - INFO - Logging configured with level: INFO
+2025-09-04 12:08:02 - root - INFO - Logging configured with level: INFO
+2025-09-04 12:08:02 - werkzeug - WARNING -  * Debugger is active!
+2025-09-04 12:08:02 - werkzeug - INFO -  * Debugger PIN: 884-593-877
+2025-09-04 12:08:07 - root - INFO - Received parse request for: C:/Users/Vandh/OneDrive/Desktop/28-08
+2025-09-04 12:08:07 - root - INFO - Queued analysis task with ID: ed37e18f-d3e2-4991-ad57-02fb534ef038
+2025-09-04 12:08:07 - werkzeug - INFO - 127.0.0.1 - - [04/Sep/2025 12:08:07] "[35m[1mPOST /parse HTTP/1.1[0m" 202 -
+2025-09-04 12:08:18 - werkzeug - INFO - 127.0.0.1 - - [04/Sep/2025 12:08:18] "GET /status/ed37e18f-d3e2-4991-ad57-02fb534ef038 HTTP/1.1" 200 -
+2025-09-04 12:09:49 - werkzeug - INFO -  * Detected change in 'C:\\Users\\Vandh\\OneDrive\\Desktop\\V2.0\\dev-scope\\start.py', reloading
+2025-09-04 12:09:49 - werkzeug - INFO -  * Restarting with stat
+2025-09-04 12:09:49 - root - INFO - Logging configured with level: INFO
+2025-09-04 12:09:49 - root - INFO - Logging configured with level: INFO
+2025-09-04 12:09:49 - werkzeug - WARNING -  * Debugger is active!
+2025-09-04 12:09:49 - werkzeug - INFO -  * Debugger PIN: 884-593-877
+2025-09-04 12:09:52 - root - INFO - Received parse request for: C:/Users/Vandh/OneDrive/Desktop/28-08
+2025-09-04 12:09:52 - root - INFO - Queued analysis task with ID: 3e2198c5-78a4-4334-9b0a-be5490dd0c64
+2025-09-04 12:09:52 - werkzeug - INFO - 127.0.0.1 - - [04/Sep/2025 12:09:52] "[35m[1mPOST /parse HTTP/1.1[0m" 202 -
+2025-09-04 12:09:53 - root - INFO - Received parse request for: C:/Users/Vandh/OneDrive/Desktop/28-08
+2025-09-04 12:09:53 - root - INFO - Queued analysis task with ID: 4f5a929c-d6c7-4415-8f02-2370bfbe6a54
+2025-09-04 12:09:53 - werkzeug - INFO - 127.0.0.1 - - [04/Sep/2025 12:09:53] "[35m[1mPOST /parse HTTP/1.1[0m" 202 -
+2025-09-04 12:10:25 - root - INFO - Logging configured with level: INFO
+2025-09-04 12:10:25 - root - INFO - Logging configured with level: INFO
+2025-09-04 12:10:25 - root - INFO - Logging configured with level: INFO
+2025-09-04 12:10:25 - werkzeug - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+2025-09-04 12:10:25 - werkzeug - INFO - [33mPress CTRL+C to quit[0m
+2025-09-04 12:10:25 - werkzeug - INFO -  * Restarting with stat
+2025-09-04 12:10:25 - root - INFO - Logging configured with level: INFO
+2025-09-04 12:10:26 - root - INFO - Logging configured with level: INFO
+2025-09-04 12:10:26 - root - INFO - Logging configured with level: INFO
+2025-09-04 12:10:26 - werkzeug - WARNING -  * Debugger is active!
+2025-09-04 12:10:26 - werkzeug - INFO -  * Debugger PIN: 884-593-877
+2025-09-04 12:10:34 - root - INFO - Received parse request for: C:/Users/Vandh/OneDrive/Desktop/28-08
+2025-09-04 12:10:34 - root - INFO - Queued analysis task with ID: bd97eafb-3eb5-4f92-a04d-9e0bddf77afc
+2025-09-04 12:10:34 - werkzeug - INFO - 127.0.0.1 - - [04/Sep/2025 12:10:34] "[35m[1mPOST /parse HTTP/1.1[0m" 202 -
+2025-09-04 12:10:42 - root - INFO - Task bd97eafb-3eb5-4f92-a04d-9e0bddf77afc completed successfully
+2025-09-04 12:10:42 - werkzeug - INFO - 127.0.0.1 - - [04/Sep/2025 12:10:42] "GET /status/bd97eafb-3eb5-4f92-a04d-9e0bddf77afc HTTP/1.1" 200 -
+2025-09-04 12:11:59 - root - INFO - Logging configured with level: INFO
+2025-09-04 12:11:59 - root - INFO - Logging configured with level: INFO
+2025-09-04 12:11:59 - root - INFO - Logging configured with level: INFO
+2025-09-04 12:11:59 - root - INFO - Logging configured with level: INFO
+2025-09-04 12:11:59 - werkzeug - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+2025-09-04 12:11:59 - werkzeug - INFO - [33mPress CTRL+C to quit[0m
+2025-09-04 12:11:59 - werkzeug - INFO -  * Restarting with stat
+2025-09-04 12:12:00 - root - INFO - Logging configured with level: INFO
+2025-09-04 12:12:00 - root - INFO - Logging configured with level: INFO
+2025-09-04 12:12:00 - werkzeug - WARNING -  * Debugger is active!
+2025-09-04 12:12:00 - werkzeug - INFO -  * Debugger PIN: 884-593-877
+2025-09-04 12:12:07 - root - INFO - Received parse request for: C:/Users/Vandh/OneDrive/Desktop/28-08
+2025-09-04 12:12:07 - root - INFO - Queued analysis task with ID: b4a1230e-ef8e-4446-8d87-9b8c9249cc4a
+2025-09-04 12:12:07 - werkzeug - INFO - 127.0.0.1 - - [04/Sep/2025 12:12:07] "[35m[1mPOST /parse HTTP/1.1[0m" 202 -
+2025-09-04 12:12:14 - root - INFO - Task b4a1230e-ef8e-4446-8d87-9b8c9249cc4a completed successfully
+2025-09-04 12:12:14 - werkzeug - INFO - 127.0.0.1 - - [04/Sep/2025 12:12:14] "GET /status/b4a1230e-ef8e-4446-8d87-9b8c9249cc4a HTTP/1.1" 200 -
+2025-09-04 12:13:12 - root - INFO - Logging configured with level: INFO
+2025-09-04 12:13:13 - root - INFO - Logging configured with level: INFO
+2025-09-04 12:13:13 - root - INFO - Logging configured with level: INFO
+2025-09-04 12:13:13 - werkzeug - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+2025-09-04 12:13:13 - werkzeug - INFO - [33mPress CTRL+C to quit[0m
+2025-09-04 12:13:13 - werkzeug - INFO -  * Restarting with stat
+2025-09-04 12:13:13 - root - INFO - Logging configured with level: INFO
+2025-09-04 12:13:13 - root - INFO - Logging configured with level: INFO
+2025-09-04 12:13:13 - root - INFO - Logging configured with level: INFO
+2025-09-04 12:13:13 - werkzeug - WARNING -  * Debugger is active!
+2025-09-04 12:13:13 - werkzeug - INFO -  * Debugger PIN: 884-593-877
+2025-09-04 12:13:19 - root - INFO - Received parse request for: C:/Users/Vandh/OneDrive/Desktop/28-08
+2025-09-04 12:13:19 - root - INFO - Queued analysis task with ID: f7b5c9e7-42c9-4f18-8260-75b126bdc0af
+2025-09-04 12:13:19 - werkzeug - INFO - 127.0.0.1 - - [04/Sep/2025 12:13:19] "[35m[1mPOST /parse HTTP/1.1[0m" 202 -
+2025-09-04 12:13:26 - root - INFO - Task f7b5c9e7-42c9-4f18-8260-75b126bdc0af completed successfully
+2025-09-04 12:13:26 - werkzeug - INFO - 127.0.0.1 - - [04/Sep/2025 12:13:26] "GET /status/f7b5c9e7-42c9-4f18-8260-75b126bdc0af HTTP/1.1" 200 -
+2025-09-04 12:15:17 - werkzeug - INFO -  * Detected change in 'C:\\Users\\Vandh\\OneDrive\\Desktop\\V2.0\\dev-scope\\analyzer\\parser.py', reloading
+2025-09-04 12:15:17 - werkzeug - INFO -  * Restarting with stat
+2025-09-04 12:15:47 - root - INFO - Logging configured with level: INFO
+2025-09-04 12:15:48 - root - INFO - Logging configured with level: INFO
+2025-09-04 12:15:48 - root - INFO - Logging configured with level: INFO
+2025-09-04 12:15:48 - werkzeug - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+2025-09-04 12:15:48 - werkzeug - INFO - [33mPress CTRL+C to quit[0m
+2025-09-04 12:15:48 - werkzeug - INFO -  * Restarting with stat
+2025-09-04 12:15:48 - root - INFO - Logging configured with level: INFO
+2025-09-04 12:15:48 - root - INFO - Logging configured with level: INFO
+2025-09-04 12:15:48 - root - INFO - Logging configured with level: INFO
+2025-09-04 12:15:48 - werkzeug - WARNING -  * Debugger is active!
+2025-09-04 12:15:48 - werkzeug - INFO -  * Debugger PIN: 884-593-877
+2025-09-04 12:15:56 - root - INFO - Received parse request for: C:/Users/Vandh/OneDrive/Desktop/28-08
+2025-09-04 12:15:56 - root - ERROR - Parse endpoint failed
+Traceback (most recent call last):
+  File "C:\Users\Vandh\OneDrive\Desktop\V2.0\.venv\Lib\site-packages\kombu\utils\functional.py", line 32, in __call__
+    return self.__value__
+           ^^^^^^^^^^^^^^
+AttributeError: 'ChannelPromise' object has no attribute '__value__'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\Vandh\OneDrive\Desktop\V2.0\.venv\Lib\site-packages\kombu\transport\virtual\base.py", line 951, in create_channel
+    return self._avail_channels.pop()
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+IndexError: pop from empty list
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\Vandh\OneDrive\Desktop\V2.0\.venv\Lib\site-packages\kombu\connection.py", line 472, in _reraise_as_library_errors
+    yield
+  File "C:\Users\Vandh\OneDrive\Desktop\V2.0\.venv\Lib\site-packages\kombu\connection.py", line 459, in _ensure_connection
+    return retry_over_time(
+           ^^^^^^^^^^^^^^^^
+  File "C:\Users\Vandh\OneDrive\Desktop\V2.0\.venv\Lib\site-packages\kombu\utils\functional.py", line 318, in retry_over_time
+    return fun(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Vandh\OneDrive\Desktop\V2.0\.venv\Lib\site-packages\kombu\connection.py", line 938, in _connection_factory
+    self._connection = self._establish_connection()
+                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Vandh\OneDrive\Desktop\V2.0\.venv\Lib\site-packages\kombu\connection.py", line 860, in _establish_connection
+    conn = self.transport.establish_connection()
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Vandh\OneDrive\Desktop\V2.0\.venv\Lib\site-packages\kombu\transport\virtual\base.py", line 975, in establish_connection
+    self._avail_channels.append(self.create_channel(self))
+                                ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Vandh\OneDrive\Desktop\V2.0\.venv\Lib\site-packages\kombu\transport\virtual\base.py", line 953, in create_channel
+    channel = self.Channel(connection)
+              ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Vandh\OneDrive\Desktop\V2.0\.venv\Lib\site-packages\kombu\transport\redis.py", line 751, in __init__
+    self.client.ping()
+  File "C:\Users\Vandh\OneDrive\Desktop\V2.0\.venv\Lib\site-packages\redis\commands\core.py", line 1205, in ping
+    return self.execute_command("PING", **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Vandh\OneDrive\Desktop\V2.0\.venv\Lib\site-packages\redis\client.py", line 1269, in execute_command
+    return conn.retry.call_with_retry(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Vandh\OneDrive\Desktop\V2.0\.venv\Lib\site-packages\redis\retry.py", line 46, in call_with_retry
+    return do()
+           ^^^^
+  File "C:\Users\Vandh\OneDrive\Desktop\V2.0\.venv\Lib\site-packages\redis\client.py", line 1270, in <lambda>
+    lambda: self._send_command_parse_response(
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Vandh\OneDrive\Desktop\V2.0\.venv\Lib\site-packages\redis\client.py", line 1245, in _send_command_parse_response
+    conn.send_command(*args)
+  File "C:\Users\Vandh\OneDrive\Desktop\V2.0\.venv\Lib\site-packages\redis\connection.py", line 855, in send_command
+    self.send_packed_command(
+  File "C:\Users\Vandh\OneDrive\Desktop\V2.0\.venv\Lib\site-packages\redis\connection.py", line 828, in send_packed_command
+    self.check_health()
+  File "C:\Users\Vandh\OneDrive\Desktop\V2.0\.venv\Lib\site-packages\redis\connection.py", line 820, in check_health
+    self.retry.call_with_retry(self._send_ping, self._ping_failed)
+  File "C:\Users\Vandh\OneDrive\Desktop\V2.0\.venv\Lib\site-packages\redis\retry.py", line 46, in call_with_retry
+    return do()
+           ^^^^
+  File "C:\Users\Vandh\OneDrive\Desktop\V2.0\.venv\Lib\site-packages\redis\connection.py", line 810, in _send_ping
+    if str_if_bytes(self.read_response()) != "PONG":
+                    ^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Vandh\OneDrive\Desktop\V2.0\.venv\Lib\site-packages\redis\connection.py", line 905, in read_response
+    raise response
+redis.exceptions.ResponseError: MISCONF Redis is configured to save RDB snapshots, but is currently not able to persist on disk. Commands that may modify the data set are disabled. Please check Redis logs for details about the error.
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\Users\Vandh\OneDrive\Desktop\V2.0\dev-scope\run.py", line 51, in parse_codebase
+    task = run_analysis.delay(folder_path)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Vandh\OneDrive\Desktop\V2.0\.venv\Lib\site-packages\celery\app\task.py", line 444, in delay
+    return self.apply_async(args, kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Vandh\OneDrive\Desktop\V2.0\.venv\Lib\site-packages\celery\app\task.py", line 594, in apply_async
+    return app.send_task(
+           ^^^^^^^^^^^^^^
+  File "C:\Users\Vandh\OneDrive\Desktop\V2.0\.venv\Lib\site-packages\celery\app\base.py", line 801, in send_task
+    amqp.send_task_message(P, name, message, **options)
+  File "C:\Users\Vandh\OneDrive\Desktop\V2.0\.venv\Lib\site-packages\celery\app\amqp.py", line 518, in send_task_message
+    ret = producer.publish(
+          ^^^^^^^^^^^^^^^^^
+  File "C:\Users\Vandh\OneDrive\Desktop\V2.0\.venv\Lib\site-packages\kombu\messaging.py", line 190, in publish
+    return _publish(
+           ^^^^^^^^^
+  File "C:\Users\Vandh\OneDrive\Desktop\V2.0\.venv\Lib\site-packages\kombu\connection.py", line 556, in _ensured
+    return fun(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Vandh\OneDrive\Desktop\V2.0\.venv\Lib\site-packages\kombu\messaging.py", line 200, in _publish
+    channel = self.channel
+              ^^^^^^^^^^^^
+  File "C:\Users\Vandh\OneDrive\Desktop\V2.0\.venv\Lib\site-packages\kombu\messaging.py", line 224, in _get_channel
+    channel = self._channel = channel()
+                              ^^^^^^^^^
+  File "C:\Users\Vandh\OneDrive\Desktop\V2.0\.venv\Lib\site-packages\kombu\utils\functional.py", line 34, in __call__
+    value = self.__value__ = self.__contract__()
+                             ^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Vandh\OneDrive\Desktop\V2.0\.venv\Lib\site-packages\kombu\messaging.py", line 240, in <lambda>
+    channel = ChannelPromise(lambda: connection.default_channel)
+                                     ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Vandh\OneDrive\Desktop\V2.0\.venv\Lib\site-packages\kombu\connection.py", line 957, in default_channel
+    self._ensure_connection(**conn_opts)
+  File "C:\Users\Vandh\OneDrive\Desktop\V2.0\.venv\Lib\site-packages\kombu\connection.py", line 458, in _ensure_connection
+    with ctx():
+  File "C:\Program Files\WindowsApps\PythonSoftwareFoundation.Python.3.11_3.11.2544.0_x64__qbz5n2kfra8p0\Lib\contextlib.py", line 158, in __exit__
+    self.gen.throw(typ, value, traceback)
+  File "C:\Users\Vandh\OneDrive\Desktop\V2.0\.venv\Lib\site-packages\kombu\connection.py", line 476, in _reraise_as_library_errors
+    raise ConnectionError(str(exc)) from exc
+kombu.exceptions.OperationalError: MISCONF Redis is configured to save RDB snapshots, but is currently not able to persist on disk. Commands that may modify the data set are disabled. Please check Redis logs for details about the error.
+2025-09-04 12:15:56 - werkzeug - INFO - 127.0.0.1 - - [04/Sep/2025 12:15:56] "[35m[1mPOST /parse HTTP/1.1[0m" 500 -
+2025-09-04 12:16:08 - root - INFO - Received parse request for: C:/Users/Vandh/OneDrive/Desktop/28-08
+2025-09-04 12:16:08 - root - ERROR - Parse endpoint failed
+Traceback (most recent call last):
+  File "C:\Users\Vandh\OneDrive\Desktop\V2.0\.venv\Lib\site-packages\kombu\utils\functional.py", line 32, in __call__
+    return self.__value__
+           ^^^^^^^^^^^^^^
+AttributeError: 'ChannelPromise' object has no attribute '__value__'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\Vandh\OneDrive\Desktop\V2.0\.venv\Lib\site-packages\kombu\transport\virtual\base.py", line 951, in create_channel
+    return self._avail_channels.pop()
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+IndexError: pop from empty list
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\Vandh\OneDrive\Desktop\V2.0\.venv\Lib\site-packages\kombu\connection.py", line 472, in _reraise_as_library_errors
+    yield
+  File "C:\Users\Vandh\OneDrive\Desktop\V2.0\.venv\Lib\site-packages\kombu\connection.py", line 459, in _ensure_connection
+    return retry_over_time(
+           ^^^^^^^^^^^^^^^^
+  File "C:\Users\Vandh\OneDrive\Desktop\V2.0\.venv\Lib\site-packages\kombu\utils\functional.py", line 318, in retry_over_time
+    return fun(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Vandh\OneDrive\Desktop\V2.0\.venv\Lib\site-packages\kombu\connection.py", line 938, in _connection_factory
+    self._connection = self._establish_connection()
+                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Vandh\OneDrive\Desktop\V2.0\.venv\Lib\site-packages\kombu\connection.py", line 860, in _establish_connection
+    conn = self.transport.establish_connection()
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Vandh\OneDrive\Desktop\V2.0\.venv\Lib\site-packages\kombu\transport\virtual\base.py", line 975, in establish_connection
+    self._avail_channels.append(self.create_channel(self))
+                                ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Vandh\OneDrive\Desktop\V2.0\.venv\Lib\site-packages\kombu\transport\virtual\base.py", line 953, in create_channel
+    channel = self.Channel(connection)
+              ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Vandh\OneDrive\Desktop\V2.0\.venv\Lib\site-packages\kombu\transport\redis.py", line 751, in __init__
+    self.client.ping()
+  File "C:\Users\Vandh\OneDrive\Desktop\V2.0\.venv\Lib\site-packages\redis\commands\core.py", line 1205, in ping
+    return self.execute_command("PING", **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Vandh\OneDrive\Desktop\V2.0\.venv\Lib\site-packages\redis\client.py", line 1269, in execute_command
+    return conn.retry.call_with_retry(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Vandh\OneDrive\Desktop\V2.0\.venv\Lib\site-packages\redis\retry.py", line 46, in call_with_retry
+    return do()
+           ^^^^
+  File "C:\Users\Vandh\OneDrive\Desktop\V2.0\.venv\Lib\site-packages\redis\client.py", line 1270, in <lambda>
+    lambda: self._send_command_parse_response(
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Vandh\OneDrive\Desktop\V2.0\.venv\Lib\site-packages\redis\client.py", line 1245, in _send_command_parse_response
+    conn.send_command(*args)
+  File "C:\Users\Vandh\OneDrive\Desktop\V2.0\.venv\Lib\site-packages\redis\connection.py", line 855, in send_command
+    self.send_packed_command(
+  File "C:\Users\Vandh\OneDrive\Desktop\V2.0\.venv\Lib\site-packages\redis\connection.py", line 828, in send_packed_command
+    self.check_health()
+  File "C:\Users\Vandh\OneDrive\Desktop\V2.0\.venv\Lib\site-packages\redis\connection.py", line 820, in check_health
+    self.retry.call_with_retry(self._send_ping, self._ping_failed)
+  File "C:\Users\Vandh\OneDrive\Desktop\V2.0\.venv\Lib\site-packages\redis\retry.py", line 46, in call_with_retry
+    return do()
+           ^^^^
+  File "C:\Users\Vandh\OneDrive\Desktop\V2.0\.venv\Lib\site-packages\redis\connection.py", line 810, in _send_ping
+    if str_if_bytes(self.read_response()) != "PONG":
+                    ^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Vandh\OneDrive\Desktop\V2.0\.venv\Lib\site-packages\redis\connection.py", line 905, in read_response
+    raise response
+redis.exceptions.ResponseError: MISCONF Redis is configured to save RDB snapshots, but is currently not able to persist on disk. Commands that may modify the data set are disabled. Please check Redis logs for details about the error.
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\Users\Vandh\OneDrive\Desktop\V2.0\dev-scope\run.py", line 51, in parse_codebase
+    task = run_analysis.delay(folder_path)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Vandh\OneDrive\Desktop\V2.0\.venv\Lib\site-packages\celery\app\task.py", line 444, in delay
+    return self.apply_async(args, kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Vandh\OneDrive\Desktop\V2.0\.venv\Lib\site-packages\celery\app\task.py", line 594, in apply_async
+    return app.send_task(
+           ^^^^^^^^^^^^^^
+  File "C:\Users\Vandh\OneDrive\Desktop\V2.0\.venv\Lib\site-packages\celery\app\base.py", line 801, in send_task
+    amqp.send_task_message(P, name, message, **options)
+  File "C:\Users\Vandh\OneDrive\Desktop\V2.0\.venv\Lib\site-packages\celery\app\amqp.py", line 518, in send_task_message
+    ret = producer.publish(
+          ^^^^^^^^^^^^^^^^^
+  File "C:\Users\Vandh\OneDrive\Desktop\V2.0\.venv\Lib\site-packages\kombu\messaging.py", line 190, in publish
+    return _publish(
+           ^^^^^^^^^
+  File "C:\Users\Vandh\OneDrive\Desktop\V2.0\.venv\Lib\site-packages\kombu\connection.py", line 556, in _ensured
+    return fun(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Vandh\OneDrive\Desktop\V2.0\.venv\Lib\site-packages\kombu\messaging.py", line 200, in _publish
+    channel = self.channel
+              ^^^^^^^^^^^^
+  File "C:\Users\Vandh\OneDrive\Desktop\V2.0\.venv\Lib\site-packages\kombu\messaging.py", line 224, in _get_channel
+    channel = self._channel = channel()
+                              ^^^^^^^^^
+  File "C:\Users\Vandh\OneDrive\Desktop\V2.0\.venv\Lib\site-packages\kombu\utils\functional.py", line 34, in __call__
+    value = self.__value__ = self.__contract__()
+                             ^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Vandh\OneDrive\Desktop\V2.0\.venv\Lib\site-packages\kombu\messaging.py", line 240, in <lambda>
+    channel = ChannelPromise(lambda: connection.default_channel)
+                                     ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Vandh\OneDrive\Desktop\V2.0\.venv\Lib\site-packages\kombu\connection.py", line 957, in default_channel
+    self._ensure_connection(**conn_opts)
+  File "C:\Users\Vandh\OneDrive\Desktop\V2.0\.venv\Lib\site-packages\kombu\connection.py", line 458, in _ensure_connection
+    with ctx():
+  File "C:\Program Files\WindowsApps\PythonSoftwareFoundation.Python.3.11_3.11.2544.0_x64__qbz5n2kfra8p0\Lib\contextlib.py", line 158, in __exit__
+    self.gen.throw(typ, value, traceback)
+  File "C:\Users\Vandh\OneDrive\Desktop\V2.0\.venv\Lib\site-packages\kombu\connection.py", line 476, in _reraise_as_library_errors
+    raise ConnectionError(str(exc)) from exc
+kombu.exceptions.OperationalError: MISCONF Redis is configured to save RDB snapshots, but is currently not able to persist on disk. Commands that may modify the data set are disabled. Please check Redis logs for details about the error.
+2025-09-04 12:16:08 - werkzeug - INFO - 127.0.0.1 - - [04/Sep/2025 12:16:08] "[35m[1mPOST /parse HTTP/1.1[0m" 500 -
+2025-09-04 12:16:20 - root - INFO - Received parse request for: C:/Users/Vandh/OneDrive/Desktop/28-08
+2025-09-04 12:16:20 - root - ERROR - Parse endpoint failed
+Traceback (most recent call last):
+  File "C:\Users\Vandh\OneDrive\Desktop\V2.0\.venv\Lib\site-packages\kombu\utils\functional.py", line 32, in __call__
+    return self.__value__
+           ^^^^^^^^^^^^^^
+AttributeError: 'ChannelPromise' object has no attribute '__value__'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\Vandh\OneDrive\Desktop\V2.0\.venv\Lib\site-packages\kombu\transport\virtual\base.py", line 951, in create_channel
+    return self._avail_channels.pop()
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+IndexError: pop from empty list
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\Vandh\OneDrive\Desktop\V2.0\.venv\Lib\site-packages\kombu\connection.py", line 472, in _reraise_as_library_errors
+    yield
+  File "C:\Users\Vandh\OneDrive\Desktop\V2.0\.venv\Lib\site-packages\kombu\connection.py", line 459, in _ensure_connection
+    return retry_over_time(
+           ^^^^^^^^^^^^^^^^
+  File "C:\Users\Vandh\OneDrive\Desktop\V2.0\.venv\Lib\site-packages\kombu\utils\functional.py", line 318, in retry_over_time
+    return fun(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Vandh\OneDrive\Desktop\V2.0\.venv\Lib\site-packages\kombu\connection.py", line 938, in _connection_factory
+    self._connection = self._establish_connection()
+                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Vandh\OneDrive\Desktop\V2.0\.venv\Lib\site-packages\kombu\connection.py", line 860, in _establish_connection
+    conn = self.transport.establish_connection()
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Vandh\OneDrive\Desktop\V2.0\.venv\Lib\site-packages\kombu\transport\virtual\base.py", line 975, in establish_connection
+    self._avail_channels.append(self.create_channel(self))
+                                ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Vandh\OneDrive\Desktop\V2.0\.venv\Lib\site-packages\kombu\transport\virtual\base.py", line 953, in create_channel
+    channel = self.Channel(connection)
+              ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Vandh\OneDrive\Desktop\V2.0\.venv\Lib\site-packages\kombu\transport\redis.py", line 751, in __init__
+    self.client.ping()
+  File "C:\Users\Vandh\OneDrive\Desktop\V2.0\.venv\Lib\site-packages\redis\commands\core.py", line 1205, in ping
+    return self.execute_command("PING", **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Vandh\OneDrive\Desktop\V2.0\.venv\Lib\site-packages\redis\client.py", line 1269, in execute_command
+    return conn.retry.call_with_retry(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Vandh\OneDrive\Desktop\V2.0\.venv\Lib\site-packages\redis\retry.py", line 46, in call_with_retry
+    return do()
+           ^^^^
+  File "C:\Users\Vandh\OneDrive\Desktop\V2.0\.venv\Lib\site-packages\redis\client.py", line 1270, in <lambda>
+    lambda: self._send_command_parse_response(
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Vandh\OneDrive\Desktop\V2.0\.venv\Lib\site-packages\redis\client.py", line 1245, in _send_command_parse_response
+    conn.send_command(*args)
+  File "C:\Users\Vandh\OneDrive\Desktop\V2.0\.venv\Lib\site-packages\redis\connection.py", line 855, in send_command
+    self.send_packed_command(
+  File "C:\Users\Vandh\OneDrive\Desktop\V2.0\.venv\Lib\site-packages\redis\connection.py", line 828, in send_packed_command
+    self.check_health()
+  File "C:\Users\Vandh\OneDrive\Desktop\V2.0\.venv\Lib\site-packages\redis\connection.py", line 820, in check_health
+    self.retry.call_with_retry(self._send_ping, self._ping_failed)
+  File "C:\Users\Vandh\OneDrive\Desktop\V2.0\.venv\Lib\site-packages\redis\retry.py", line 46, in call_with_retry
+    return do()
+           ^^^^
+  File "C:\Users\Vandh\OneDrive\Desktop\V2.0\.venv\Lib\site-packages\redis\connection.py", line 810, in _send_ping
+    if str_if_bytes(self.read_response()) != "PONG":
+                    ^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Vandh\OneDrive\Desktop\V2.0\.venv\Lib\site-packages\redis\connection.py", line 905, in read_response
+    raise response
+redis.exceptions.ResponseError: MISCONF Redis is configured to save RDB snapshots, but is currently not able to persist on disk. Commands that may modify the data set are disabled. Please check Redis logs for details about the error.
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\Users\Vandh\OneDrive\Desktop\V2.0\dev-scope\run.py", line 51, in parse_codebase
+    task = run_analysis.delay(folder_path)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Vandh\OneDrive\Desktop\V2.0\.venv\Lib\site-packages\celery\app\task.py", line 444, in delay
+    return self.apply_async(args, kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Vandh\OneDrive\Desktop\V2.0\.venv\Lib\site-packages\celery\app\task.py", line 594, in apply_async
+    return app.send_task(
+           ^^^^^^^^^^^^^^
+  File "C:\Users\Vandh\OneDrive\Desktop\V2.0\.venv\Lib\site-packages\celery\app\base.py", line 801, in send_task
+    amqp.send_task_message(P, name, message, **options)
+  File "C:\Users\Vandh\OneDrive\Desktop\V2.0\.venv\Lib\site-packages\celery\app\amqp.py", line 518, in send_task_message
+    ret = producer.publish(
+          ^^^^^^^^^^^^^^^^^
+  File "C:\Users\Vandh\OneDrive\Desktop\V2.0\.venv\Lib\site-packages\kombu\messaging.py", line 190, in publish
+    return _publish(
+           ^^^^^^^^^
+  File "C:\Users\Vandh\OneDrive\Desktop\V2.0\.venv\Lib\site-packages\kombu\connection.py", line 556, in _ensured
+    return fun(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Vandh\OneDrive\Desktop\V2.0\.venv\Lib\site-packages\kombu\messaging.py", line 200, in _publish
+    channel = self.channel
+              ^^^^^^^^^^^^
+  File "C:\Users\Vandh\OneDrive\Desktop\V2.0\.venv\Lib\site-packages\kombu\messaging.py", line 224, in _get_channel
+    channel = self._channel = channel()
+                              ^^^^^^^^^
+  File "C:\Users\Vandh\OneDrive\Desktop\V2.0\.venv\Lib\site-packages\kombu\utils\functional.py", line 34, in __call__
+    value = self.__value__ = self.__contract__()
+                             ^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Vandh\OneDrive\Desktop\V2.0\.venv\Lib\site-packages\kombu\messaging.py", line 240, in <lambda>
+    channel = ChannelPromise(lambda: connection.default_channel)
+                                     ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Vandh\OneDrive\Desktop\V2.0\.venv\Lib\site-packages\kombu\connection.py", line 957, in default_channel
+    self._ensure_connection(**conn_opts)
+  File "C:\Users\Vandh\OneDrive\Desktop\V2.0\.venv\Lib\site-packages\kombu\connection.py", line 458, in _ensure_connection
+    with ctx():
+  File "C:\Program Files\WindowsApps\PythonSoftwareFoundation.Python.3.11_3.11.2544.0_x64__qbz5n2kfra8p0\Lib\contextlib.py", line 158, in __exit__
+    self.gen.throw(typ, value, traceback)
+  File "C:\Users\Vandh\OneDrive\Desktop\V2.0\.venv\Lib\site-packages\kombu\connection.py", line 476, in _reraise_as_library_errors
+    raise ConnectionError(str(exc)) from exc
+kombu.exceptions.OperationalError: MISCONF Redis is configured to save RDB snapshots, but is currently not able to persist on disk. Commands that may modify the data set are disabled. Please check Redis logs for details about the error.
+2025-09-04 12:16:20 - werkzeug - INFO - 127.0.0.1 - - [04/Sep/2025 12:16:20] "[35m[1mPOST /parse HTTP/1.1[0m" 500 -
+2025-09-04 12:20:59 - root - INFO - Logging configured with level: INFO
+2025-09-04 12:20:59 - root - INFO - Logging configured with level: INFO
+2025-09-04 12:20:59 - root - INFO - Logging configured with level: INFO
+2025-09-04 12:20:59 - werkzeug - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+2025-09-04 12:20:59 - werkzeug - INFO - [33mPress CTRL+C to quit[0m
+2025-09-04 12:20:59 - werkzeug - INFO -  * Restarting with stat
+2025-09-04 12:20:59 - root - INFO - Logging configured with level: INFO
+2025-09-04 12:21:00 - root - INFO - Logging configured with level: INFO
+2025-09-04 12:21:00 - root - INFO - Logging configured with level: INFO
+2025-09-04 12:21:00 - werkzeug - WARNING -  * Debugger is active!
+2025-09-04 12:21:00 - werkzeug - INFO -  * Debugger PIN: 884-593-877
+2025-09-04 12:21:04 - root - INFO - Received parse request for: C:/Users/Vandh/OneDrive/Desktop/28-08
+2025-09-04 12:21:04 - root - INFO - Queued analysis task with ID: a77bedff-101a-4b01-a047-7e8219878d0d
+2025-09-04 12:21:04 - werkzeug - INFO - 127.0.0.1 - - [04/Sep/2025 12:21:04] "[35m[1mPOST /parse HTTP/1.1[0m" 202 -
+2025-09-04 12:21:14 - root - INFO - Task a77bedff-101a-4b01-a047-7e8219878d0d completed successfully
+2025-09-04 12:21:14 - werkzeug - INFO - 127.0.0.1 - - [04/Sep/2025 12:21:14] "GET /status/a77bedff-101a-4b01-a047-7e8219878d0d HTTP/1.1" 200 -
+2025-09-04 12:26:20 - werkzeug - INFO -  * Detected change in 'C:\\Users\\Vandh\\OneDrive\\Desktop\\V2.0\\dev-scope\\analyzer\\parser.py', reloading
+2025-09-04 12:26:20 - werkzeug - INFO -  * Restarting with stat
+2025-09-04 12:26:25 - root - INFO - Logging configured with level: INFO
+2025-09-04 12:26:26 - root - INFO - Logging configured with level: INFO
+2025-09-04 12:26:26 - root - INFO - Logging configured with level: INFO
+2025-09-04 12:26:26 - werkzeug - WARNING -  * Debugger is active!
+2025-09-04 12:26:26 - werkzeug - INFO -  * Debugger PIN: 884-593-877
+2025-09-04 12:27:50 - werkzeug - INFO -  * Detected change in 'C:\\Users\\Vandh\\OneDrive\\Desktop\\V2.0\\dev-scope\\analyzer\\parser.py', reloading
+2025-09-04 12:27:50 - werkzeug - INFO -  * Restarting with stat
+2025-09-04 12:28:06 - root - INFO - Logging configured with level: INFO
+2025-09-04 12:34:06 - root - INFO - Logging configured with level: INFO
+2025-09-04 12:34:06 - root - INFO - Logging configured with level: INFO
+2025-09-04 12:34:06 - root - INFO - Logging configured with level: INFO
+2025-09-04 12:34:06 - werkzeug - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+2025-09-04 12:34:06 - werkzeug - INFO - [33mPress CTRL+C to quit[0m
+2025-09-04 12:34:06 - werkzeug - INFO -  * Restarting with stat
+2025-09-04 12:34:06 - root - INFO - Logging configured with level: INFO
+2025-09-04 12:34:07 - root - INFO - Logging configured with level: INFO
+2025-09-04 12:34:07 - root - INFO - Logging configured with level: INFO
+2025-09-04 12:34:07 - werkzeug - WARNING -  * Debugger is active!
+2025-09-04 12:34:07 - werkzeug - INFO -  * Debugger PIN: 884-593-877
+2025-09-04 12:34:11 - root - INFO - Received parse request for: C:/Users/Vandh/OneDrive/Desktop/28-08
+2025-09-04 12:34:11 - root - INFO - Queued analysis task with ID: 2b4a15ae-110d-4e60-82a6-8ddf17d25d36
+2025-09-04 12:34:11 - werkzeug - INFO - 127.0.0.1 - - [04/Sep/2025 12:34:11] "[35m[1mPOST /parse HTTP/1.1[0m" 202 -
+2025-09-04 12:34:19 - root - INFO - Task 2b4a15ae-110d-4e60-82a6-8ddf17d25d36 completed successfully
+2025-09-04 12:34:19 - werkzeug - INFO - 127.0.0.1 - - [04/Sep/2025 12:34:19] "GET /status/2b4a15ae-110d-4e60-82a6-8ddf17d25d36 HTTP/1.1" 200 -
+2025-09-04 12:36:09 - werkzeug - INFO -  * Detected change in 'C:\\Users\\Vandh\\OneDrive\\Desktop\\V2.0\\dev-scope\\analyzer\\parser.py', reloading
+2025-09-04 12:36:09 - werkzeug - INFO -  * Restarting with stat
+2025-09-04 12:41:06 - root - INFO - Logging configured with level: INFO
+2025-09-04 12:41:07 - root - INFO - Logging configured with level: INFO
+2025-09-04 12:41:07 - root - INFO - Logging configured with level: INFO
+2025-09-04 12:41:07 - werkzeug - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+2025-09-04 12:41:07 - werkzeug - INFO - [33mPress CTRL+C to quit[0m
+2025-09-04 12:41:07 - werkzeug - INFO -  * Restarting with stat
+2025-09-04 12:41:07 - root - INFO - Logging configured with level: INFO
+2025-09-04 12:41:07 - root - INFO - Logging configured with level: INFO
+2025-09-04 12:41:07 - root - INFO - Logging configured with level: INFO
+2025-09-04 12:41:07 - werkzeug - WARNING -  * Debugger is active!
+2025-09-04 12:41:07 - werkzeug - INFO -  * Debugger PIN: 884-593-877
+2025-09-04 12:41:12 - root - INFO - Received parse request for: C:/Users/Vandh/OneDrive/Desktop/28-08
+2025-09-04 12:41:12 - root - INFO - Queued analysis task with ID: 82b33c30-46d9-4698-a3f1-6f1d954b2a1f
+2025-09-04 12:41:12 - werkzeug - INFO - 127.0.0.1 - - [04/Sep/2025 12:41:12] "[35m[1mPOST /parse HTTP/1.1[0m" 202 -
+2025-09-04 12:41:49 - root - INFO - Task 82b33c30-46d9-4698-a3f1-6f1d954b2a1f completed successfully
+2025-09-04 12:41:49 - werkzeug - INFO - 127.0.0.1 - - [04/Sep/2025 12:41:49] "GET /status/82b33c30-46d9-4698-a3f1-6f1d954b2a1f HTTP/1.1" 200 -
+2025-09-04 12:42:28 - werkzeug - INFO - 127.0.0.1 - - [04/Sep/2025 12:42:28] "GET /health HTTP/1.1" 200 -
+2025-09-04 12:42:31 - werkzeug - INFO - 127.0.0.1 - - [04/Sep/2025 12:42:31] "OPTIONS /parse HTTP/1.1" 200 -
+2025-09-04 12:42:31 - root - INFO - Received parse request for: C:/Users/Vandh/OneDrive/Desktop/28-08
+2025-09-04 12:42:31 - root - INFO - Queued analysis task with ID: a770acc3-86a5-4882-81e3-13a8ee727ae0
+2025-09-04 12:42:31 - werkzeug - INFO - 127.0.0.1 - - [04/Sep/2025 12:42:31] "[35m[1mPOST /parse HTTP/1.1[0m" 202 -
+2025-09-04 12:47:55 - werkzeug - INFO -  * Detected change in 'C:\\Users\\Vandh\\OneDrive\\Desktop\\V2.0\\dev-scope\\analyzer\\parser.py', reloading
+2025-09-04 12:47:56 - werkzeug - INFO -  * Restarting with stat
+2025-09-04 12:51:29 - root - INFO - Logging configured with level: INFO
+2025-09-04 12:51:30 - root - INFO - Logging configured with level: INFO
+2025-09-04 12:51:30 - root - INFO - Logging configured with level: INFO
+2025-09-04 12:51:30 - werkzeug - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+2025-09-04 12:51:30 - werkzeug - INFO - [33mPress CTRL+C to quit[0m
+2025-09-04 12:51:30 - werkzeug - INFO -  * Restarting with stat
+2025-09-04 12:51:30 - root - INFO - Logging configured with level: INFO
+2025-09-04 12:51:30 - root - INFO - Logging configured with level: INFO
+2025-09-04 12:51:30 - root - INFO - Logging configured with level: INFO
+2025-09-04 12:51:30 - werkzeug - WARNING -  * Debugger is active!
+2025-09-04 12:51:30 - werkzeug - INFO -  * Debugger PIN: 884-593-877
+2025-09-04 12:51:42 - root - INFO - Received parse request for: C:/Users/Vandh/OneDrive/Desktop/28-08
+2025-09-04 12:51:42 - root - INFO - Queued analysis task with ID: 90544044-199e-4419-aa10-5aff9825617a
+2025-09-04 12:51:42 - werkzeug - INFO - 127.0.0.1 - - [04/Sep/2025 12:51:42] "[35m[1mPOST /parse HTTP/1.1[0m" 202 -
+2025-09-04 12:52:07 - root - INFO - Task 90544044-199e-4419-aa10-5aff9825617a completed successfully
+2025-09-04 12:52:07 - werkzeug - INFO - 127.0.0.1 - - [04/Sep/2025 12:52:07] "GET /status/90544044-199e-4419-aa10-5aff9825617a HTTP/1.1" 200 -
+2025-09-04 12:55:26 - root - INFO - Logging configured with level: INFO
+2025-09-04 12:55:27 - root - INFO - Logging configured with level: INFO
+2025-09-04 12:55:27 - root - INFO - Logging configured with level: INFO
+2025-09-04 12:55:27 - werkzeug - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+2025-09-04 12:55:27 - root - INFO - Logging configured with level: INFO
+2025-09-04 12:55:27 - werkzeug - INFO - [33mPress CTRL+C to quit[0m
+2025-09-04 12:55:27 - werkzeug - INFO -  * Restarting with stat
+2025-09-04 12:55:27 - root - INFO - Logging configured with level: INFO
+2025-09-04 12:55:27 - root - INFO - Logging configured with level: INFO
+2025-09-04 12:55:27 - werkzeug - WARNING -  * Debugger is active!
+2025-09-04 12:55:27 - werkzeug - INFO -  * Debugger PIN: 884-593-877
+2025-09-04 12:55:38 - root - INFO - Received parse request for: C:/Users/Vandh/OneDrive/Desktop/28-08
+2025-09-04 12:55:38 - root - INFO - Queued analysis task with ID: 9e3b8b40-cbf8-4d8a-85fb-e9a5beb396b3
+2025-09-04 12:55:38 - werkzeug - INFO - 127.0.0.1 - - [04/Sep/2025 12:55:38] "[35m[1mPOST /parse HTTP/1.1[0m" 202 -
+2025-09-04 12:58:07 - root - INFO - Logging configured with level: INFO
+2025-09-04 12:58:07 - root - INFO - Logging configured with level: INFO
+2025-09-04 12:58:07 - root - INFO - Logging configured with level: INFO
+2025-09-04 12:58:07 - werkzeug - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+2025-09-04 12:58:07 - werkzeug - INFO - [33mPress CTRL+C to quit[0m
+2025-09-04 12:58:07 - werkzeug - INFO -  * Restarting with stat
+2025-09-04 12:58:07 - root - INFO - Logging configured with level: INFO
+2025-09-04 12:58:08 - root - INFO - Logging configured with level: INFO
+2025-09-04 12:58:08 - root - INFO - Logging configured with level: INFO
+2025-09-04 12:58:08 - werkzeug - WARNING -  * Debugger is active!
+2025-09-04 12:58:08 - werkzeug - INFO -  * Debugger PIN: 884-593-877
+2025-09-04 12:58:10 - root - INFO - Received parse request for: C:/Users/Vandh/OneDrive/Desktop/28-08
+2025-09-04 12:58:11 - root - INFO - Queued analysis task with ID: 3ef8c725-376b-4671-b886-025c04cdb507
+2025-09-04 12:58:11 - werkzeug - INFO - 127.0.0.1 - - [04/Sep/2025 12:58:11] "[35m[1mPOST /parse HTTP/1.1[0m" 202 -
+2025-09-04 12:58:19 - werkzeug - INFO -  * Detected change in 'C:\\Users\\Vandh\\OneDrive\\Desktop\\V2.0\\dev-scope\\analyzer\\parser.py', reloading
+2025-09-04 12:58:19 - werkzeug - INFO -  * Restarting with stat
+2025-09-04 12:58:19 - root - INFO - Logging configured with level: INFO
+2025-09-04 12:58:19 - root - INFO - Logging configured with level: INFO
+2025-09-04 12:58:19 - werkzeug - WARNING -  * Debugger is active!
+2025-09-04 12:58:19 - werkzeug - INFO -  * Debugger PIN: 884-593-877
+2025-09-04 12:59:35 - root - INFO - Task 3ef8c725-376b-4671-b886-025c04cdb507 completed successfully
+2025-09-04 12:59:35 - werkzeug - INFO - 127.0.0.1 - - [04/Sep/2025 12:59:35] "GET /status/3ef8c725-376b-4671-b886-025c04cdb507 HTTP/1.1" 200 -
+2025-09-04 12:59:47 - root - INFO - Received parse request for: C:/Users/Vandh/OneDrive/Desktop/28-08
+2025-09-04 12:59:47 - root - INFO - Queued analysis task with ID: 24577e74-8b5f-4c3d-9e6b-d85ce847e7df
+2025-09-04 12:59:47 - werkzeug - INFO - 127.0.0.1 - - [04/Sep/2025 12:59:47] "[35m[1mPOST /parse HTTP/1.1[0m" 202 -
+2025-09-04 12:59:59 - root - INFO - Task 24577e74-8b5f-4c3d-9e6b-d85ce847e7df completed successfully
+2025-09-04 12:59:59 - werkzeug - INFO - 127.0.0.1 - - [04/Sep/2025 12:59:59] "GET /status/24577e74-8b5f-4c3d-9e6b-d85ce847e7df HTTP/1.1" 200 -
+2025-09-04 13:00:25 - root - INFO - Logging configured with level: INFO
+2025-09-04 13:00:26 - root - INFO - Logging configured with level: INFO
+2025-09-04 13:00:26 - root - INFO - Logging configured with level: INFO
+2025-09-04 13:00:26 - werkzeug - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+2025-09-04 13:00:26 - werkzeug - INFO - [33mPress CTRL+C to quit[0m
+2025-09-04 13:00:26 - werkzeug - INFO -  * Restarting with stat
+2025-09-04 13:00:26 - root - INFO - Logging configured with level: INFO
+2025-09-04 13:00:26 - root - INFO - Logging configured with level: INFO
+2025-09-04 13:00:26 - root - INFO - Logging configured with level: INFO
+2025-09-04 13:00:26 - werkzeug - WARNING -  * Debugger is active!
+2025-09-04 13:00:26 - werkzeug - INFO -  * Debugger PIN: 884-593-877
+2025-09-04 13:00:30 - root - INFO - Received parse request for: C:/Users/Vandh/OneDrive/Desktop/28-08
+2025-09-04 13:00:30 - root - INFO - Queued analysis task with ID: 80cdad9e-1235-4c56-8d00-ffd4673e926c
+2025-09-04 13:00:30 - werkzeug - INFO - 127.0.0.1 - - [04/Sep/2025 13:00:30] "[35m[1mPOST /parse HTTP/1.1[0m" 202 -
+2025-09-04 13:00:42 - root - INFO - Task 80cdad9e-1235-4c56-8d00-ffd4673e926c completed successfully
+2025-09-04 13:00:42 - werkzeug - INFO - 127.0.0.1 - - [04/Sep/2025 13:00:42] "GET /status/80cdad9e-1235-4c56-8d00-ffd4673e926c HTTP/1.1" 200 -
+2025-09-04 13:01:50 - werkzeug - INFO -  * Detected change in 'C:\\Users\\Vandh\\OneDrive\\Desktop\\V2.0\\dev-scope\\analyzer\\parser.py', reloading
+2025-09-04 13:01:50 - werkzeug - INFO -  * Restarting with stat
+2025-09-04 13:01:55 - root - INFO - Logging configured with level: INFO
+2025-09-04 13:01:55 - root - INFO - Logging configured with level: INFO
+2025-09-04 13:01:55 - root - INFO - Logging configured with level: INFO
+2025-09-04 13:01:55 - werkzeug - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+2025-09-04 13:01:55 - werkzeug - INFO - [33mPress CTRL+C to quit[0m
+2025-09-04 13:01:55 - werkzeug - INFO -  * Restarting with stat
+2025-09-04 13:01:55 - root - INFO - Logging configured with level: INFO
+2025-09-04 13:01:55 - root - INFO - Logging configured with level: INFO
+2025-09-04 13:01:55 - root - INFO - Logging configured with level: INFO
+2025-09-04 13:01:55 - werkzeug - WARNING -  * Debugger is active!
+2025-09-04 13:01:55 - werkzeug - INFO -  * Debugger PIN: 884-593-877
+2025-09-04 13:02:00 - root - INFO - Received parse request for: C:/Users/Vandh/OneDrive/Desktop/28-08
+2025-09-04 13:02:00 - root - INFO - Queued analysis task with ID: 73bde20d-ccca-4dc3-9988-3c146dbb05a9
+2025-09-04 13:02:00 - werkzeug - INFO - 127.0.0.1 - - [04/Sep/2025 13:02:00] "[35m[1mPOST /parse HTTP/1.1[0m" 202 -
+2025-09-04 13:02:06 - root - INFO - Task 73bde20d-ccca-4dc3-9988-3c146dbb05a9 completed successfully
+2025-09-04 13:02:06 - werkzeug - INFO - 127.0.0.1 - - [04/Sep/2025 13:02:06] "GET /status/73bde20d-ccca-4dc3-9988-3c146dbb05a9 HTTP/1.1" 200 -
+2025-09-04 13:02:13 - werkzeug - INFO -  * Detected change in 'C:\\Users\\Vandh\\OneDrive\\Desktop\\V2.0\\dev-scope\\analyzer\\parser.py', reloading
+2025-09-04 13:02:13 - werkzeug - INFO -  * Restarting with stat
+2025-09-04 13:02:13 - root - INFO - Logging configured with level: INFO
+2025-09-04 13:02:13 - root - INFO - Logging configured with level: INFO
+2025-09-04 13:02:13 - werkzeug - WARNING -  * Debugger is active!
+2025-09-04 13:02:13 - werkzeug - INFO -  * Debugger PIN: 884-593-877
+2025-09-04 13:02:17 - root - INFO - Logging configured with level: INFO
+2025-09-04 13:02:18 - root - INFO - Logging configured with level: INFO
+2025-09-04 13:02:18 - root - INFO - Logging configured with level: INFO
+2025-09-04 13:02:18 - werkzeug - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+2025-09-04 13:02:18 - werkzeug - INFO - [33mPress CTRL+C to quit[0m
+2025-09-04 13:02:18 - werkzeug - INFO -  * Restarting with stat
+2025-09-04 13:02:18 - root - INFO - Logging configured with level: INFO
+2025-09-04 13:02:18 - root - INFO - Logging configured with level: INFO
+2025-09-04 13:02:18 - root - INFO - Logging configured with level: INFO
+2025-09-04 13:02:18 - werkzeug - WARNING -  * Debugger is active!
+2025-09-04 13:02:18 - werkzeug - INFO -  * Debugger PIN: 884-593-877
+2025-09-04 13:02:46 - root - INFO - Task 73bde20d-ccca-4dc3-9988-3c146dbb05a9 completed successfully
+2025-09-04 13:02:46 - werkzeug - INFO - 127.0.0.1 - - [04/Sep/2025 13:02:46] "GET /status/73bde20d-ccca-4dc3-9988-3c146dbb05a9 HTTP/1.1" 200 -
+2025-09-04 13:03:57 - root - INFO - Logging configured with level: INFO
+2025-09-04 13:03:58 - root - INFO - Logging configured with level: INFO
+2025-09-04 13:03:58 - root - INFO - Logging configured with level: INFO
+2025-09-04 13:03:58 - werkzeug - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+2025-09-04 13:03:58 - werkzeug - INFO - [33mPress CTRL+C to quit[0m
+2025-09-04 13:03:58 - werkzeug - INFO -  * Restarting with stat
+2025-09-04 13:03:58 - root - INFO - Logging configured with level: INFO
+2025-09-04 13:03:58 - root - INFO - Logging configured with level: INFO
+2025-09-04 13:03:58 - root - INFO - Logging configured with level: INFO
+2025-09-04 13:03:58 - werkzeug - WARNING -  * Debugger is active!
+2025-09-04 13:03:58 - werkzeug - INFO -  * Debugger PIN: 884-593-877
+2025-09-04 13:04:03 - root - INFO - Received parse request for: C:/Users/Vandh/OneDrive/Desktop/28-08
+2025-09-04 13:04:03 - root - INFO - Queued analysis task with ID: c0fb7c75-ab4f-4b87-bfb3-b8e1d339b8ea
+2025-09-04 13:04:03 - werkzeug - INFO - 127.0.0.1 - - [04/Sep/2025 13:04:03] "[35m[1mPOST /parse HTTP/1.1[0m" 202 -
+2025-09-04 13:04:27 - root - INFO - Task c0fb7c75-ab4f-4b87-bfb3-b8e1d339b8ea completed successfully
+2025-09-04 13:04:27 - werkzeug - INFO - 127.0.0.1 - - [04/Sep/2025 13:04:27] "GET /status/c0fb7c75-ab4f-4b87-bfb3-b8e1d339b8ea HTTP/1.1" 200 -
+2025-09-04 13:07:26 - werkzeug - INFO -  * Detected change in 'C:\\Users\\Vandh\\OneDrive\\Desktop\\V2.0\\dev-scope\\analyzer\\parser.py', reloading
+2025-09-04 13:07:26 - werkzeug - INFO -  * Restarting with stat
+2025-09-04 13:07:27 - root - INFO - Logging configured with level: INFO
+2025-09-04 13:07:27 - root - INFO - Logging configured with level: INFO
+2025-09-04 13:07:27 - werkzeug - WARNING -  * Debugger is active!
+2025-09-04 13:07:27 - werkzeug - INFO -  * Debugger PIN: 884-593-877
+2025-09-04 13:07:37 - werkzeug - INFO -  * Detected change in 'C:\\Users\\Vandh\\OneDrive\\Desktop\\V2.0\\dev-scope\\analyzer\\parser.py', reloading
+2025-09-04 13:07:37 - werkzeug - INFO -  * Restarting with stat
+2025-09-04 13:09:30 - root - INFO - Logging configured with level: INFO
+2025-09-04 13:09:31 - root - INFO - Logging configured with level: INFO
+2025-09-04 13:09:31 - root - INFO - Logging configured with level: INFO
+2025-09-04 13:09:31 - werkzeug - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+2025-09-04 13:09:31 - werkzeug - INFO - [33mPress CTRL+C to quit[0m
+2025-09-04 13:09:31 - werkzeug - INFO -  * Restarting with stat
+2025-09-04 13:09:31 - root - INFO - Logging configured with level: INFO
+2025-09-04 13:09:31 - root - INFO - Logging configured with level: INFO
+2025-09-04 13:09:31 - root - INFO - Logging configured with level: INFO
+2025-09-04 13:09:31 - werkzeug - WARNING -  * Debugger is active!
+2025-09-04 13:09:31 - werkzeug - INFO -  * Debugger PIN: 884-593-877
+2025-09-04 13:09:36 - root - INFO - Received parse request for: C:/Users/Vandh/OneDrive/Desktop/28-08
+2025-09-04 13:09:36 - root - INFO - Queued analysis task with ID: 6d865c3c-69b8-4abe-beb5-0612db6ed173
+2025-09-04 13:09:36 - werkzeug - INFO - 127.0.0.1 - - [04/Sep/2025 13:09:36] "[35m[1mPOST /parse HTTP/1.1[0m" 202 -
+2025-09-04 13:09:51 - root - INFO - Task 6d865c3c-69b8-4abe-beb5-0612db6ed173 completed successfully
+2025-09-04 13:09:51 - werkzeug - INFO - 127.0.0.1 - - [04/Sep/2025 13:09:51] "GET /status/6d865c3c-69b8-4abe-beb5-0612db6ed173 HTTP/1.1" 200 -
+2025-09-04 13:11:03 - werkzeug - INFO -  * Detected change in 'C:\\Users\\Vandh\\OneDrive\\Desktop\\V2.0\\dev-scope\\analyzer\\parser.py', reloading
+2025-09-04 13:11:03 - werkzeug - INFO -  * Restarting with stat
+2025-09-04 13:11:04 - root - INFO - Logging configured with level: INFO
+2025-09-04 13:11:04 - root - INFO - Logging configured with level: INFO
+2025-09-04 13:11:04 - werkzeug - WARNING -  * Debugger is active!
+2025-09-04 13:11:04 - werkzeug - INFO -  * Debugger PIN: 884-593-877
+2025-09-04 13:11:10 - werkzeug - INFO -  * Detected change in 'C:\\Users\\Vandh\\OneDrive\\Desktop\\V2.0\\dev-scope\\analyzer\\parser.py', reloading
+2025-09-04 13:11:10 - werkzeug - INFO -  * Restarting with stat
+2025-09-04 13:12:12 - root - INFO - Logging configured with level: INFO
+2025-09-04 13:12:12 - root - INFO - Logging configured with level: INFO
+2025-09-04 13:12:12 - root - INFO - Logging configured with level: INFO
+2025-09-04 13:12:12 - root - INFO - Logging configured with level: INFO
+2025-09-04 13:12:12 - werkzeug - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+2025-09-04 13:12:12 - werkzeug - INFO - [33mPress CTRL+C to quit[0m
+2025-09-04 13:12:12 - werkzeug - INFO -  * Restarting with stat
+2025-09-04 13:12:13 - root - INFO - Logging configured with level: INFO
+2025-09-04 13:12:13 - root - INFO - Logging configured with level: INFO
+2025-09-04 13:12:13 - werkzeug - WARNING -  * Debugger is active!
+2025-09-04 13:12:13 - werkzeug - INFO -  * Debugger PIN: 884-593-877
+2025-09-04 13:12:16 - root - INFO - Received parse request for: C:/Users/Vandh/OneDrive/Desktop/28-08
+2025-09-04 13:12:17 - root - INFO - Queued analysis task with ID: 535c5e72-2e4f-426f-8085-149113d26e34
+2025-09-04 13:12:17 - werkzeug - INFO - 127.0.0.1 - - [04/Sep/2025 13:12:17] "[35m[1mPOST /parse HTTP/1.1[0m" 202 -
+2025-09-04 13:14:46 - werkzeug - INFO -  * Detected change in 'C:\\Users\\Vandh\\OneDrive\\Desktop\\V2.0\\dev-scope\\analyzer\\parser.py', reloading
+2025-09-04 13:14:46 - werkzeug - INFO -  * Restarting with stat
+2025-09-04 13:19:22 - root - INFO - Logging configured with level: INFO
+2025-09-04 13:19:22 - root - INFO - Logging configured with level: INFO
+2025-09-04 13:19:22 - root - INFO - Logging configured with level: INFO
+2025-09-04 13:19:22 - root - INFO - Logging configured with level: INFO
+2025-09-04 13:19:22 - werkzeug - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+2025-09-04 13:19:22 - werkzeug - INFO - [33mPress CTRL+C to quit[0m
+2025-09-04 13:19:22 - werkzeug - INFO -  * Restarting with stat
+2025-09-04 13:19:23 - root - INFO - Logging configured with level: INFO
+2025-09-04 13:19:23 - root - INFO - Logging configured with level: INFO
+2025-09-04 13:19:23 - werkzeug - WARNING -  * Debugger is active!
+2025-09-04 13:19:23 - werkzeug - INFO -  * Debugger PIN: 884-593-877
+2025-09-04 13:19:28 - root - INFO - Received parse request for: C:/Users/Vandh/OneDrive/Desktop/28-08
+2025-09-04 13:19:28 - root - INFO - Queued analysis task with ID: fddc6f15-53bc-4c6d-b278-16c10b899738
+2025-09-04 13:19:28 - werkzeug - INFO - 127.0.0.1 - - [04/Sep/2025 13:19:28] "[35m[1mPOST /parse HTTP/1.1[0m" 202 -
+2025-09-04 13:22:03 - root - INFO - Task fddc6f15-53bc-4c6d-b278-16c10b899738 completed successfully
+2025-09-04 13:22:03 - werkzeug - INFO - 127.0.0.1 - - [04/Sep/2025 13:22:03] "GET /status/fddc6f15-53bc-4c6d-b278-16c10b899738 HTTP/1.1" 200 -
+2025-09-04 13:25:58 - werkzeug - INFO -  * Detected change in 'C:\\Users\\Vandh\\OneDrive\\Desktop\\V2.0\\dev-scope\\analyzer\\parser.py', reloading
+2025-09-04 13:25:59 - werkzeug - INFO -  * Restarting with stat
+2025-09-04 13:26:19 - root - INFO - Logging configured with level: INFO
+2025-09-04 13:26:19 - root - INFO - Logging configured with level: INFO
+2025-09-04 13:26:19 - root - INFO - Logging configured with level: INFO
+2025-09-04 13:26:19 - werkzeug - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+2025-09-04 13:26:19 - werkzeug - INFO - [33mPress CTRL+C to quit[0m
+2025-09-04 13:26:19 - werkzeug - INFO -  * Restarting with stat
+2025-09-04 13:26:19 - root - INFO - Logging configured with level: INFO
+2025-09-04 13:26:20 - root - INFO - Logging configured with level: INFO
+2025-09-04 13:26:20 - root - INFO - Logging configured with level: INFO
+2025-09-04 13:26:20 - werkzeug - WARNING -  * Debugger is active!
+2025-09-04 13:26:20 - werkzeug - INFO -  * Debugger PIN: 884-593-877
+2025-09-04 13:26:29 - root - INFO - Received parse request for: C:/Users/Vandh/OneDrive/Desktop/28-08
+2025-09-04 13:26:29 - root - INFO - Queued analysis task with ID: 56d633b6-6aec-4a10-86a7-05be3ae8b6cf
+2025-09-04 13:26:29 - werkzeug - INFO - 127.0.0.1 - - [04/Sep/2025 13:26:29] "[35m[1mPOST /parse HTTP/1.1[0m" 202 -
+2025-09-04 14:02:55 - root - INFO - Logging configured with level: INFO
+2025-09-04 14:02:56 - root - INFO - Logging configured with level: INFO
+2025-09-04 14:02:56 - root - INFO - Logging configured with level: INFO
+2025-09-04 14:02:56 - werkzeug - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+2025-09-04 14:02:56 - werkzeug - INFO - [33mPress CTRL+C to quit[0m
+2025-09-04 14:02:56 - werkzeug - INFO -  * Restarting with stat
+2025-09-04 14:02:56 - root - INFO - Logging configured with level: INFO
+2025-09-04 14:02:56 - root - INFO - Logging configured with level: INFO
+2025-09-04 14:02:56 - root - INFO - Logging configured with level: INFO
+2025-09-04 14:02:56 - werkzeug - WARNING -  * Debugger is active!
+2025-09-04 14:02:56 - werkzeug - INFO -  * Debugger PIN: 884-593-877
+2025-09-04 14:03:04 - root - INFO - Received parse request for: C:/Users/Vandh/OneDrive/Desktop/28-08
+2025-09-04 14:03:04 - root - INFO - Queued analysis task with ID: d1e7bd0e-385a-47b2-b0a0-d891b7f25d46
+2025-09-04 14:03:04 - werkzeug - INFO - 127.0.0.1 - - [04/Sep/2025 14:03:04] "[35m[1mPOST /parse HTTP/1.1[0m" 202 -
+2025-09-04 14:03:12 - root - INFO - Task d1e7bd0e-385a-47b2-b0a0-d891b7f25d46 completed successfully
+2025-09-04 14:03:12 - werkzeug - INFO - 127.0.0.1 - - [04/Sep/2025 14:03:12] "GET /status/d1e7bd0e-385a-47b2-b0a0-d891b7f25d46 HTTP/1.1" 200 -
+2025-09-04 14:04:00 - root - INFO - Logging configured with level: INFO
+2025-09-04 14:04:00 - root - INFO - Logging configured with level: INFO
+2025-09-04 14:04:00 - root - INFO - Logging configured with level: INFO
+2025-09-04 14:04:00 - werkzeug - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+2025-09-04 14:04:00 - werkzeug - INFO - [33mPress CTRL+C to quit[0m
+2025-09-04 14:04:00 - werkzeug - INFO -  * Restarting with stat
+2025-09-04 14:04:00 - root - INFO - Logging configured with level: INFO
+2025-09-04 14:04:01 - root - INFO - Logging configured with level: INFO
+2025-09-04 14:04:01 - root - INFO - Logging configured with level: INFO
+2025-09-04 14:04:01 - werkzeug - WARNING -  * Debugger is active!
+2025-09-04 14:04:01 - werkzeug - INFO -  * Debugger PIN: 884-593-877
+2025-09-04 14:04:04 - root - INFO - Received parse request for: C:/Users/Vandh/OneDrive/Desktop/28-08
+2025-09-04 14:04:04 - root - INFO - Queued analysis task with ID: 26246d91-f3c8-48ed-807e-a9fd79e1a4a6
+2025-09-04 14:04:04 - werkzeug - INFO - 127.0.0.1 - - [04/Sep/2025 14:04:04] "[35m[1mPOST /parse HTTP/1.1[0m" 202 -
+2025-09-04 14:06:38 - root - INFO - Logging configured with level: INFO
+2025-09-04 14:06:38 - root - INFO - Logging configured with level: INFO
+2025-09-04 14:06:38 - root - INFO - Logging configured with level: INFO
+2025-09-04 14:06:38 - werkzeug - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+2025-09-04 14:06:38 - werkzeug - INFO - [33mPress CTRL+C to quit[0m
+2025-09-04 14:06:38 - werkzeug - INFO -  * Restarting with stat
+2025-09-04 14:06:38 - root - INFO - Logging configured with level: INFO
+2025-09-04 14:06:39 - root - INFO - Logging configured with level: INFO
+2025-09-04 14:06:39 - root - INFO - Logging configured with level: INFO
+2025-09-04 14:06:39 - werkzeug - WARNING -  * Debugger is active!
+2025-09-04 14:06:39 - werkzeug - INFO -  * Debugger PIN: 884-593-877
+2025-09-04 14:06:42 - root - INFO - Received parse request for: C:/Users/Vandh/OneDrive/Desktop/28-08
+2025-09-04 14:06:42 - root - INFO - Queued analysis task with ID: 5b8cb731-a8f4-48ce-a4be-399593d68f02
+2025-09-04 14:06:42 - werkzeug - INFO - 127.0.0.1 - - [04/Sep/2025 14:06:42] "[35m[1mPOST /parse HTTP/1.1[0m" 202 -
+2025-09-04 14:06:48 - root - INFO - Task 5b8cb731-a8f4-48ce-a4be-399593d68f02 completed successfully
+2025-09-04 14:06:48 - werkzeug - INFO - 127.0.0.1 - - [04/Sep/2025 14:06:48] "GET /status/5b8cb731-a8f4-48ce-a4be-399593d68f02 HTTP/1.1" 200 -
+2025-09-04 14:07:13 - werkzeug - INFO -  * Detected change in 'C:\\Users\\Vandh\\OneDrive\\Desktop\\V2.0\\dev-scope\\analyzer\\parser.py', reloading
+2025-09-04 14:07:13 - werkzeug - INFO -  * Restarting with stat
+2025-09-04 14:10:18 - root - INFO - Logging configured with level: INFO
+2025-09-04 14:10:19 - root - INFO - Logging configured with level: INFO
+2025-09-04 14:10:19 - root - INFO - Logging configured with level: INFO
+2025-09-04 14:10:19 - werkzeug - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+2025-09-04 14:10:19 - werkzeug - INFO - [33mPress CTRL+C to quit[0m
+2025-09-04 14:10:19 - werkzeug - INFO -  * Restarting with stat
+2025-09-04 14:10:19 - root - INFO - Logging configured with level: INFO
+2025-09-04 14:10:19 - root - INFO - Logging configured with level: INFO
+2025-09-04 14:10:19 - root - INFO - Logging configured with level: INFO
+2025-09-04 14:10:19 - werkzeug - WARNING -  * Debugger is active!
+2025-09-04 14:10:19 - werkzeug - INFO -  * Debugger PIN: 884-593-877
+2025-09-04 14:10:22 - werkzeug - INFO - 127.0.0.1 - - [04/Sep/2025 14:10:22] "GET /health HTTP/1.1" 200 -
+2025-09-04 14:10:25 - werkzeug - INFO - 127.0.0.1 - - [04/Sep/2025 14:10:25] "OPTIONS /parse HTTP/1.1" 200 -
+2025-09-04 14:10:25 - werkzeug - INFO - 127.0.0.1 - - [04/Sep/2025 14:10:25] "[33mPOST /parse HTTP/1.1[0m" 404 -
+2025-09-04 14:10:30 - werkzeug - INFO - 127.0.0.1 - - [04/Sep/2025 14:10:30] "OPTIONS /parse HTTP/1.1" 200 -
+2025-09-04 14:10:30 - root - INFO - Received parse request for: C:/Users/Vandh/OneDrive/Desktop/28-08
+2025-09-04 14:10:31 - root - INFO - Queued analysis task with ID: 90d15515-8d2e-450b-995e-9cc50008900b
+2025-09-04 14:10:31 - werkzeug - INFO - 127.0.0.1 - - [04/Sep/2025 14:10:31] "[35m[1mPOST /parse HTTP/1.1[0m" 202 -
+2025-09-04 14:37:04 - root - INFO - Received parse request for: C:/Users/Vandh/OneDrive/Desktop/28-08
+2025-09-04 14:37:04 - root - INFO - Queued analysis task with ID: 75c9d062-d168-490f-8d14-c91cedce6fd3
+2025-09-04 14:37:04 - werkzeug - INFO - 127.0.0.1 - - [04/Sep/2025 14:37:04] "[35m[1mPOST /parse HTTP/1.1[0m" 202 -
+2025-09-04 14:37:16 - root - INFO - Logging configured with level: INFO
+2025-09-04 14:37:16 - root - INFO - Logging configured with level: INFO
+2025-09-04 14:37:16 - root - INFO - Logging configured with level: INFO
+2025-09-04 14:37:16 - werkzeug - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+2025-09-04 14:37:16 - werkzeug - INFO - [33mPress CTRL+C to quit[0m
+2025-09-04 14:37:16 - werkzeug - INFO -  * Restarting with stat
+2025-09-04 14:37:16 - root - INFO - Logging configured with level: INFO
+2025-09-04 14:37:17 - root - INFO - Logging configured with level: INFO
+2025-09-04 14:37:17 - root - INFO - Logging configured with level: INFO
+2025-09-04 14:37:17 - werkzeug - WARNING -  * Debugger is active!
+2025-09-04 14:37:17 - werkzeug - INFO -  * Debugger PIN: 884-593-877
+2025-09-04 14:37:19 - root - INFO - Received parse request for: C:/Users/Vandh/OneDrive/Desktop/28-08
+2025-09-04 14:37:19 - root - INFO - Queued analysis task with ID: 2a902141-71de-4d35-90f7-79eabfe0774a
+2025-09-04 14:37:19 - werkzeug - INFO - 127.0.0.1 - - [04/Sep/2025 14:37:19] "[35m[1mPOST /parse HTTP/1.1[0m" 202 -
+2025-09-04 14:37:27 - root - INFO - Task 2a902141-71de-4d35-90f7-79eabfe0774a completed successfully
+2025-09-04 14:37:27 - werkzeug - INFO - 127.0.0.1 - - [04/Sep/2025 14:37:27] "GET /status/2a902141-71de-4d35-90f7-79eabfe0774a HTTP/1.1" 200 -
+2025-09-04 14:47:21 - werkzeug - INFO -  * Detected change in 'C:\\Users\\Vandh\\OneDrive\\Desktop\\V2.0\\dev-scope\\analyzer\\parser.py', reloading
+2025-09-04 14:47:21 - werkzeug - INFO -  * Restarting with stat
+2025-09-04 14:47:22 - root - INFO - Logging configured with level: INFO
+2025-09-04 14:47:22 - root - INFO - Logging configured with level: INFO
+2025-09-04 14:47:22 - werkzeug - WARNING -  * Debugger is active!
+2025-09-04 14:47:22 - werkzeug - INFO -  * Debugger PIN: 884-593-877
+2025-09-04 14:47:26 - root - INFO - Logging configured with level: INFO
+2025-09-04 14:47:26 - root - INFO - Logging configured with level: INFO
+2025-09-04 14:47:26 - root - INFO - Logging configured with level: INFO
+2025-09-04 14:47:26 - werkzeug - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+2025-09-04 14:47:26 - werkzeug - INFO - [33mPress CTRL+C to quit[0m
+2025-09-04 14:47:26 - werkzeug - INFO -  * Restarting with stat
+2025-09-04 14:47:26 - root - INFO - Logging configured with level: INFO
+2025-09-04 14:47:27 - root - INFO - Logging configured with level: INFO
+2025-09-04 14:47:27 - root - INFO - Logging configured with level: INFO
+2025-09-04 14:47:27 - werkzeug - WARNING -  * Debugger is active!
+2025-09-04 14:47:27 - werkzeug - INFO -  * Debugger PIN: 884-593-877
+2025-09-04 14:47:32 - root - INFO - Received parse request for: C:/Users/Vandh/OneDrive/Desktop/28-08
+2025-09-04 14:47:32 - root - INFO - Queued analysis task with ID: 5d16c484-902d-483b-a34b-bc2327a4bf53
+2025-09-04 14:47:32 - werkzeug - INFO - 127.0.0.1 - - [04/Sep/2025 14:47:32] "[35m[1mPOST /parse HTTP/1.1[0m" 202 -
+2025-09-04 14:47:48 - root - INFO - Task 5d16c484-902d-483b-a34b-bc2327a4bf53 completed successfully
+2025-09-04 14:47:48 - werkzeug - INFO - 127.0.0.1 - - [04/Sep/2025 14:47:48] "GET /status/5d16c484-902d-483b-a34b-bc2327a4bf53 HTTP/1.1" 200 -
+2025-09-04 15:38:02 - werkzeug - INFO -  * Detected change in 'C:\\Users\\Vandh\\OneDrive\\Desktop\\V2.0\\dev-scope\\analyzer\\entry_points.py', reloading
+2025-09-04 15:38:03 - werkzeug - INFO -  * Restarting with stat
+2025-09-04 15:38:03 - root - INFO - Logging configured with level: INFO
+2025-09-04 15:38:03 - root - INFO - Logging configured with level: INFO
+2025-09-04 15:38:03 - werkzeug - WARNING -  * Debugger is active!
+2025-09-04 15:38:03 - werkzeug - INFO -  * Debugger PIN: 884-593-877
+2025-09-04 15:38:12 - root - INFO - Logging configured with level: INFO
+2025-09-04 15:38:13 - root - INFO - Logging configured with level: INFO
+2025-09-04 15:38:13 - root - INFO - Logging configured with level: INFO
+2025-09-04 15:38:13 - werkzeug - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+2025-09-04 15:38:13 - werkzeug - INFO - [33mPress CTRL+C to quit[0m
+2025-09-04 15:38:13 - werkzeug - INFO -  * Restarting with stat
+2025-09-04 15:38:13 - root - INFO - Logging configured with level: INFO
+2025-09-04 15:38:13 - root - INFO - Logging configured with level: INFO
+2025-09-04 15:38:13 - root - INFO - Logging configured with level: INFO
+2025-09-04 15:38:13 - werkzeug - WARNING -  * Debugger is active!
+2025-09-04 15:38:13 - werkzeug - INFO -  * Debugger PIN: 884-593-877
+2025-09-04 15:38:17 - root - INFO - Received parse request for: C:/Users/Vandh/OneDrive/Desktop/28-08
+2025-09-04 15:38:18 - root - INFO - Queued analysis task with ID: b07776a4-0f57-42d2-a680-86ae17aa5ecf
+2025-09-04 15:38:18 - werkzeug - INFO - 127.0.0.1 - - [04/Sep/2025 15:38:18] "[35m[1mPOST /parse HTTP/1.1[0m" 202 -
+2025-09-04 15:39:16 - root - INFO - Task b07776a4-0f57-42d2-a680-86ae17aa5ecf completed successfully
+2025-09-04 15:39:16 - werkzeug - INFO - 127.0.0.1 - - [04/Sep/2025 15:39:16] "GET /status/b07776a4-0f57-42d2-a680-86ae17aa5ecf HTTP/1.1" 200 -
+2025-09-04 15:43:13 - werkzeug - INFO - 127.0.0.1 - - [04/Sep/2025 15:43:13] "GET /health HTTP/1.1" 200 -
+2025-09-04 15:43:16 - werkzeug - INFO - 127.0.0.1 - - [04/Sep/2025 15:43:16] "OPTIONS /parse HTTP/1.1" 200 -
+2025-09-04 15:43:17 - root - INFO - Received parse request for: C:\Users\Vandh\OneDrive\Desktop\New folder\frontend\sample_project
+2025-09-04 15:43:17 - root - INFO - Queued analysis task with ID: 1023e643-de30-4680-9860-ad8f0ef0dab8
+2025-09-04 15:43:17 - werkzeug - INFO - 127.0.0.1 - - [04/Sep/2025 15:43:17] "[35m[1mPOST /parse HTTP/1.1[0m" 202 -
+2025-09-04 15:55:35 - werkzeug - INFO - 127.0.0.1 - - [04/Sep/2025 15:55:35] "GET /health HTTP/1.1" 200 -
+2025-09-04 15:55:35 - werkzeug - INFO - 127.0.0.1 - - [04/Sep/2025 15:55:35] "GET /health HTTP/1.1" 200 -
+2025-09-04 15:55:43 - werkzeug - INFO - 127.0.0.1 - - [04/Sep/2025 15:55:43] "OPTIONS /parse HTTP/1.1" 200 -
+2025-09-04 15:55:44 - root - INFO - Received parse request for: C:\Users\Vandh\OneDrive\Desktop\New folder\frontend\sample_project
+2025-09-04 15:55:44 - root - INFO - Queued analysis task with ID: b69e1619-7616-438b-ad0e-8096e3c29eeb
+2025-09-04 15:55:44 - werkzeug - INFO - 127.0.0.1 - - [04/Sep/2025 15:55:44] "[35m[1mPOST /parse HTTP/1.1[0m" 202 -
+2025-09-04 15:56:28 - werkzeug - INFO - 127.0.0.1 - - [04/Sep/2025 15:56:28] "GET /health HTTP/1.1" 200 -
+2025-09-04 15:56:53 - werkzeug - INFO - 127.0.0.1 - - [04/Sep/2025 15:56:53] "OPTIONS /parse HTTP/1.1" 200 -
+2025-09-04 15:56:53 - root - INFO - Received parse request for: C:/Users/Vandh/OneDrive/Desktop/28-08
+2025-09-04 15:56:53 - root - INFO - Queued analysis task with ID: 1ccd16ea-0ba1-4fd1-bb39-aeecc3cedbc5
+2025-09-04 15:56:53 - werkzeug - INFO - 127.0.0.1 - - [04/Sep/2025 15:56:53] "[35m[1mPOST /parse HTTP/1.1[0m" 202 -
+2025-09-04 15:56:56 - werkzeug - INFO - 127.0.0.1 - - [04/Sep/2025 15:56:56] "GET /health HTTP/1.1" 200 -
+2025-09-04 15:58:45 - werkzeug - INFO - 127.0.0.1 - - [04/Sep/2025 15:58:45] "OPTIONS /parse HTTP/1.1" 200 -
+2025-09-04 15:58:46 - root - INFO - Received parse request for: C:/Users/Vandh/OneDrive/Desktop/28-08
+2025-09-04 15:58:46 - root - INFO - Queued analysis task with ID: 7cc14037-c9d4-4cc4-8ed4-efca3b0c5962
+2025-09-04 15:58:46 - werkzeug - INFO - 127.0.0.1 - - [04/Sep/2025 15:58:46] "[35m[1mPOST /parse HTTP/1.1[0m" 202 -
+2025-09-04 16:00:16 - werkzeug - INFO - 127.0.0.1 - - [04/Sep/2025 16:00:16] "GET /health HTTP/1.1" 200 -
+2025-09-04 16:00:39 - werkzeug - INFO - 127.0.0.1 - - [04/Sep/2025 16:00:39] "GET /health HTTP/1.1" 200 -
+2025-09-04 16:00:39 - werkzeug - INFO - 127.0.0.1 - - [04/Sep/2025 16:00:39] "GET /health HTTP/1.1" 200 -
+2025-09-04 16:00:43 - werkzeug - INFO - 127.0.0.1 - - [04/Sep/2025 16:00:43] "OPTIONS /parse HTTP/1.1" 200 -
+2025-09-04 16:00:43 - root - INFO - Received parse request for: C:\Users\Vandh\OneDrive\Desktop\New folder\frontend\sample_project
+2025-09-04 16:00:43 - root - INFO - Queued analysis task with ID: 584bb349-dc79-4341-a801-6f3a0d6e287a
+2025-09-04 16:00:43 - werkzeug - INFO - 127.0.0.1 - - [04/Sep/2025 16:00:43] "[35m[1mPOST /parse HTTP/1.1[0m" 202 -
+2025-09-04 16:00:50 - werkzeug - INFO - 127.0.0.1 - - [04/Sep/2025 16:00:50] "GET /health HTTP/1.1" 200 -
+2025-09-04 16:00:58 - werkzeug - INFO - 127.0.0.1 - - [04/Sep/2025 16:00:58] "OPTIONS /parse HTTP/1.1" 200 -
+2025-09-04 16:00:58 - root - INFO - Received parse request for: C:/Users/Vandh/OneDrive/Desktop/28-08
+2025-09-04 16:00:58 - root - INFO - Queued analysis task with ID: 429379b0-c035-45d3-b8e8-8b9994e36e5f
+2025-09-04 16:00:58 - werkzeug - INFO - 127.0.0.1 - - [04/Sep/2025 16:00:58] "[35m[1mPOST /parse HTTP/1.1[0m" 202 -
+2025-09-04 16:01:09 - root - INFO - Received parse request for: C:/Users/Vandh/OneDrive/Desktop/28-08
+2025-09-04 16:01:09 - root - INFO - Queued analysis task with ID: 1d3a705a-20db-4384-9e4d-9c49279b50be
+2025-09-04 16:01:09 - werkzeug - INFO - 127.0.0.1 - - [04/Sep/2025 16:01:09] "[35m[1mPOST /parse HTTP/1.1[0m" 202 -
+2025-09-04 16:01:20 - root - INFO - Task 1d3a705a-20db-4384-9e4d-9c49279b50be completed successfully
+2025-09-04 16:01:20 - werkzeug - INFO - 127.0.0.1 - - [04/Sep/2025 16:01:20] "GET /status/1d3a705a-20db-4384-9e4d-9c49279b50be HTTP/1.1" 200 -
+2025-09-04 16:14:53 - werkzeug - INFO -  * Detected change in 'C:\\Users\\Vandh\\OneDrive\\Desktop\\V2.0\\dev-scope\\tasks.py', reloading
+2025-09-04 16:14:53 - werkzeug - INFO -  * Restarting with stat
+2025-09-04 16:14:54 - root - INFO - Logging configured with level: INFO
+2025-09-04 16:14:54 - root - INFO - Logging configured with level: INFO
+2025-09-04 16:14:54 - werkzeug - WARNING -  * Debugger is active!
+2025-09-04 16:14:54 - werkzeug - INFO -  * Debugger PIN: 884-593-877
+2025-09-04 16:15:39 - werkzeug - INFO -  * Detected change in 'C:\\Users\\Vandh\\OneDrive\\Desktop\\V2.0\\dev-scope\\analyzer\\main.py', reloading
+2025-09-04 16:15:39 - werkzeug - INFO -  * Restarting with stat
+2025-09-04 16:15:40 - root - INFO - Logging configured with level: INFO
+2025-09-04 16:15:40 - root - INFO - Logging configured with level: INFO
+2025-09-04 16:15:40 - werkzeug - WARNING -  * Debugger is active!
+2025-09-04 16:15:40 - werkzeug - INFO -  * Debugger PIN: 884-593-877
+2025-09-04 16:15:50 - root - INFO - Logging configured with level: INFO
+2025-09-04 16:15:50 - root - INFO - Logging configured with level: INFO
+2025-09-04 16:15:50 - root - INFO - Logging configured with level: INFO
+2025-09-04 16:15:50 - werkzeug - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+2025-09-04 16:15:50 - werkzeug - INFO - [33mPress CTRL+C to quit[0m
+2025-09-04 16:15:50 - werkzeug - INFO -  * Restarting with stat
+2025-09-04 16:15:50 - root - INFO - Logging configured with level: INFO
+2025-09-04 16:15:51 - root - INFO - Logging configured with level: INFO
+2025-09-04 16:15:51 - root - INFO - Logging configured with level: INFO
+2025-09-04 16:15:51 - werkzeug - WARNING -  * Debugger is active!
+2025-09-04 16:15:51 - werkzeug - INFO -  * Debugger PIN: 884-593-877
+2025-09-04 16:15:58 - root - INFO - Received parse request for: C:/Users/Vandh/OneDrive/Desktop/28-08
+2025-09-04 16:15:58 - root - INFO - Queued analysis task with ID: 383123d3-61b6-4b7a-bb52-cc9acf0f04f5
+2025-09-04 16:15:58 - werkzeug - INFO - 127.0.0.1 - - [04/Sep/2025 16:15:58] "[35m[1mPOST /parse HTTP/1.1[0m" 202 -
+2025-09-04 16:16:06 - root - INFO - Task 1d3a705a-20db-4384-9e4d-9c49279b50be completed successfully
+2025-09-04 16:16:06 - werkzeug - INFO - 127.0.0.1 - - [04/Sep/2025 16:16:06] "GET /status/1d3a705a-20db-4384-9e4d-9c49279b50be HTTP/1.1" 200 -
+2025-09-04 16:16:10 - root - INFO - Task 383123d3-61b6-4b7a-bb52-cc9acf0f04f5 completed successfully
+2025-09-04 16:16:10 - werkzeug - INFO - 127.0.0.1 - - [04/Sep/2025 16:16:10] "GET /status/383123d3-61b6-4b7a-bb52-cc9acf0f04f5 HTTP/1.1" 200 -
+2025-09-04 16:17:42 - werkzeug - INFO - 127.0.0.1 - - [04/Sep/2025 16:17:42] "GET /health HTTP/1.1" 200 -
+2025-09-04 16:17:46 - werkzeug - INFO - 127.0.0.1 - - [04/Sep/2025 16:17:46] "OPTIONS /parse HTTP/1.1" 200 -
+2025-09-04 16:17:46 - root - INFO - Received parse request for: C:/Users/Vandh/OneDrive/Desktop/28-08
+2025-09-04 16:17:46 - root - INFO - Queued analysis task with ID: 063f85d7-f32b-4885-ae90-29890d3e1274
+2025-09-04 16:17:46 - werkzeug - INFO - 127.0.0.1 - - [04/Sep/2025 16:17:46] "[35m[1mPOST /parse HTTP/1.1[0m" 202 -
+2025-09-04 16:26:37 - root - INFO - Task 383123d3-61b6-4b7a-bb52-cc9acf0f04f5 completed successfully
+2025-09-04 16:26:37 - werkzeug - INFO - 127.0.0.1 - - [04/Sep/2025 16:26:37] "GET /status/383123d3-61b6-4b7a-bb52-cc9acf0f04f5 HTTP/1.1" 200 -
+2025-09-04 16:27:17 - root - INFO - Logging configured with level: INFO
+2025-09-04 16:27:18 - root - INFO - Logging configured with level: INFO
+2025-09-04 16:27:18 - root - INFO - Logging configured with level: INFO
+2025-09-04 16:27:18 - werkzeug - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+2025-09-04 16:27:18 - werkzeug - INFO - [33mPress CTRL+C to quit[0m
+2025-09-04 16:27:18 - werkzeug - INFO -  * Restarting with stat
+2025-09-04 16:27:18 - root - INFO - Logging configured with level: INFO
+2025-09-04 16:27:18 - root - INFO - Logging configured with level: INFO
+2025-09-04 16:27:18 - root - INFO - Logging configured with level: INFO
+2025-09-04 16:27:18 - werkzeug - WARNING -  * Debugger is active!
+2025-09-04 16:27:18 - werkzeug - INFO -  * Debugger PIN: 884-593-877
+2025-09-04 16:27:23 - root - INFO - Received parse request for: C:/Users/Vandh/OneDrive/Desktop/28-08
+2025-09-04 16:27:23 - root - INFO - Queued analysis task with ID: b3e5c15d-c5db-4828-a825-07855a88c003
+2025-09-04 16:27:23 - werkzeug - INFO - 127.0.0.1 - - [04/Sep/2025 16:27:23] "[35m[1mPOST /parse HTTP/1.1[0m" 202 -
+2025-09-04 16:27:31 - root - INFO - Task b3e5c15d-c5db-4828-a825-07855a88c003 completed successfully
+2025-09-04 16:27:31 - werkzeug - INFO - 127.0.0.1 - - [04/Sep/2025 16:27:31] "GET /status/b3e5c15d-c5db-4828-a825-07855a88c003 HTTP/1.1" 200 -
+2025-09-04 16:29:01 - werkzeug - INFO -  * Detected change in 'C:\\Users\\Vandh\\OneDrive\\Desktop\\V2.0\\dev-scope\\analyzer\\main.py', reloading
+2025-09-04 16:29:01 - werkzeug - INFO -  * Restarting with stat
+2025-09-04 16:29:02 - root - INFO - Logging configured with level: INFO
+2025-09-04 16:29:02 - root - INFO - Logging configured with level: INFO
+2025-09-04 16:29:02 - werkzeug - WARNING -  * Debugger is active!
+2025-09-04 16:29:02 - werkzeug - INFO -  * Debugger PIN: 884-593-877
+2025-09-04 16:29:03 - werkzeug - INFO -  * Detected change in 'C:\\Users\\Vandh\\OneDrive\\Desktop\\V2.0\\dev-scope\\analyzer\\main.py', reloading
+2025-09-04 16:29:03 - werkzeug - INFO -  * Restarting with stat
+2025-09-04 16:29:03 - root - INFO - Logging configured with level: INFO
+2025-09-04 16:29:03 - root - INFO - Logging configured with level: INFO
+2025-09-04 16:29:03 - werkzeug - WARNING -  * Debugger is active!
+2025-09-04 16:29:03 - werkzeug - INFO -  * Debugger PIN: 884-593-877
+2025-09-04 16:29:05 - werkzeug - INFO -  * Detected change in 'C:\\Users\\Vandh\\OneDrive\\Desktop\\V2.0\\dev-scope\\analyzer\\main.py', reloading
+2025-09-04 16:29:05 - werkzeug - INFO -  * Restarting with stat
+2025-09-04 16:29:05 - root - INFO - Logging configured with level: INFO
+2025-09-04 16:29:05 - root - INFO - Logging configured with level: INFO
+2025-09-04 16:29:05 - werkzeug - WARNING -  * Debugger is active!
+2025-09-04 16:29:05 - werkzeug - INFO -  * Debugger PIN: 884-593-877
+2025-09-04 16:29:29 - root - INFO - Received parse request for: C:/Users/Vandh/OneDrive/Desktop/28-08
+2025-09-04 16:29:29 - root - INFO - Queued analysis task with ID: b6078bce-1d85-42d5-800b-9ce7ea2505fa
+2025-09-04 16:29:29 - werkzeug - INFO - 127.0.0.1 - - [04/Sep/2025 16:29:29] "[35m[1mPOST /parse HTTP/1.1[0m" 202 -
+2025-09-04 16:29:40 - werkzeug - INFO - 127.0.0.1 - - [04/Sep/2025 16:29:40] "GET /status/b6078bce-1d85-42d5-800b-9ce7ea2505fa HTTP/1.1" 200 -
+2025-09-04 16:29:48 - root - INFO - Task b6078bce-1d85-42d5-800b-9ce7ea2505fa completed successfully
+2025-09-04 16:29:48 - werkzeug - INFO - 127.0.0.1 - - [04/Sep/2025 16:29:48] "GET /status/b6078bce-1d85-42d5-800b-9ce7ea2505fa HTTP/1.1" 200 -
+2025-09-04 16:41:17 - werkzeug - INFO - 127.0.0.1 - - [04/Sep/2025 16:41:17] "GET /health HTTP/1.1" 200 -
+2025-09-04 16:41:21 - werkzeug - INFO - 127.0.0.1 - - [04/Sep/2025 16:41:21] "OPTIONS /parse HTTP/1.1" 200 -
+2025-09-04 16:41:21 - root - INFO - Received parse request for: C:/Users/Vandh/OneDrive/Desktop/28-08
+2025-09-04 16:41:21 - root - INFO - Queued analysis task with ID: 6e081682-4d2a-48b5-b8ab-2e0e114d1448
+2025-09-04 16:41:21 - werkzeug - INFO - 127.0.0.1 - - [04/Sep/2025 16:41:21] "[35m[1mPOST /parse HTTP/1.1[0m" 202 -
+2025-09-04 16:41:44 - root - INFO - Task b6078bce-1d85-42d5-800b-9ce7ea2505fa completed successfully
+2025-09-04 16:41:44 - werkzeug - INFO - 127.0.0.1 - - [04/Sep/2025 16:41:44] "GET /status/b6078bce-1d85-42d5-800b-9ce7ea2505fa HTTP/1.1" 200 -
+2025-09-04 16:45:22 - werkzeug - INFO - 127.0.0.1 - - [04/Sep/2025 16:45:22] "GET /health HTTP/1.1" 200 -
+2025-09-04 16:45:22 - werkzeug - INFO - 127.0.0.1 - - [04/Sep/2025 16:45:22] "GET /health HTTP/1.1" 200 -
+2025-09-04 16:45:46 - werkzeug - INFO - 127.0.0.1 - - [04/Sep/2025 16:45:46] "GET /health HTTP/1.1" 200 -
+2025-09-04 16:45:52 - werkzeug - INFO - 127.0.0.1 - - [04/Sep/2025 16:45:52] "OPTIONS /parse HTTP/1.1" 200 -
+2025-09-04 16:45:53 - root - INFO - Received parse request for: C:\Users\Vandh\OneDrive\Desktop\New folder\frontend\sample_project
+2025-09-04 16:45:53 - root - INFO - Queued analysis task with ID: b5688016-815a-49fb-87b8-b73f9340e6c1
+2025-09-04 16:45:53 - werkzeug - INFO - 127.0.0.1 - - [04/Sep/2025 16:45:53] "[35m[1mPOST /parse HTTP/1.1[0m" 202 -
+2025-09-04 16:47:08 - werkzeug - INFO - 127.0.0.1 - - [04/Sep/2025 16:47:08] "GET /health HTTP/1.1" 200 -
+2025-09-04 16:47:08 - werkzeug - INFO - 127.0.0.1 - - [04/Sep/2025 16:47:08] "GET /health HTTP/1.1" 200 -
+2025-09-04 16:47:12 - werkzeug - INFO - 127.0.0.1 - - [04/Sep/2025 16:47:12] "GET /health HTTP/1.1" 200 -
+2025-09-04 16:47:16 - werkzeug - INFO - 127.0.0.1 - - [04/Sep/2025 16:47:16] "OPTIONS /parse HTTP/1.1" 200 -
+2025-09-04 16:47:17 - root - INFO - Received parse request for: C:/Users/Vandh/OneDrive/Desktop/28-08
+2025-09-04 16:47:17 - root - INFO - Queued analysis task with ID: 7fadfef6-817b-4c8e-a765-b629e9d89c8a
+2025-09-04 16:47:17 - werkzeug - INFO - 127.0.0.1 - - [04/Sep/2025 16:47:17] "[35m[1mPOST /parse HTTP/1.1[0m" 202 -
+2025-09-04 16:47:17 - werkzeug - INFO - 127.0.0.1 - - [04/Sep/2025 16:47:17] "GET /status/7fadfef6-817b-4c8e-a765-b629e9d89c8a HTTP/1.1" 200 -
+2025-09-04 16:47:19 - werkzeug - INFO - 127.0.0.1 - - [04/Sep/2025 16:47:19] "GET /status/7fadfef6-817b-4c8e-a765-b629e9d89c8a HTTP/1.1" 200 -
+2025-09-04 16:47:21 - werkzeug - INFO - 127.0.0.1 - - [04/Sep/2025 16:47:21] "GET /status/7fadfef6-817b-4c8e-a765-b629e9d89c8a HTTP/1.1" 200 -
+2025-09-04 16:47:23 - werkzeug - INFO - 127.0.0.1 - - [04/Sep/2025 16:47:23] "GET /status/7fadfef6-817b-4c8e-a765-b629e9d89c8a HTTP/1.1" 200 -
+2025-09-04 16:47:25 - werkzeug - INFO - 127.0.0.1 - - [04/Sep/2025 16:47:25] "GET /status/7fadfef6-817b-4c8e-a765-b629e9d89c8a HTTP/1.1" 200 -
+2025-09-04 16:47:28 - werkzeug - INFO - 127.0.0.1 - - [04/Sep/2025 16:47:28] "GET /status/7fadfef6-817b-4c8e-a765-b629e9d89c8a HTTP/1.1" 200 -
+2025-09-04 16:47:30 - root - INFO - Task 7fadfef6-817b-4c8e-a765-b629e9d89c8a completed successfully
+2025-09-04 16:47:30 - werkzeug - INFO - 127.0.0.1 - - [04/Sep/2025 16:47:30] "GET /status/7fadfef6-817b-4c8e-a765-b629e9d89c8a HTTP/1.1" 200 -
+2025-09-04 16:50:11 - werkzeug - INFO - 127.0.0.1 - - [04/Sep/2025 16:50:11] "GET /health HTTP/1.1" 200 -
+2025-09-04 16:50:15 - werkzeug - INFO - 127.0.0.1 - - [04/Sep/2025 16:50:15] "OPTIONS /parse HTTP/1.1" 200 -
+2025-09-04 16:50:15 - root - INFO - Received parse request for: C:/Users/Vandh/OneDrive/Desktop/28-08
+2025-09-04 16:50:15 - root - INFO - Queued analysis task with ID: 38485e5b-6773-446c-8903-9d93c07f245f
+2025-09-04 16:50:15 - werkzeug - INFO - 127.0.0.1 - - [04/Sep/2025 16:50:15] "[35m[1mPOST /parse HTTP/1.1[0m" 202 -
+2025-09-04 16:50:16 - werkzeug - INFO - 127.0.0.1 - - [04/Sep/2025 16:50:16] "GET /status/38485e5b-6773-446c-8903-9d93c07f245f HTTP/1.1" 200 -
+2025-09-04 16:50:18 - werkzeug - INFO - 127.0.0.1 - - [04/Sep/2025 16:50:18] "GET /status/38485e5b-6773-446c-8903-9d93c07f245f HTTP/1.1" 200 -
+2025-09-04 16:50:20 - werkzeug - INFO - 127.0.0.1 - - [04/Sep/2025 16:50:20] "GET /status/38485e5b-6773-446c-8903-9d93c07f245f HTTP/1.1" 200 -
+2025-09-04 16:50:22 - werkzeug - INFO - 127.0.0.1 - - [04/Sep/2025 16:50:22] "GET /status/38485e5b-6773-446c-8903-9d93c07f245f HTTP/1.1" 200 -
+2025-09-04 16:50:24 - werkzeug - INFO - 127.0.0.1 - - [04/Sep/2025 16:50:24] "GET /status/38485e5b-6773-446c-8903-9d93c07f245f HTTP/1.1" 200 -
+2025-09-04 16:50:27 - werkzeug - INFO - 127.0.0.1 - - [04/Sep/2025 16:50:27] "GET /status/38485e5b-6773-446c-8903-9d93c07f245f HTTP/1.1" 200 -
+2025-09-04 16:50:29 - root - INFO - Task 38485e5b-6773-446c-8903-9d93c07f245f completed successfully
+2025-09-04 16:50:29 - werkzeug - INFO - 127.0.0.1 - - [04/Sep/2025 16:50:29] "GET /status/38485e5b-6773-446c-8903-9d93c07f245f HTTP/1.1" 200 -
+2025-09-04 16:50:55 - werkzeug - INFO - 127.0.0.1 - - [04/Sep/2025 16:50:55] "GET /health HTTP/1.1" 200 -
+2025-09-04 16:51:03 - werkzeug - INFO - 127.0.0.1 - - [04/Sep/2025 16:51:03] "OPTIONS /parse HTTP/1.1" 200 -
+2025-09-04 16:51:04 - root - INFO - Received parse request for: C:/Users/Vandh/OneDrive/Desktop
+2025-09-04 16:51:04 - root - INFO - Queued analysis task with ID: 64bfacb1-dfe8-4e7d-9810-ddc152684220
+2025-09-04 16:51:04 - werkzeug - INFO - 127.0.0.1 - - [04/Sep/2025 16:51:04] "[35m[1mPOST /parse HTTP/1.1[0m" 202 -
+2025-09-04 16:51:04 - werkzeug - INFO - 127.0.0.1 - - [04/Sep/2025 16:51:04] "GET /status/64bfacb1-dfe8-4e7d-9810-ddc152684220 HTTP/1.1" 200 -
+2025-09-04 16:51:06 - werkzeug - INFO - 127.0.0.1 - - [04/Sep/2025 16:51:06] "GET /status/64bfacb1-dfe8-4e7d-9810-ddc152684220 HTTP/1.1" 200 -
+2025-09-04 16:51:08 - root - INFO - Task 64bfacb1-dfe8-4e7d-9810-ddc152684220 completed successfully
+2025-09-04 16:51:08 - werkzeug - INFO - 127.0.0.1 - - [04/Sep/2025 16:51:08] "GET /status/64bfacb1-dfe8-4e7d-9810-ddc152684220 HTTP/1.1" 200 -
+2025-09-04 16:51:11 - werkzeug - INFO - 127.0.0.1 - - [04/Sep/2025 16:51:11] "GET /health HTTP/1.1" 200 -
+2025-09-04 16:51:17 - werkzeug - INFO - 127.0.0.1 - - [04/Sep/2025 16:51:17] "OPTIONS /parse HTTP/1.1" 200 -
+2025-09-04 16:51:17 - root - INFO - Received parse request for: C:/Users/Vandh/OneDrive/Desktop/28-08
+2025-09-04 16:51:18 - root - INFO - Queued analysis task with ID: 85c86685-f39f-492a-9976-d2c09c460b6a
+2025-09-04 16:51:18 - werkzeug - INFO - 127.0.0.1 - - [04/Sep/2025 16:51:18] "[35m[1mPOST /parse HTTP/1.1[0m" 202 -
+2025-09-04 16:51:18 - werkzeug - INFO - 127.0.0.1 - - [04/Sep/2025 16:51:18] "GET /status/85c86685-f39f-492a-9976-d2c09c460b6a HTTP/1.1" 200 -
+2025-09-04 16:51:20 - werkzeug - INFO - 127.0.0.1 - - [04/Sep/2025 16:51:20] "GET /status/85c86685-f39f-492a-9976-d2c09c460b6a HTTP/1.1" 200 -
+2025-09-04 16:51:23 - werkzeug - INFO - 127.0.0.1 - - [04/Sep/2025 16:51:23] "GET /status/85c86685-f39f-492a-9976-d2c09c460b6a HTTP/1.1" 200 -
+2025-09-04 16:51:26 - werkzeug - INFO - 127.0.0.1 - - [04/Sep/2025 16:51:26] "GET /status/85c86685-f39f-492a-9976-d2c09c460b6a HTTP/1.1" 200 -
+2025-09-04 16:51:29 - werkzeug - INFO - 127.0.0.1 - - [04/Sep/2025 16:51:29] "GET /status/85c86685-f39f-492a-9976-d2c09c460b6a HTTP/1.1" 200 -
+2025-09-04 16:51:32 - root - INFO - Task 85c86685-f39f-492a-9976-d2c09c460b6a completed successfully
+2025-09-04 16:51:32 - werkzeug - INFO - 127.0.0.1 - - [04/Sep/2025 16:51:32] "GET /status/85c86685-f39f-492a-9976-d2c09c460b6a HTTP/1.1" 200 -
+2025-09-04 16:52:02 - werkzeug - INFO - 127.0.0.1 - - [04/Sep/2025 16:52:02] "GET /health HTTP/1.1" 200 -
+2025-09-04 16:52:06 - werkzeug - INFO - 127.0.0.1 - - [04/Sep/2025 16:52:06] "OPTIONS /parse HTTP/1.1" 200 -
+2025-09-04 16:52:06 - root - INFO - Received parse request for: C:/Users/Vandh/OneDrive/Desktop/28-08
+2025-09-04 16:52:06 - root - INFO - Queued analysis task with ID: 42ac36c2-dd8c-4933-8c1b-1250e9b9b8c0
+2025-09-04 16:52:06 - werkzeug - INFO - 127.0.0.1 - - [04/Sep/2025 16:52:06] "[35m[1mPOST /parse HTTP/1.1[0m" 202 -
+2025-09-04 16:52:07 - werkzeug - INFO - 127.0.0.1 - - [04/Sep/2025 16:52:07] "GET /status/42ac36c2-dd8c-4933-8c1b-1250e9b9b8c0 HTTP/1.1" 200 -
+2025-09-04 16:52:09 - werkzeug - INFO - 127.0.0.1 - - [04/Sep/2025 16:52:09] "GET /status/42ac36c2-dd8c-4933-8c1b-1250e9b9b8c0 HTTP/1.1" 200 -
+2025-09-04 16:52:11 - werkzeug - INFO - 127.0.0.1 - - [04/Sep/2025 16:52:11] "GET /status/42ac36c2-dd8c-4933-8c1b-1250e9b9b8c0 HTTP/1.1" 200 -
+2025-09-04 16:52:13 - werkzeug - INFO - 127.0.0.1 - - [04/Sep/2025 16:52:13] "GET /status/42ac36c2-dd8c-4933-8c1b-1250e9b9b8c0 HTTP/1.1" 200 -
+2025-09-04 16:52:15 - werkzeug - INFO - 127.0.0.1 - - [04/Sep/2025 16:52:15] "GET /status/42ac36c2-dd8c-4933-8c1b-1250e9b9b8c0 HTTP/1.1" 200 -
+2025-09-04 16:52:17 - werkzeug - INFO - 127.0.0.1 - - [04/Sep/2025 16:52:17] "GET /status/42ac36c2-dd8c-4933-8c1b-1250e9b9b8c0 HTTP/1.1" 200 -
+2025-09-04 16:52:20 - root - INFO - Task 42ac36c2-dd8c-4933-8c1b-1250e9b9b8c0 completed successfully
+2025-09-04 16:52:20 - werkzeug - INFO - 127.0.0.1 - - [04/Sep/2025 16:52:20] "GET /status/42ac36c2-dd8c-4933-8c1b-1250e9b9b8c0 HTTP/1.1" 200 -
+2025-09-04 17:16:31 - werkzeug - INFO - 127.0.0.1 - - [04/Sep/2025 17:16:31] "GET /health HTTP/1.1" 200 -
+2025-09-04 17:17:43 - werkzeug - INFO - 127.0.0.1 - - [04/Sep/2025 17:17:43] "GET /health HTTP/1.1" 200 -
+2025-09-04 19:41:49 - root - INFO - Received parse request for: C:/Users/Vandh/OneDrive/Desktop/28-08
+2025-09-04 19:41:57 - celery.backends.redis - ERROR - Connection to Redis lost: Retry (0/20) now.
+2025-09-04 19:42:01 - celery.backends.redis - ERROR - Connection to Redis lost: Retry (1/20) in 1.00 second.
+2025-09-04 20:02:10 - root - INFO - Logging configured with level: INFO
+2025-09-04 20:02:10 - root - INFO - Logging configured with level: INFO
+2025-09-04 20:02:10 - root - INFO - Logging configured with level: INFO
+2025-09-04 20:02:10 - werkzeug - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+2025-09-04 20:02:10 - werkzeug - INFO - [33mPress CTRL+C to quit[0m
+2025-09-04 20:02:10 - werkzeug - INFO -  * Restarting with stat
+2025-09-04 20:02:10 - root - INFO - Logging configured with level: INFO
+2025-09-04 20:02:10 - root - INFO - Logging configured with level: INFO
+2025-09-04 20:02:10 - root - INFO - Logging configured with level: INFO
+2025-09-04 20:02:10 - werkzeug - WARNING -  * Debugger is active!
+2025-09-04 20:02:11 - werkzeug - INFO -  * Debugger PIN: 884-593-877
+2025-09-04 20:02:21 - werkzeug - INFO - 127.0.0.1 - - [04/Sep/2025 20:02:21] "GET /health HTTP/1.1" 200 -
+2025-09-04 20:02:26 - werkzeug - INFO - 127.0.0.1 - - [04/Sep/2025 20:02:26] "OPTIONS /parse HTTP/1.1" 200 -
+2025-09-04 20:02:27 - root - INFO - Received parse request for: C:/Users/Vandh/OneDrive/Desktop/28-08
+2025-09-04 20:02:27 - root - INFO - Queued analysis task with ID: 128a4e25-8a56-4d13-b66d-a9a90b6cb4e0
+2025-09-04 20:02:27 - werkzeug - INFO - 127.0.0.1 - - [04/Sep/2025 20:02:27] "[35m[1mPOST /parse HTTP/1.1[0m" 202 -
+2025-09-04 20:02:27 - werkzeug - INFO - 127.0.0.1 - - [04/Sep/2025 20:02:27] "GET /status/128a4e25-8a56-4d13-b66d-a9a90b6cb4e0 HTTP/1.1" 200 -
+2025-09-04 20:02:29 - werkzeug - INFO - 127.0.0.1 - - [04/Sep/2025 20:02:29] "GET /status/128a4e25-8a56-4d13-b66d-a9a90b6cb4e0 HTTP/1.1" 200 -
+2025-09-04 20:02:31 - werkzeug - INFO - 127.0.0.1 - - [04/Sep/2025 20:02:31] "GET /status/128a4e25-8a56-4d13-b66d-a9a90b6cb4e0 HTTP/1.1" 200 -
+2025-09-04 20:02:33 - werkzeug - INFO - 127.0.0.1 - - [04/Sep/2025 20:02:33] "GET /status/128a4e25-8a56-4d13-b66d-a9a90b6cb4e0 HTTP/1.1" 200 -
+2025-09-04 20:02:36 - root - INFO - Task 128a4e25-8a56-4d13-b66d-a9a90b6cb4e0 completed successfully
+2025-09-04 20:02:36 - werkzeug - INFO - 127.0.0.1 - - [04/Sep/2025 20:02:36] "GET /status/128a4e25-8a56-4d13-b66d-a9a90b6cb4e0 HTTP/1.1" 200 -
+2025-09-04 20:10:47 - root - INFO - Received parse request for: C:/Users/Vandh/OneDrive/Desktop/28-08
+2025-09-04 20:10:47 - root - INFO - Queued analysis task with ID: 27160bb0-5156-4071-a719-06dfed2d6f67
+2025-09-04 20:10:47 - werkzeug - INFO - 127.0.0.1 - - [04/Sep/2025 20:10:47] "[35m[1mPOST /parse HTTP/1.1[0m" 202 -
+2025-09-04 20:10:56 - root - INFO - Task 27160bb0-5156-4071-a719-06dfed2d6f67 completed successfully
+2025-09-04 20:10:56 - werkzeug - INFO - 127.0.0.1 - - [04/Sep/2025 20:10:56] "GET /status/27160bb0-5156-4071-a719-06dfed2d6f67 HTTP/1.1" 200 -
+2025-09-04 20:28:11 - werkzeug - INFO -  * Detected change in 'C:\\Users\\Vandh\\OneDrive\\Desktop\\V2.0\\dev-scope\\analyzer\\parser.py', reloading
+2025-09-04 20:28:11 - werkzeug - INFO -  * Restarting with stat
+2025-09-04 20:28:12 - root - INFO - Logging configured with level: INFO
+2025-09-04 20:28:12 - root - INFO - Logging configured with level: INFO
+2025-09-04 20:28:12 - werkzeug - WARNING -  * Debugger is active!
+2025-09-04 20:28:12 - werkzeug - INFO -  * Debugger PIN: 884-593-877
+2025-09-04 20:28:19 - root - INFO - Logging configured with level: INFO
+2025-09-04 20:28:20 - root - INFO - Logging configured with level: INFO
+2025-09-04 20:28:20 - root - INFO - Logging configured with level: INFO
+2025-09-04 20:28:20 - werkzeug - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+2025-09-04 20:28:20 - werkzeug - INFO - [33mPress CTRL+C to quit[0m
+2025-09-04 20:28:20 - werkzeug - INFO -  * Restarting with stat
+2025-09-04 20:28:20 - root - INFO - Logging configured with level: INFO
+2025-09-04 20:28:20 - root - INFO - Logging configured with level: INFO
+2025-09-04 20:28:20 - root - INFO - Logging configured with level: INFO
+2025-09-04 20:28:20 - werkzeug - WARNING -  * Debugger is active!
+2025-09-04 20:28:20 - werkzeug - INFO -  * Debugger PIN: 884-593-877
+2025-09-04 20:28:24 - root - INFO - Received parse request for: C:/Users/Vandh/OneDrive/Desktop/28-08
+2025-09-04 20:28:24 - root - INFO - Queued analysis task with ID: b8e187c0-7b24-41d5-a4e0-9230abae283d
+2025-09-04 20:28:24 - werkzeug - INFO - 127.0.0.1 - - [04/Sep/2025 20:28:24] "[35m[1mPOST /parse HTTP/1.1[0m" 202 -
+2025-09-04 20:28:32 - root - INFO - Task b8e187c0-7b24-41d5-a4e0-9230abae283d completed successfully
+2025-09-04 20:28:32 - werkzeug - INFO - 127.0.0.1 - - [04/Sep/2025 20:28:32] "GET /status/b8e187c0-7b24-41d5-a4e0-9230abae283d HTTP/1.1" 200 -
+2025-09-04 20:34:38 - werkzeug - INFO - 127.0.0.1 - - [04/Sep/2025 20:34:38] "GET /health HTTP/1.1" 200 -
+2025-09-04 20:34:41 - werkzeug - INFO - 127.0.0.1 - - [04/Sep/2025 20:34:41] "OPTIONS /parse HTTP/1.1" 200 -
+2025-09-04 20:34:41 - root - INFO - Received parse request for: C:/Users/Vandh/OneDrive/Desktop/28-08
+2025-09-04 20:34:41 - root - INFO - Queued analysis task with ID: 0c0de16d-d8ab-4fcb-a410-9b328cc0998c
+2025-09-04 20:34:41 - werkzeug - INFO - 127.0.0.1 - - [04/Sep/2025 20:34:41] "[35m[1mPOST /parse HTTP/1.1[0m" 202 -
+2025-09-04 20:34:41 - werkzeug - INFO - 127.0.0.1 - - [04/Sep/2025 20:34:41] "GET /status/0c0de16d-d8ab-4fcb-a410-9b328cc0998c HTTP/1.1" 200 -
+2025-09-04 20:34:43 - werkzeug - INFO - 127.0.0.1 - - [04/Sep/2025 20:34:43] "GET /status/0c0de16d-d8ab-4fcb-a410-9b328cc0998c HTTP/1.1" 200 -
+2025-09-04 20:34:46 - werkzeug - INFO - 127.0.0.1 - - [04/Sep/2025 20:34:46] "GET /status/0c0de16d-d8ab-4fcb-a410-9b328cc0998c HTTP/1.1" 200 -
+2025-09-04 20:34:48 - werkzeug - INFO - 127.0.0.1 - - [04/Sep/2025 20:34:48] "GET /status/0c0de16d-d8ab-4fcb-a410-9b328cc0998c HTTP/1.1" 200 -
+2025-09-04 20:34:50 - root - INFO - Task 0c0de16d-d8ab-4fcb-a410-9b328cc0998c completed successfully
+2025-09-04 20:34:50 - werkzeug - INFO - 127.0.0.1 - - [04/Sep/2025 20:34:50] "GET /status/0c0de16d-d8ab-4fcb-a410-9b328cc0998c HTTP/1.1" 200 -
+2025-09-04 20:35:55 - werkzeug - INFO - 127.0.0.1 - - [04/Sep/2025 20:35:55] "GET /health HTTP/1.1" 200 -
+2025-09-04 20:36:02 - werkzeug - INFO - 127.0.0.1 - - [04/Sep/2025 20:36:02] "OPTIONS /parse HTTP/1.1" 200 -
+2025-09-04 20:36:02 - root - INFO - Received parse request for: C:/Users/Vandh/OneDrive/Desktop/28-08
+2025-09-04 20:36:02 - root - INFO - Queued analysis task with ID: 03911a81-34d2-4058-9049-c433ea5a07fb
+2025-09-04 20:36:02 - werkzeug - INFO - 127.0.0.1 - - [04/Sep/2025 20:36:02] "[35m[1mPOST /parse HTTP/1.1[0m" 202 -
+2025-09-04 20:36:02 - werkzeug - INFO - 127.0.0.1 - - [04/Sep/2025 20:36:02] "GET /status/03911a81-34d2-4058-9049-c433ea5a07fb HTTP/1.1" 200 -
+2025-09-04 20:36:04 - werkzeug - INFO - 127.0.0.1 - - [04/Sep/2025 20:36:04] "GET /status/03911a81-34d2-4058-9049-c433ea5a07fb HTTP/1.1" 200 -
+2025-09-04 20:36:07 - werkzeug - INFO - 127.0.0.1 - - [04/Sep/2025 20:36:07] "GET /status/03911a81-34d2-4058-9049-c433ea5a07fb HTTP/1.1" 200 -
+2025-09-04 20:36:09 - werkzeug - INFO - 127.0.0.1 - - [04/Sep/2025 20:36:09] "GET /status/03911a81-34d2-4058-9049-c433ea5a07fb HTTP/1.1" 200 -
+2025-09-04 20:36:11 - root - INFO - Task 03911a81-34d2-4058-9049-c433ea5a07fb completed successfully
+2025-09-04 20:36:11 - werkzeug - INFO - 127.0.0.1 - - [04/Sep/2025 20:36:11] "GET /status/03911a81-34d2-4058-9049-c433ea5a07fb HTTP/1.1" 200 -
+2025-09-04 21:03:22 - werkzeug - INFO -  * Detected change in 'C:\\Users\\Vandh\\OneDrive\\Desktop\\V2.0\\dev-scope\\analyzer\\main.py', reloading
+2025-09-04 21:03:22 - werkzeug - INFO -  * Restarting with stat
+2025-09-04 21:05:36 - root - INFO - Logging configured with level: INFO
+2025-09-04 21:05:53 - root - INFO - Logging configured with level: INFO
+2025-09-04 21:05:54 - root - INFO - Logging configured with level: INFO
+2025-09-04 21:05:54 - root - INFO - Logging configured with level: INFO
+2025-09-04 21:05:54 - werkzeug - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+2025-09-04 21:05:54 - werkzeug - INFO - [33mPress CTRL+C to quit[0m
+2025-09-04 21:05:54 - werkzeug - INFO -  * Restarting with stat
+2025-09-04 21:05:54 - root - INFO - Logging configured with level: INFO
+2025-09-04 21:05:54 - root - INFO - Logging configured with level: INFO
+2025-09-04 21:05:54 - root - INFO - Logging configured with level: INFO
+2025-09-04 21:05:54 - werkzeug - WARNING -  * Debugger is active!
+2025-09-04 21:05:54 - werkzeug - INFO -  * Debugger PIN: 884-593-877
+2025-09-04 21:06:00 - root - INFO - Received parse request for: C:/Users/Vandh/OneDrive/Desktop/28-08
+2025-09-04 21:06:00 - root - INFO - Queued analysis task with ID: 6f2554c7-1b7b-431a-a908-be5598b3b8c8
+2025-09-04 21:06:00 - werkzeug - INFO - 127.0.0.1 - - [04/Sep/2025 21:06:00] "[35m[1mPOST /parse HTTP/1.1[0m" 202 -
+2025-09-04 21:06:07 - root - INFO - Task 6f2554c7-1b7b-431a-a908-be5598b3b8c8 completed successfully
+2025-09-04 21:06:07 - werkzeug - INFO - 127.0.0.1 - - [04/Sep/2025 21:06:07] "GET /status/6f2554c7-1b7b-431a-a908-be5598b3b8c8 HTTP/1.1" 200 -
+2025-09-04 21:10:37 - werkzeug - INFO - 127.0.0.1 - - [04/Sep/2025 21:10:37] "GET /health HTTP/1.1" 200 -
+2025-09-04 21:10:40 - werkzeug - INFO - 127.0.0.1 - - [04/Sep/2025 21:10:40] "OPTIONS /parse HTTP/1.1" 200 -
+2025-09-04 21:10:41 - root - INFO - Received parse request for: C:/Users/Vandh/OneDrive/Desktop/28-08
+2025-09-04 21:10:41 - root - INFO - Queued analysis task with ID: 5b36f906-89ff-4f08-a30a-a472092f4069
+2025-09-04 21:10:41 - werkzeug - INFO - 127.0.0.1 - - [04/Sep/2025 21:10:41] "[35m[1mPOST /parse HTTP/1.1[0m" 202 -
+2025-09-04 21:10:41 - werkzeug - INFO - 127.0.0.1 - - [04/Sep/2025 21:10:41] "GET /status/5b36f906-89ff-4f08-a30a-a472092f4069 HTTP/1.1" 200 -
+2025-09-04 21:10:43 - werkzeug - INFO - 127.0.0.1 - - [04/Sep/2025 21:10:43] "GET /status/5b36f906-89ff-4f08-a30a-a472092f4069 HTTP/1.1" 200 -
+2025-09-04 21:10:45 - root - INFO - Task 5b36f906-89ff-4f08-a30a-a472092f4069 completed successfully
+2025-09-04 21:10:45 - werkzeug - INFO - 127.0.0.1 - - [04/Sep/2025 21:10:45] "GET /status/5b36f906-89ff-4f08-a30a-a472092f4069 HTTP/1.1" 200 -
+2025-09-04 21:47:24 - werkzeug - INFO -  * Detected change in 'C:\\Users\\Vandh\\OneDrive\\Desktop\\V2.0\\dev-scope\\analyzer\\__init__.py', reloading
+2025-09-04 21:47:24 - werkzeug - INFO -  * Restarting with stat
+2025-09-04 21:47:24 - root - INFO - Logging configured with level: INFO
+2025-09-04 21:47:24 - root - INFO - Logging configured with level: INFO
+2025-09-04 21:47:24 - werkzeug - WARNING -  * Debugger is active!
+2025-09-04 21:47:24 - werkzeug - INFO -  * Debugger PIN: 884-593-877
+2025-09-04 21:47:40 - werkzeug - INFO -  * Detected change in 'C:\\Users\\Vandh\\OneDrive\\Desktop\\V2.0\\dev-scope\\analyzer\\parser.py', reloading
+2025-09-04 21:47:40 - werkzeug - INFO -  * Restarting with stat
+2025-09-04 21:48:00 - root - INFO - Logging configured with level: INFO
+2025-09-04 21:49:48 - root - INFO - Logging configured with level: INFO
+2025-09-04 21:52:18 - root - INFO - Logging configured with level: INFO
+2025-09-04 22:00:53 - root - INFO - Logging configured with level: INFO
+2025-09-04 22:03:47 - root - INFO - Logging configured with level: INFO
+2025-09-04 22:22:28 - root - INFO - Logging configured with level: INFO
+2025-09-04 22:22:48 - root - INFO - Logging configured with level: INFO
+2025-09-04 22:23:16 - root - INFO - Logging configured with level: INFO
+2025-09-04 22:24:27 - root - INFO - Logging configured with level: INFO
+2025-09-04 23:08:20 - root - INFO - Logging configured with level: INFO
+2025-09-04 23:08:32 - root - INFO - Logging configured with level: INFO
+2025-09-04 23:09:14 - root - INFO - Logging configured with level: INFO
+2025-09-04 23:09:30 - root - INFO - Logging configured with level: INFO
+2025-09-04 23:11:21 - root - INFO - Logging configured with level: INFO
+2025-09-04 23:11:33 - root - INFO - Logging configured with level: INFO
+2025-09-04 23:23:42 - root - INFO - Logging configured with level: INFO
+2025-09-04 23:33:04 - root - INFO - Logging configured with level: INFO
+2025-09-04 23:37:19 - root - INFO - Logging configured with level: INFO
+2025-09-04 23:38:14 - root - INFO - Logging configured with level: INFO
+2025-09-04 23:38:41 - root - INFO - Logging configured with level: INFO
+2025-09-04 23:40:11 - root - INFO - Logging configured with level: INFO
+2025-09-04 23:41:53 - root - INFO - Logging configured with level: INFO
+2025-09-04 23:43:56 - root - INFO - Logging configured with level: INFO
+2025-09-04 23:45:17 - root - INFO - Logging configured with level: INFO
+2025-09-04 23:45:34 - root - INFO - Logging configured with level: INFO
+2025-09-04 23:47:09 - root - INFO - Logging configured with level: INFO
+2025-09-04 23:47:09 - root - INFO - Logging configured with level: INFO
+2025-09-04 23:47:09 - root - INFO - Logging configured with level: INFO
+2025-09-04 23:47:09 - root - INFO - Logging configured with level: INFO
+2025-09-04 23:47:09 - werkzeug - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+2025-09-04 23:47:09 - werkzeug - INFO - [33mPress CTRL+C to quit[0m
+2025-09-04 23:47:09 - werkzeug - INFO -  * Restarting with stat
+2025-09-04 23:47:10 - root - INFO - Logging configured with level: INFO
+2025-09-04 23:47:10 - root - INFO - Logging configured with level: INFO
+2025-09-04 23:47:10 - werkzeug - WARNING -  * Debugger is active!
+2025-09-04 23:47:10 - werkzeug - INFO -  * Debugger PIN: 884-593-877
+2025-09-04 23:47:17 - root - INFO - Received parse request for: C:/Users/Vandh/OneDrive/Desktop/28-08
+2025-09-04 23:47:18 - root - INFO - Queued analysis task with ID: 05f35729-e736-41da-bb2c-d7186a168e8f
+2025-09-04 23:47:18 - werkzeug - INFO - 127.0.0.1 - - [04/Sep/2025 23:47:18] "[35m[1mPOST /parse HTTP/1.1[0m" 202 -
+2025-09-04 23:47:28 - root - INFO - Task 05f35729-e736-41da-bb2c-d7186a168e8f completed successfully
+2025-09-04 23:47:28 - werkzeug - INFO - 127.0.0.1 - - [04/Sep/2025 23:47:28] "GET /status/05f35729-e736-41da-bb2c-d7186a168e8f HTTP/1.1" 200 -
+2025-09-04 23:52:43 - root - INFO - Task 05f35729-e736-41da-bb2c-d7186a168e8f completed successfully
+2025-09-04 23:52:43 - werkzeug - INFO - 127.0.0.1 - - [04/Sep/2025 23:52:43] "GET /status/05f35729-e736-41da-bb2c-d7186a168e8f HTTP/1.1" 200 -
+2025-09-04 23:52:51 - werkzeug - INFO - 127.0.0.1 - - [04/Sep/2025 23:52:51] "GET /status/6f2554c7-1b7b-431a-a908-be5598b3b8c8 HTTP/1.1" 200 -
+2025-09-04 23:52:55 - werkzeug - INFO - 127.0.0.1 - - [04/Sep/2025 23:52:55] "GET /status/6f2554c7-1b7b-431a-a908-be5598b3b8c8 HTTP/1.1" 200 -
+2025-09-04 23:52:57 - werkzeug - INFO - 127.0.0.1 - - [04/Sep/2025 23:52:57] "GET /status/6f2554c7-1b7b-431a-a908-be5598b3b8c8 HTTP/1.1" 200 -
+2025-09-04 23:52:58 - werkzeug - INFO - 127.0.0.1 - - [04/Sep/2025 23:52:58] "GET /status/6f2554c7-1b7b-431a-a908-be5598b3b8c8 HTTP/1.1" 200 -
+2025-09-04 23:55:33 - werkzeug - INFO - 127.0.0.1 - - [04/Sep/2025 23:55:33] "GET /health HTTP/1.1" 200 -
+2025-09-05 00:11:58 - werkzeug - INFO -  * Detected change in 'C:\\Users\\Vandh\\OneDrive\\Desktop\\V2.0\\dev-scope\\analyzer\\parser.py', reloading
+2025-09-05 00:11:58 - werkzeug - INFO -  * Restarting with stat
+2025-09-05 00:11:58 - root - INFO - Logging configured with level: INFO
+2025-09-05 00:11:58 - root - INFO - Logging configured with level: INFO
+2025-09-05 00:11:58 - werkzeug - WARNING -  * Debugger is active!
+2025-09-05 00:11:59 - werkzeug - INFO -  * Debugger PIN: 884-593-877
+2025-09-05 00:12:07 - werkzeug - INFO -  * Detected change in 'C:\\Users\\Vandh\\OneDrive\\Desktop\\V2.0\\dev-scope\\analyzer\\plugins\\languages\\java_plugin.py', reloading
+2025-09-05 00:12:07 - werkzeug - INFO -  * Restarting with stat
+2025-09-05 00:12:08 - root - INFO - Logging configured with level: INFO
+2025-09-05 00:12:08 - root - INFO - Logging configured with level: INFO
+2025-09-05 00:12:08 - werkzeug - WARNING -  * Debugger is active!
+2025-09-05 00:12:08 - werkzeug - INFO -  * Debugger PIN: 884-593-877
+2025-09-05 00:12:17 - werkzeug - INFO -  * Detected change in 'C:\\Users\\Vandh\\OneDrive\\Desktop\\V2.0\\dev-scope\\analyzer\\plugins\\languages\\javascript_plugin.py', reloading
+2025-09-05 00:12:17 - werkzeug - INFO -  * Restarting with stat
+2025-09-05 00:12:18 - root - INFO - Logging configured with level: INFO
+2025-09-05 00:12:18 - root - INFO - Logging configured with level: INFO
+2025-09-05 00:12:18 - werkzeug - WARNING -  * Debugger is active!
+2025-09-05 00:12:18 - werkzeug - INFO -  * Debugger PIN: 884-593-877
+2025-09-05 00:12:29 - werkzeug - INFO -  * Detected change in 'C:\\Users\\Vandh\\OneDrive\\Desktop\\V2.0\\dev-scope\\analyzer\\plugins\\languages\\python_plugin.py', reloading
+2025-09-05 00:12:29 - werkzeug - INFO -  * Restarting with stat
+2025-09-05 00:12:31 - root - INFO - Logging configured with level: INFO
+2025-09-05 00:12:44 - root - INFO - Logging configured with level: INFO
+2025-09-05 00:12:44 - root - INFO - Logging configured with level: INFO
+2025-09-05 00:12:44 - root - INFO - Logging configured with level: INFO
+2025-09-05 00:12:44 - werkzeug - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+2025-09-05 00:12:44 - werkzeug - INFO - [33mPress CTRL+C to quit[0m
+2025-09-05 00:12:44 - werkzeug - INFO -  * Restarting with stat
+2025-09-05 00:12:44 - root - INFO - Logging configured with level: INFO
+2025-09-05 00:12:45 - root - INFO - Logging configured with level: INFO
+2025-09-05 00:12:45 - root - INFO - Logging configured with level: INFO
+2025-09-05 00:12:45 - werkzeug - WARNING -  * Debugger is active!
+2025-09-05 00:12:45 - werkzeug - INFO -  * Debugger PIN: 884-593-877
+2025-09-05 00:12:49 - root - INFO - Received parse request for: C:/Users/Vandh/OneDrive/Desktop/28-08
+2025-09-05 00:12:49 - root - INFO - Queued analysis task with ID: b5e1de1c-d948-491c-b963-6018ede16bce
+2025-09-05 00:12:49 - werkzeug - INFO - 127.0.0.1 - - [05/Sep/2025 00:12:49] "[35m[1mPOST /parse HTTP/1.1[0m" 202 -
+2025-09-05 00:12:56 - root - INFO - Task b5e1de1c-d948-491c-b963-6018ede16bce completed successfully
+2025-09-05 00:12:56 - werkzeug - INFO - 127.0.0.1 - - [05/Sep/2025 00:12:56] "GET /status/b5e1de1c-d948-491c-b963-6018ede16bce HTTP/1.1" 200 -
+2025-09-05 00:13:39 - werkzeug - INFO - 127.0.0.1 - - [05/Sep/2025 00:13:39] "GET /health HTTP/1.1" 200 -
+2025-09-05 00:13:42 - werkzeug - INFO - 127.0.0.1 - - [05/Sep/2025 00:13:42] "OPTIONS /parse HTTP/1.1" 200 -
+2025-09-05 00:13:42 - root - INFO - Received parse request for: C:/Users/Vandh/OneDrive/Desktop/28-08
+2025-09-05 00:13:42 - root - INFO - Queued analysis task with ID: 075ef9d4-de99-44b8-9f1d-2aa4c6dd47cd
+2025-09-05 00:13:42 - werkzeug - INFO - 127.0.0.1 - - [05/Sep/2025 00:13:42] "[35m[1mPOST /parse HTTP/1.1[0m" 202 -
+2025-09-05 00:13:42 - root - INFO - Task 075ef9d4-de99-44b8-9f1d-2aa4c6dd47cd completed successfully
+2025-09-05 00:13:42 - werkzeug - INFO - 127.0.0.1 - - [05/Sep/2025 00:13:42] "GET /status/075ef9d4-de99-44b8-9f1d-2aa4c6dd47cd HTTP/1.1" 200 -
+2025-09-05 09:33:39 - root - INFO - Logging configured with level: INFO
+2025-09-05 09:33:39 - root - INFO - Logging configured with level: INFO
+2025-09-05 09:33:39 - root - INFO - Logging configured with level: INFO
+2025-09-05 09:33:39 - werkzeug - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+2025-09-05 09:33:39 - werkzeug - INFO - [33mPress CTRL+C to quit[0m
+2025-09-05 09:33:39 - werkzeug - INFO -  * Restarting with stat
+2025-09-05 09:33:39 - root - INFO - Logging configured with level: INFO
+2025-09-05 09:33:40 - root - INFO - Logging configured with level: INFO
+2025-09-05 09:33:40 - root - INFO - Logging configured with level: INFO
+2025-09-05 09:33:40 - werkzeug - WARNING -  * Debugger is active!
+2025-09-05 09:33:40 - werkzeug - INFO -  * Debugger PIN: 884-593-877
+2025-09-05 09:33:53 - root - INFO - Received parse request for: C:/Users/Vandh/OneDrive/Desktop/28-08
+2025-09-05 09:33:53 - root - INFO - Queued analysis task with ID: 28e1ecff-3912-41d0-923d-192fa89d3c5a
+2025-09-05 09:33:53 - werkzeug - INFO - 127.0.0.1 - - [05/Sep/2025 09:33:53] "[35m[1mPOST /parse HTTP/1.1[0m" 202 -
+2025-09-05 09:34:05 - root - INFO - Task 28e1ecff-3912-41d0-923d-192fa89d3c5a completed successfully
+2025-09-05 09:34:05 - werkzeug - INFO - 127.0.0.1 - - [05/Sep/2025 09:34:05] "GET /status/28e1ecff-3912-41d0-923d-192fa89d3c5a HTTP/1.1" 200 -
+2025-09-05 09:49:29 - werkzeug - INFO -  * Detected change in 'C:\\Users\\Vandh\\OneDrive\\Desktop\\V2.0\\dev-scope\\analyzer\\parser.py', reloading
+2025-09-05 09:49:29 - werkzeug - INFO -  * Restarting with stat
+2025-09-05 09:49:29 - root - INFO - Logging configured with level: INFO
+2025-09-05 09:49:29 - root - INFO - Logging configured with level: INFO
+2025-09-05 09:49:29 - werkzeug - WARNING -  * Debugger is active!
+2025-09-05 09:49:29 - werkzeug - INFO -  * Debugger PIN: 884-593-877
+2025-09-05 09:49:38 - werkzeug - INFO -  * Detected change in 'C:\\Users\\Vandh\\OneDrive\\Desktop\\V2.0\\dev-scope\\analyzer\\plugins\\languages\\javascript_plugin.py', reloading
+2025-09-05 09:49:38 - werkzeug - INFO -  * Restarting with stat
+2025-09-05 09:49:39 - root - INFO - Logging configured with level: INFO
+2025-09-05 09:49:39 - root - INFO - Logging configured with level: INFO
+2025-09-05 09:49:39 - werkzeug - WARNING -  * Debugger is active!
+2025-09-05 09:49:39 - werkzeug - INFO -  * Debugger PIN: 884-593-877
+2025-09-05 09:49:48 - werkzeug - INFO -  * Detected change in 'C:\\Users\\Vandh\\OneDrive\\Desktop\\V2.0\\dev-scope\\analyzer\\plugins\\languages\\java_plugin.py', reloading
+2025-09-05 09:49:48 - werkzeug - INFO -  * Restarting with stat
+2025-09-05 09:49:48 - root - INFO - Logging configured with level: INFO
+2025-09-05 09:49:48 - root - INFO - Logging configured with level: INFO
+2025-09-05 09:49:48 - werkzeug - WARNING -  * Debugger is active!
+2025-09-05 09:49:48 - werkzeug - INFO -  * Debugger PIN: 884-593-877
+2025-09-05 09:49:58 - werkzeug - INFO -  * Detected change in 'C:\\Users\\Vandh\\OneDrive\\Desktop\\V2.0\\dev-scope\\analyzer\\plugins\\languages\\python_plugin.py', reloading
+2025-09-05 09:49:58 - werkzeug - INFO -  * Restarting with stat
+2025-09-05 09:49:58 - root - INFO - Logging configured with level: INFO
+2025-09-05 09:49:58 - root - INFO - Logging configured with level: INFO
+2025-09-05 09:49:58 - werkzeug - WARNING -  * Debugger is active!
+2025-09-05 09:49:58 - werkzeug - INFO -  * Debugger PIN: 884-593-877
+2025-09-05 09:50:04 - root - INFO - Logging configured with level: INFO
+2025-09-05 09:50:04 - root - INFO - Logging configured with level: INFO
+2025-09-05 09:50:04 - root - INFO - Logging configured with level: INFO
+2025-09-05 09:50:04 - werkzeug - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+2025-09-05 09:50:04 - werkzeug - INFO - [33mPress CTRL+C to quit[0m
+2025-09-05 09:50:04 - werkzeug - INFO -  * Restarting with stat
+2025-09-05 09:50:04 - root - INFO - Logging configured with level: INFO
+2025-09-05 09:50:05 - root - INFO - Logging configured with level: INFO
+2025-09-05 09:50:05 - root - INFO - Logging configured with level: INFO
+2025-09-05 09:50:05 - werkzeug - WARNING -  * Debugger is active!
+2025-09-05 09:50:05 - werkzeug - INFO -  * Debugger PIN: 884-593-877
+2025-09-05 09:50:08 - root - INFO - Received parse request for: C:/Users/Vandh/OneDrive/Desktop/28-08
+2025-09-05 09:50:08 - root - INFO - Queued analysis task with ID: 001a5ab6-8587-4a01-a828-4ba827b6fa40
+2025-09-05 09:50:08 - werkzeug - INFO - 127.0.0.1 - - [05/Sep/2025 09:50:08] "[35m[1mPOST /parse HTTP/1.1[0m" 202 -
+2025-09-05 09:50:27 - root - INFO - Task 001a5ab6-8587-4a01-a828-4ba827b6fa40 completed successfully
+2025-09-05 09:50:27 - werkzeug - INFO - 127.0.0.1 - - [05/Sep/2025 09:50:27] "GET /status/001a5ab6-8587-4a01-a828-4ba827b6fa40 HTTP/1.1" 200 -
+2025-09-05 10:01:50 - werkzeug - INFO -  * Detected change in 'C:\\Users\\Vandh\\OneDrive\\Desktop\\V2.0\\dev-scope\\analyzer\\plugins\\languages\\javascript_plugin.py', reloading
+2025-09-05 10:01:50 - werkzeug - INFO -  * Restarting with stat
+2025-09-05 10:01:51 - root - INFO - Logging configured with level: INFO
+2025-09-05 10:01:51 - root - INFO - Logging configured with level: INFO
+2025-09-05 10:01:51 - werkzeug - WARNING -  * Debugger is active!
+2025-09-05 10:01:51 - werkzeug - INFO -  * Debugger PIN: 884-593-877
+2025-09-05 10:02:01 - werkzeug - INFO -  * Detected change in 'C:\\Users\\Vandh\\OneDrive\\Desktop\\V2.0\\dev-scope\\analyzer\\plugins\\languages\\python_plugin.py', reloading
+2025-09-05 10:02:01 - werkzeug - INFO -  * Restarting with stat
+2025-09-05 10:02:01 - root - INFO - Logging configured with level: INFO
+2025-09-05 10:02:01 - root - INFO - Logging configured with level: INFO
+2025-09-05 10:02:01 - werkzeug - WARNING -  * Debugger is active!
+2025-09-05 10:02:01 - werkzeug - INFO -  * Debugger PIN: 884-593-877
+2025-09-05 10:02:21 - werkzeug - INFO -  * Detected change in 'C:\\Users\\Vandh\\OneDrive\\Desktop\\V2.0\\dev-scope\\analyzer\\plugins\\languages\\java_plugin.py', reloading
+2025-09-05 10:02:21 - werkzeug - INFO -  * Restarting with stat
+2025-09-05 10:02:22 - root - INFO - Logging configured with level: INFO
+2025-09-05 10:02:22 - root - INFO - Logging configured with level: INFO
+2025-09-05 10:02:22 - werkzeug - WARNING -  * Debugger is active!
+2025-09-05 10:02:22 - werkzeug - INFO -  * Debugger PIN: 884-593-877
+2025-09-05 10:02:33 - werkzeug - INFO -  * Detected change in 'C:\\Users\\Vandh\\OneDrive\\Desktop\\V2.0\\dev-scope\\analyzer\\plugins\\base.py', reloading
+2025-09-05 10:02:33 - werkzeug - INFO -  * Restarting with stat
+2025-09-05 10:02:33 - root - INFO - Logging configured with level: INFO
+2025-09-05 10:02:33 - root - INFO - Logging configured with level: INFO
+2025-09-05 10:02:33 - werkzeug - WARNING -  * Debugger is active!
+2025-09-05 10:02:33 - werkzeug - INFO -  * Debugger PIN: 884-593-877
+2025-09-05 10:02:52 - werkzeug - INFO -  * Detected change in 'C:\\Users\\Vandh\\OneDrive\\Desktop\\V2.0\\dev-scope\\analyzer\\parser.py', reloading
+2025-09-05 10:02:52 - werkzeug - INFO -  * Restarting with stat
+2025-09-05 10:02:52 - root - INFO - Logging configured with level: INFO
+2025-09-05 10:02:52 - root - INFO - Logging configured with level: INFO
+2025-09-05 10:02:52 - werkzeug - WARNING -  * Debugger is active!
+2025-09-05 10:02:52 - werkzeug - INFO -  * Debugger PIN: 884-593-877
+2025-09-05 10:02:56 - root - INFO - Logging configured with level: INFO
+2025-09-05 10:02:56 - root - INFO - Logging configured with level: INFO
+2025-09-05 10:02:56 - root - INFO - Logging configured with level: INFO
+2025-09-05 10:02:56 - werkzeug - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+2025-09-05 10:02:56 - werkzeug - INFO - [33mPress CTRL+C to quit[0m
+2025-09-05 10:02:56 - werkzeug - INFO -  * Restarting with stat
+2025-09-05 10:02:56 - root - INFO - Logging configured with level: INFO
+2025-09-05 10:02:57 - root - INFO - Logging configured with level: INFO
+2025-09-05 10:02:57 - root - INFO - Logging configured with level: INFO
+2025-09-05 10:02:57 - werkzeug - WARNING -  * Debugger is active!
+2025-09-05 10:02:57 - werkzeug - INFO -  * Debugger PIN: 884-593-877
+2025-09-05 10:02:59 - root - INFO - Received parse request for: C:/Users/Vandh/OneDrive/Desktop/28-08
+2025-09-05 10:03:00 - root - INFO - Queued analysis task with ID: ba8299fc-26ee-4937-b86f-b64f696800aa
+2025-09-05 10:03:00 - werkzeug - INFO - 127.0.0.1 - - [05/Sep/2025 10:03:00] "[35m[1mPOST /parse HTTP/1.1[0m" 202 -
+2025-09-05 10:03:10 - root - INFO - Task ba8299fc-26ee-4937-b86f-b64f696800aa completed successfully
+2025-09-05 10:03:10 - werkzeug - INFO - 127.0.0.1 - - [05/Sep/2025 10:03:10] "GET /status/ba8299fc-26ee-4937-b86f-b64f696800aa HTTP/1.1" 200 -
+2025-09-05 10:23:00 - werkzeug - INFO -  * Detected change in 'C:\\Users\\Vandh\\OneDrive\\Desktop\\V2.0\\dev-scope\\analyzer\\plugins\\languages\\javascript_plugin.py', reloading
+2025-09-05 10:23:00 - werkzeug - INFO -  * Restarting with stat
+2025-09-05 10:23:00 - root - INFO - Logging configured with level: INFO
+2025-09-05 10:23:00 - root - INFO - Logging configured with level: INFO
+2025-09-05 10:23:00 - werkzeug - WARNING -  * Debugger is active!
+2025-09-05 10:23:00 - werkzeug - INFO -  * Debugger PIN: 884-593-877
+2025-09-05 10:23:10 - werkzeug - INFO -  * Detected change in 'C:\\Users\\Vandh\\OneDrive\\Desktop\\V2.0\\dev-scope\\analyzer\\parser.py', reloading
+2025-09-05 10:23:10 - werkzeug - INFO -  * Restarting with stat
+2025-09-05 10:23:11 - root - INFO - Logging configured with level: INFO
+2025-09-05 10:23:11 - root - INFO - Logging configured with level: INFO
+2025-09-05 10:23:11 - werkzeug - WARNING -  * Debugger is active!
+2025-09-05 10:23:11 - werkzeug - INFO -  * Debugger PIN: 884-593-877
+2025-09-05 10:24:29 - root - INFO - Logging configured with level: INFO
+2025-09-05 10:24:30 - root - INFO - Logging configured with level: INFO
+2025-09-05 10:24:30 - root - INFO - Logging configured with level: INFO
+2025-09-05 10:24:30 - werkzeug - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+2025-09-05 10:24:30 - werkzeug - INFO - [33mPress CTRL+C to quit[0m
+2025-09-05 10:24:30 - werkzeug - INFO -  * Restarting with stat
+2025-09-05 10:24:30 - root - INFO - Logging configured with level: INFO
+2025-09-05 10:24:30 - root - INFO - Logging configured with level: INFO
+2025-09-05 10:24:30 - root - INFO - Logging configured with level: INFO
+2025-09-05 10:24:30 - werkzeug - WARNING -  * Debugger is active!
+2025-09-05 10:24:30 - werkzeug - INFO -  * Debugger PIN: 884-593-877
+2025-09-05 10:24:34 - root - INFO - Received parse request for: C:/Users/Vandh/OneDrive/Desktop/28-08
+2025-09-05 10:24:34 - root - INFO - Queued analysis task with ID: 7c07d479-d35d-4124-b1bc-feb9449090b7
+2025-09-05 10:24:34 - werkzeug - INFO - 127.0.0.1 - - [05/Sep/2025 10:24:34] "[35m[1mPOST /parse HTTP/1.1[0m" 202 -
+2025-09-05 10:24:43 - root - INFO - Task 7c07d479-d35d-4124-b1bc-feb9449090b7 completed successfully
+2025-09-05 10:24:43 - werkzeug - INFO - 127.0.0.1 - - [05/Sep/2025 10:24:43] "GET /status/7c07d479-d35d-4124-b1bc-feb9449090b7 HTTP/1.1" 200 -
+2025-09-05 10:32:36 - werkzeug - INFO -  * Detected change in 'C:\\Users\\Vandh\\OneDrive\\Desktop\\V2.0\\dev-scope\\analyzer\\plugins\\languages\\javascript_plugin.py', reloading
+2025-09-05 10:32:36 - werkzeug - INFO -  * Restarting with stat
+2025-09-05 10:32:37 - root - INFO - Logging configured with level: INFO
+2025-09-05 10:32:37 - root - INFO - Logging configured with level: INFO
+2025-09-05 10:32:37 - werkzeug - WARNING -  * Debugger is active!
+2025-09-05 10:32:37 - werkzeug - INFO -  * Debugger PIN: 884-593-877
+2025-09-05 10:32:49 - werkzeug - INFO -  * Detected change in 'C:\\Users\\Vandh\\OneDrive\\Desktop\\V2.0\\dev-scope\\analyzer\\parser.py', reloading
+2025-09-05 10:32:49 - werkzeug - INFO -  * Restarting with stat
+2025-09-05 10:32:50 - root - INFO - Logging configured with level: INFO
+2025-09-05 10:32:50 - root - INFO - Logging configured with level: INFO
+2025-09-05 10:32:50 - werkzeug - WARNING -  * Debugger is active!
+2025-09-05 10:32:50 - werkzeug - INFO -  * Debugger PIN: 884-593-877
+2025-09-05 11:05:16 - root - INFO - Logging configured with level: INFO
+2025-09-05 11:05:26 - root - INFO - Logging configured with level: INFO
+2025-09-05 11:05:27 - root - INFO - Logging configured with level: INFO
+2025-09-05 11:05:27 - root - INFO - Logging configured with level: INFO
+2025-09-05 11:05:27 - werkzeug - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+2025-09-05 11:05:27 - werkzeug - INFO - [33mPress CTRL+C to quit[0m
+2025-09-05 11:05:27 - werkzeug - INFO -  * Restarting with stat
+2025-09-05 11:05:27 - root - INFO - Logging configured with level: INFO
+2025-09-05 11:05:27 - root - INFO - Logging configured with level: INFO
+2025-09-05 11:05:27 - root - INFO - Logging configured with level: INFO
+2025-09-05 11:05:27 - werkzeug - WARNING -  * Debugger is active!
+2025-09-05 11:05:27 - werkzeug - INFO -  * Debugger PIN: 884-593-877
+2025-09-05 11:05:35 - root - INFO - Received parse request for: C:/Users/Vandh/OneDrive/Desktop/28-08
+2025-09-05 11:05:35 - root - INFO - Queued analysis task with ID: 6de865ac-16c8-4339-811c-1642b47716cc
+2025-09-05 11:05:35 - werkzeug - INFO - 127.0.0.1 - - [05/Sep/2025 11:05:35] "[35m[1mPOST /parse HTTP/1.1[0m" 202 -
+2025-09-05 11:05:42 - root - INFO - Task 6de865ac-16c8-4339-811c-1642b47716cc completed successfully
+2025-09-05 11:05:42 - werkzeug - INFO - 127.0.0.1 - - [05/Sep/2025 11:05:42] "GET /status/6de865ac-16c8-4339-811c-1642b47716cc HTTP/1.1" 200 -
+2025-09-05 11:33:58 - werkzeug - INFO -  * Detected change in 'C:\\Users\\Vandh\\OneDrive\\Desktop\\V2.0\\dev-scope\\analyzer\\plugins\\languages\\javascript_plugin.py', reloading
+2025-09-05 11:33:58 - werkzeug - INFO -  * Restarting with stat
+2025-09-05 11:33:58 - root - INFO - Logging configured with level: INFO
+2025-09-05 11:33:58 - root - INFO - Logging configured with level: INFO
+2025-09-05 11:33:58 - werkzeug - WARNING -  * Debugger is active!
+2025-09-05 11:33:58 - werkzeug - INFO -  * Debugger PIN: 884-593-877
+2025-09-05 11:34:14 - werkzeug - INFO -  * Detected change in 'C:\\Users\\Vandh\\OneDrive\\Desktop\\V2.0\\dev-scope\\analyzer\\parser.py', reloading
+2025-09-05 11:34:14 - werkzeug - INFO -  * Restarting with stat
+2025-09-05 11:34:15 - root - INFO - Logging configured with level: INFO
+2025-09-05 11:34:15 - root - INFO - Logging configured with level: INFO
+2025-09-05 11:34:15 - werkzeug - WARNING -  * Debugger is active!
+2025-09-05 11:34:15 - werkzeug - INFO -  * Debugger PIN: 884-593-877
+2025-09-05 11:34:30 - werkzeug - INFO -  * Detected change in 'C:\\Users\\Vandh\\OneDrive\\Desktop\\V2.0\\dev-scope\\analyzer\\semantic_analyzer.py', reloading
+2025-09-05 11:34:30 - werkzeug - INFO -  * Restarting with stat
+2025-09-05 11:34:31 - root - INFO - Logging configured with level: INFO
+2025-09-05 11:34:31 - root - INFO - Logging configured with level: INFO
+2025-09-05 11:34:31 - werkzeug - WARNING -  * Debugger is active!
+2025-09-05 11:34:31 - werkzeug - INFO -  * Debugger PIN: 884-593-877
+2025-09-05 11:34:46 - werkzeug - INFO -  * Detected change in 'C:\\Users\\Vandh\\OneDrive\\Desktop\\V2.0\\dev-scope\\test_edge_creation.py', reloading
+2025-09-05 11:34:46 - werkzeug - INFO -  * Restarting with stat
+2025-09-05 11:34:47 - root - INFO - Logging configured with level: INFO
+2025-09-05 11:34:47 - root - INFO - Logging configured with level: INFO
+2025-09-05 11:34:47 - werkzeug - WARNING -  * Debugger is active!
+2025-09-05 11:34:47 - werkzeug - INFO -  * Debugger PIN: 884-593-877
+2025-09-05 11:34:53 - root - INFO - Logging configured with level: INFO
+2025-09-05 11:34:53 - root - INFO - Logging configured with level: INFO
+2025-09-05 11:34:53 - root - INFO - Logging configured with level: INFO
+2025-09-05 11:34:53 - werkzeug - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+2025-09-05 11:34:53 - werkzeug - INFO - [33mPress CTRL+C to quit[0m
+2025-09-05 11:34:53 - werkzeug - INFO -  * Restarting with stat
+2025-09-05 11:34:53 - root - INFO - Logging configured with level: INFO
+2025-09-05 11:34:54 - root - INFO - Logging configured with level: INFO
+2025-09-05 11:34:54 - root - INFO - Logging configured with level: INFO
+2025-09-05 11:34:54 - werkzeug - WARNING -  * Debugger is active!
+2025-09-05 11:34:54 - werkzeug - INFO -  * Debugger PIN: 884-593-877
+2025-09-05 11:36:47 - root - INFO - Received parse request for: C:/Users/Vandh/OneDrive/Desktop/28-08
+2025-09-05 11:36:48 - root - INFO - Queued analysis task with ID: f77a7e3b-5d7b-4b4c-b68f-3631d65356a4
+2025-09-05 11:36:48 - werkzeug - INFO - 127.0.0.1 - - [05/Sep/2025 11:36:48] "[35m[1mPOST /parse HTTP/1.1[0m" 202 -
+2025-09-05 11:36:59 - root - INFO - Task f77a7e3b-5d7b-4b4c-b68f-3631d65356a4 completed successfully
+2025-09-05 11:36:59 - werkzeug - INFO - 127.0.0.1 - - [05/Sep/2025 11:36:59] "GET /status/f77a7e3b-5d7b-4b4c-b68f-3631d65356a4 HTTP/1.1" 200 -
+2025-09-05 12:48:06 - root - INFO - Logging configured with level: INFO
+2025-09-05 12:48:07 - root - INFO - Logging configured with level: INFO
+2025-09-05 12:48:07 - root - INFO - Logging configured with level: INFO
+2025-09-05 12:48:07 - root - INFO - Logging configured with level: INFO
+2025-09-05 12:48:07 - werkzeug - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+2025-09-05 12:48:07 - werkzeug - INFO - [33mPress CTRL+C to quit[0m
+2025-09-05 12:48:07 - werkzeug - INFO -  * Restarting with stat
+2025-09-05 12:48:07 - root - INFO - Logging configured with level: INFO
+2025-09-05 12:48:07 - root - INFO - Logging configured with level: INFO
+2025-09-05 12:48:07 - werkzeug - WARNING -  * Debugger is active!
+2025-09-05 12:48:07 - werkzeug - INFO -  * Debugger PIN: 884-593-877
+2025-09-05 12:48:12 - root - INFO - Received parse request for: C:/Users/Vandh/OneDrive/Desktop/28-08
+2025-09-05 12:48:12 - root - INFO - Queued analysis task with ID: 1944e4b9-f1e4-489d-a1c9-12ab9ba40ecb
+2025-09-05 12:48:12 - werkzeug - INFO - 127.0.0.1 - - [05/Sep/2025 12:48:12] "[35m[1mPOST /parse HTTP/1.1[0m" 202 -
+2025-09-05 12:48:23 - root - INFO - Task 1944e4b9-f1e4-489d-a1c9-12ab9ba40ecb completed successfully
+2025-09-05 12:48:23 - werkzeug - INFO - 127.0.0.1 - - [05/Sep/2025 12:48:23] "GET /status/1944e4b9-f1e4-489d-a1c9-12ab9ba40ecb HTTP/1.1" 200 -
+2025-09-05 13:21:31 - root - INFO - Logging configured with level: INFO
+2025-09-05 13:21:32 - root - INFO - Logging configured with level: INFO
+2025-09-05 13:21:32 - root - INFO - Logging configured with level: INFO
+2025-09-05 13:21:32 - werkzeug - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+2025-09-05 13:21:32 - werkzeug - INFO - [33mPress CTRL+C to quit[0m
+2025-09-05 13:21:32 - werkzeug - INFO -  * Restarting with stat
+2025-09-05 13:21:32 - root - INFO - Logging configured with level: INFO
+2025-09-05 13:21:32 - root - INFO - Logging configured with level: INFO
+2025-09-05 13:21:32 - root - INFO - Logging configured with level: INFO
+2025-09-05 13:21:32 - werkzeug - WARNING -  * Debugger is active!
+2025-09-05 13:21:32 - werkzeug - INFO -  * Debugger PIN: 743-161-476
+2025-09-05 13:22:11 - root - INFO - Received parse request for: C:/Users/Vandh/OneDrive/Desktop/28-08
+2025-09-05 13:22:11 - root - INFO - Queued analysis task with ID: 32f30988-3b23-46ae-87b3-1bdbcb703968
+2025-09-05 13:22:11 - werkzeug - INFO - 127.0.0.1 - - [05/Sep/2025 13:22:11] "[35m[1mPOST /parse HTTP/1.1[0m" 202 -
+2025-09-05 13:22:25 - root - INFO - Task 32f30988-3b23-46ae-87b3-1bdbcb703968 completed successfully
+2025-09-05 13:22:25 - werkzeug - INFO - 127.0.0.1 - - [05/Sep/2025 13:22:25] "GET /status/32f30988-3b23-46ae-87b3-1bdbcb703968 HTTP/1.1" 200 -
+2025-09-05 13:22:46 - werkzeug - INFO - 127.0.0.1 - - [05/Sep/2025 13:22:46] "GET /health HTTP/1.1" 200 -
+2025-09-05 13:22:50 - werkzeug - INFO - 127.0.0.1 - - [05/Sep/2025 13:22:50] "OPTIONS /parse HTTP/1.1" 200 -
+2025-09-05 13:22:50 - root - INFO - Received parse request for: C:/Users/Vandh/OneDrive/Desktop/28-08
+2025-09-05 13:22:50 - root - INFO - Queued analysis task with ID: f33fcaee-b6bb-4fe6-9201-f238473d37c2
+2025-09-05 13:22:50 - werkzeug - INFO - 127.0.0.1 - - [05/Sep/2025 13:22:50] "[35m[1mPOST /parse HTTP/1.1[0m" 202 -
+2025-09-05 13:22:50 - werkzeug - INFO - 127.0.0.1 - - [05/Sep/2025 13:22:50] "GET /status/f33fcaee-b6bb-4fe6-9201-f238473d37c2 HTTP/1.1" 200 -
+2025-09-05 13:22:53 - werkzeug - INFO - 127.0.0.1 - - [05/Sep/2025 13:22:53] "GET /status/f33fcaee-b6bb-4fe6-9201-f238473d37c2 HTTP/1.1" 200 -
+2025-09-05 13:22:55 - root - INFO - Task f33fcaee-b6bb-4fe6-9201-f238473d37c2 completed successfully
+2025-09-05 13:22:55 - werkzeug - INFO - 127.0.0.1 - - [05/Sep/2025 13:22:55] "GET /status/f33fcaee-b6bb-4fe6-9201-f238473d37c2 HTTP/1.1" 200 -
+2025-09-06 16:41:51 - root - INFO - Logging configured with level: INFO
+2025-09-06 16:41:52 - root - INFO - Logging configured with level: INFO
+2025-09-06 16:41:52 - root - INFO - Logging configured with level: INFO
+2025-09-06 16:41:52 - werkzeug - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+2025-09-06 16:41:52 - werkzeug - INFO - [33mPress CTRL+C to quit[0m
+2025-09-06 16:41:52 - werkzeug - INFO -  * Restarting with stat
+2025-09-06 16:41:52 - root - INFO - Logging configured with level: INFO
+2025-09-06 16:41:52 - root - INFO - Logging configured with level: INFO
+2025-09-06 16:41:52 - root - INFO - Logging configured with level: INFO
+2025-09-06 16:41:52 - werkzeug - WARNING -  * Debugger is active!
+2025-09-06 16:41:52 - werkzeug - INFO -  * Debugger PIN: 743-161-476
+2025-09-06 16:42:07 - root - INFO - Received parse request for: C:/Users/Vandh/OneDrive/Desktop/28-08
+2025-09-06 16:42:08 - root - INFO - Queued analysis task with ID: 3e3108d8-a60e-47c4-a271-af2b6a1214b8
+2025-09-06 16:42:08 - werkzeug - INFO - 127.0.0.1 - - [06/Sep/2025 16:42:08] "[35m[1mPOST /parse HTTP/1.1[0m" 202 -
+2025-09-06 16:42:15 - root - INFO - Task 3e3108d8-a60e-47c4-a271-af2b6a1214b8 completed successfully
+2025-09-06 16:42:15 - werkzeug - INFO - 127.0.0.1 - - [06/Sep/2025 16:42:15] "GET /status/3e3108d8-a60e-47c4-a271-af2b6a1214b8 HTTP/1.1" 200 -
+2025-09-06 16:45:04 - werkzeug - INFO - 127.0.0.1 - - [06/Sep/2025 16:45:04] "GET /health HTTP/1.1" 200 -
+2025-09-06 17:01:21 - werkzeug - INFO - 127.0.0.1 - - [06/Sep/2025 17:01:21] "OPTIONS /parse HTTP/1.1" 200 -
+2025-09-06 17:01:22 - root - INFO - Received parse request for: C:/Users/Vandh/OneDrive/Desktop/28-08
+2025-09-06 17:01:22 - root - INFO - Queued analysis task with ID: 9296c7d1-5850-4aa1-92df-24a8b490786a
+2025-09-06 17:01:22 - werkzeug - INFO - 127.0.0.1 - - [06/Sep/2025 17:01:22] "[35m[1mPOST /parse HTTP/1.1[0m" 202 -
+2025-09-06 17:01:22 - werkzeug - INFO - 127.0.0.1 - - [06/Sep/2025 17:01:22] "OPTIONS /status/9296c7d1-5850-4aa1-92df-24a8b490786a HTTP/1.1" 200 -
+2025-09-06 17:01:22 - werkzeug - INFO - 127.0.0.1 - - [06/Sep/2025 17:01:22] "GET /status/9296c7d1-5850-4aa1-92df-24a8b490786a HTTP/1.1" 200 -
+2025-09-06 17:01:27 - werkzeug - INFO - 127.0.0.1 - - [06/Sep/2025 17:01:27] "OPTIONS /status/9296c7d1-5850-4aa1-92df-24a8b490786a HTTP/1.1" 200 -
+2025-09-06 17:01:27 - root - INFO - Task 9296c7d1-5850-4aa1-92df-24a8b490786a completed successfully
+2025-09-06 17:01:27 - werkzeug - INFO - 127.0.0.1 - - [06/Sep/2025 17:01:27] "GET /status/9296c7d1-5850-4aa1-92df-24a8b490786a HTTP/1.1" 200 -
+2025-09-06 17:03:56 - werkzeug - INFO - 127.0.0.1 - - [06/Sep/2025 17:03:56] "OPTIONS /parse HTTP/1.1" 200 -
+2025-09-06 17:03:56 - root - INFO - Received parse request for: C:/Users/Vandh/OneDrive/Desktop/28-08
+2025-09-06 17:03:56 - root - INFO - Queued analysis task with ID: b1924de0-2784-4425-9421-6b45847a92e8
+2025-09-06 17:03:56 - werkzeug - INFO - 127.0.0.1 - - [06/Sep/2025 17:03:56] "[35m[1mPOST /parse HTTP/1.1[0m" 202 -
+2025-09-06 17:03:56 - werkzeug - INFO - 127.0.0.1 - - [06/Sep/2025 17:03:56] "OPTIONS /status/b1924de0-2784-4425-9421-6b45847a92e8 HTTP/1.1" 200 -
+2025-09-06 17:03:56 - root - INFO - Task b1924de0-2784-4425-9421-6b45847a92e8 completed successfully
+2025-09-06 17:03:56 - werkzeug - INFO - 127.0.0.1 - - [06/Sep/2025 17:03:56] "GET /status/b1924de0-2784-4425-9421-6b45847a92e8 HTTP/1.1" 200 -
+2025-09-06 17:44:01 - root - INFO - Logging configured with level: INFO
+2025-09-06 17:44:02 - root - INFO - Logging configured with level: INFO
+2025-09-06 17:44:02 - root - INFO - Logging configured with level: INFO
+2025-09-06 17:44:02 - werkzeug - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+2025-09-06 17:44:02 - werkzeug - INFO - [33mPress CTRL+C to quit[0m
+2025-09-06 17:44:02 - werkzeug - INFO -  * Restarting with stat
+2025-09-06 17:44:02 - root - INFO - Logging configured with level: INFO
+2025-09-06 17:44:02 - root - INFO - Logging configured with level: INFO
+2025-09-06 17:44:02 - root - INFO - Logging configured with level: INFO
+2025-09-06 17:44:02 - werkzeug - WARNING -  * Debugger is active!
+2025-09-06 17:44:02 - werkzeug - INFO -  * Debugger PIN: 743-161-476
+2025-09-06 18:07:23 - werkzeug - INFO - 127.0.0.1 - - [06/Sep/2025 18:07:23] "GET /health HTTP/1.1" 200 -
+2025-09-06 18:08:24 - werkzeug - INFO - 127.0.0.1 - - [06/Sep/2025 18:08:24] "GET /health HTTP/1.1" 200 -
+2025-09-06 18:09:47 - werkzeug - INFO - 127.0.0.1 - - [06/Sep/2025 18:09:47] "GET /health HTTP/1.1" 200 -
+2025-09-06 18:17:27 - werkzeug - INFO - 127.0.0.1 - - [06/Sep/2025 18:17:27] "GET /health HTTP/1.1" 200 -
+2025-09-06 19:06:57 - root - INFO - Logging configured with level: INFO
+2025-09-06 19:07:08 - root - INFO - Logging configured with level: INFO
+2025-09-06 19:07:08 - root - INFO - Logging configured with level: INFO
+2025-09-06 19:07:08 - root - INFO - Logging configured with level: INFO
+2025-09-06 19:07:08 - werkzeug - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+2025-09-06 19:07:08 - werkzeug - INFO - [33mPress CTRL+C to quit[0m
+2025-09-06 19:07:08 - werkzeug - INFO -  * Restarting with stat
+2025-09-06 19:07:08 - root - INFO - Logging configured with level: INFO
+2025-09-06 19:07:09 - root - INFO - Logging configured with level: INFO
+2025-09-06 19:07:09 - root - INFO - Logging configured with level: INFO
+2025-09-06 19:07:09 - werkzeug - WARNING -  * Debugger is active!
+2025-09-06 19:07:09 - werkzeug - INFO -  * Debugger PIN: 743-161-476
+2025-09-06 19:07:14 - root - INFO - Received parse request for: C:/Users/Vandh/OneDrive/Desktop/28-08
+2025-09-06 19:07:14 - root - INFO - Queued analysis task with ID: 676d6834-1d0e-43c1-ae76-e1e5a97a902f
+2025-09-06 19:07:14 - werkzeug - INFO - 127.0.0.1 - - [06/Sep/2025 19:07:14] "[35m[1mPOST /parse HTTP/1.1[0m" 202 -
+2025-09-06 19:07:23 - root - INFO - Task 676d6834-1d0e-43c1-ae76-e1e5a97a902f completed successfully
+2025-09-06 19:07:23 - werkzeug - INFO - 127.0.0.1 - - [06/Sep/2025 19:07:23] "GET /status/676d6834-1d0e-43c1-ae76-e1e5a97a902f HTTP/1.1" 200 -
+2025-09-06 19:07:40 - werkzeug - INFO - 127.0.0.1 - - [06/Sep/2025 19:07:40] "GET /health HTTP/1.1" 200 -
+2025-09-06 19:07:43 - werkzeug - INFO - 127.0.0.1 - - [06/Sep/2025 19:07:43] "OPTIONS /parse HTTP/1.1" 200 -
+2025-09-06 19:07:43 - root - INFO - Received parse request for: C:/Users/Vandh/OneDrive/Desktop/28-08
+2025-09-06 19:07:43 - root - INFO - Queued analysis task with ID: adef1f8b-eede-415d-88b5-a274962d4ec5
+2025-09-06 19:07:43 - werkzeug - INFO - 127.0.0.1 - - [06/Sep/2025 19:07:43] "[35m[1mPOST /parse HTTP/1.1[0m" 202 -
+2025-09-06 19:07:43 - werkzeug - INFO - 127.0.0.1 - - [06/Sep/2025 19:07:43] "GET /status/adef1f8b-eede-415d-88b5-a274962d4ec5 HTTP/1.1" 200 -
+2025-09-06 19:07:45 - root - INFO - Task adef1f8b-eede-415d-88b5-a274962d4ec5 completed successfully
+2025-09-06 19:07:45 - werkzeug - INFO - 127.0.0.1 - - [06/Sep/2025 19:07:45] "GET /status/adef1f8b-eede-415d-88b5-a274962d4ec5 HTTP/1.1" 200 -

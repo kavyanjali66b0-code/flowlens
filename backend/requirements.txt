@@ -5,11 +5,11 @@ flask>=2.3.0
 flask-cors>=4.0.0
 
 # Task queue
-celery==5.4.0
+celery==5.4.
 redis<5.0
 
 # Tree-sitter parsing (pinned to consistent version)
-tree-sitter==0.21.0
+tree-sitter==0.21.3
 tree-sitter-python==0.21.0
 tree-sitter-javascript==0.21.0
 tree-sitter-typescript==0.21.0

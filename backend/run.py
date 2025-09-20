@@ -1,11 +1,13 @@
 # run.py (Corrected)
 
 import os
+import tempfile
+import git  # pip install GitPython
 import logging
 from flask import Flask, request, jsonify
 from flask_cors import CORS
 from celery.result import AsyncResult
-
+from analyzer import CodebaseAnalyzer
 from celery_app import celery
 from tasks import run_analysis
 from config import setup_logging, get_config
@@ -40,24 +42,27 @@ USE_ASYNC = config['ANALYZER_ASYNC']
 
 @app.route('/parse', methods=['POST'])
 def parse_codebase():
-    """API endpoint to parse a codebase."""
+    data = request.json or {}
+    repo_url = data.get('repoUrl')
+    if not repo_url:
+        return jsonify({"error": "repoUrl is required"}), 400
+
+    # Clone repo to temp folder
+    temp_dir = tempfile.mkdtemp()
     try:
-        data = request.json or {}
-        folder_path = data.get('folder_path')
-        if not folder_path: return jsonify({"error": "folder_path is required"}), 400
-        if not os.path.exists(folder_path): return jsonify({"error": f"Path {folder_path} does not exist"}), 404
-        logging.info(f"Received parse request for: {folder_path}")
-        if USE_ASYNC:
-            task = run_analysis.delay(folder_path)
-            logging.info(f"Queued analysis task with ID: {task.id}")
-            return jsonify({"job_id": task.id, "status": "queued"}), 202
-        else:
-            logging.info("Running analysis synchronously")
-            result = run_analysis(folder_path)
-            return jsonify(result)
+        git.Repo.clone_from(repo_url, temp_dir)
     except Exception as e:
-        logging.exception("Parse endpoint failed")
-        return jsonify({"error": str(e)}), 500
+        return jsonify({"error": f"Failed to clone repo: {str(e)}"}), 500
+
+    # Run the analyzer on cloned folder
+    analyzer = CodebaseAnalyzer()
+    try:
+        result = analyzer.analyze(temp_dir)
+    except Exception as e:
+        return jsonify({"error": f"Analysis failed: {str(e)}"}), 500
+
+    return jsonify(result)
+
 
 @app.route('/status/<job_id>', methods=['GET'])
 def status(job_id: str):

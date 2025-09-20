@@ -171,7 +171,7 @@ class CodebaseAnalyzer:
         except Exception:
             return "unknown_project"
 
-    def _derive_language_and_framework(self, project_type: ProjectType) -> (str, str):
+    def _derive_language_and_framework(self, project_type: ProjectType) -> tuple[str, str]:
         mapping = {
             ProjectType.REACT_VITE: ("typescript", "react"),
             ProjectType.ANGULAR: ("typescript", "angular"),

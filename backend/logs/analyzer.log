@@ -1764,3 +1764,427 @@ kombu.exceptions.OperationalError: MISCONF Redis is configured to save RDB snaps
 2025-09-06 19:07:43 - werkzeug - INFO - 127.0.0.1 - - [06/Sep/2025 19:07:43] "GET /status/adef1f8b-eede-415d-88b5-a274962d4ec5 HTTP/1.1" 200 -
 2025-09-06 19:07:45 - root - INFO - Task adef1f8b-eede-415d-88b5-a274962d4ec5 completed successfully
 2025-09-06 19:07:45 - werkzeug - INFO - 127.0.0.1 - - [06/Sep/2025 19:07:45] "GET /status/adef1f8b-eede-415d-88b5-a274962d4ec5 HTTP/1.1" 200 -
+2025-09-08 20:21:44 - root - INFO - Logging configured with level: INFO
+2025-09-08 20:21:44 - root - INFO - Logging configured with level: INFO
+2025-09-08 20:21:44 - werkzeug - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+2025-09-08 20:21:44 - werkzeug - INFO - [33mPress CTRL+C to quit[0m
+2025-09-08 20:21:44 - werkzeug - INFO -  * Restarting with stat
+2025-09-08 20:21:45 - root - INFO - Logging configured with level: INFO
+2025-09-08 20:21:45 - root - INFO - Logging configured with level: INFO
+2025-09-08 20:21:45 - werkzeug - WARNING -  * Debugger is active!
+2025-09-08 20:21:45 - werkzeug - INFO -  * Debugger PIN: 846-804-586
+2025-09-08 21:27:43 - werkzeug - INFO -  * Detected change in 'C:\\Users\\kavya\\OneDrive\\Desktop\\flowlens2\\FlowLens\\backend\\run.py', reloading
+2025-09-08 21:27:43 - werkzeug - INFO -  * Restarting with stat
+2025-09-08 21:27:44 - root - INFO - Logging configured with level: INFO
+2025-09-08 21:27:44 - root - INFO - Logging configured with level: INFO
+2025-09-08 21:27:44 - werkzeug - WARNING -  * Debugger is active!
+2025-09-08 21:27:44 - werkzeug - INFO -  * Debugger PIN: 846-804-586
+2025-09-08 21:27:54 - werkzeug - INFO -  * Detected change in 'C:\\Users\\kavya\\OneDrive\\Desktop\\flowlens2\\FlowLens\\backend\\run.py', reloading
+2025-09-08 21:27:55 - werkzeug - INFO -  * Restarting with stat
+2025-09-08 21:27:55 - root - INFO - Logging configured with level: INFO
+2025-09-08 21:27:55 - root - INFO - Logging configured with level: INFO
+2025-09-08 21:27:55 - werkzeug - WARNING -  * Debugger is active!
+2025-09-08 21:27:55 - werkzeug - INFO -  * Debugger PIN: 846-804-586
+2025-09-08 21:27:56 - werkzeug - INFO -  * Detected change in 'C:\\Users\\kavya\\OneDrive\\Desktop\\flowlens2\\FlowLens\\backend\\run.py', reloading
+2025-09-08 21:27:57 - werkzeug - INFO -  * Restarting with stat
+2025-09-08 21:27:59 - root - INFO - Logging configured with level: INFO
+2025-09-08 21:27:59 - root - INFO - Logging configured with level: INFO
+2025-09-08 21:27:59 - werkzeug - WARNING -  * Debugger is active!
+2025-09-08 21:27:59 - werkzeug - INFO -  * Debugger PIN: 846-804-586
+2025-09-08 21:30:36 - werkzeug - INFO -  * Detected change in 'C:\\Users\\kavya\\OneDrive\\Desktop\\flowlens2\\FlowLens\\backend\\run.py', reloading
+2025-09-08 21:30:36 - werkzeug - INFO -  * Restarting with stat
+2025-09-08 21:30:37 - root - INFO - Logging configured with level: INFO
+2025-09-08 21:30:37 - root - INFO - Logging configured with level: INFO
+2025-09-08 21:30:37 - werkzeug - WARNING -  * Debugger is active!
+2025-09-08 21:30:37 - werkzeug - INFO -  * Debugger PIN: 846-804-586
+2025-09-08 21:30:39 - werkzeug - INFO -  * Detected change in 'C:\\Users\\kavya\\OneDrive\\Desktop\\flowlens2\\FlowLens\\backend\\run.py', reloading
+2025-09-08 21:30:40 - werkzeug - INFO -  * Restarting with stat
+2025-09-08 22:16:28 - root - INFO - Logging configured with level: INFO
+2025-09-08 22:16:28 - root - INFO - Logging configured with level: INFO
+2025-09-08 22:16:28 - werkzeug - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+2025-09-08 22:16:28 - werkzeug - INFO - [33mPress CTRL+C to quit[0m
+2025-09-08 22:16:28 - werkzeug - INFO -  * Restarting with stat
+2025-09-08 22:16:30 - root - INFO - Logging configured with level: INFO
+2025-09-08 22:16:30 - root - INFO - Logging configured with level: INFO
+2025-09-08 22:16:30 - werkzeug - WARNING -  * Debugger is active!
+2025-09-08 22:16:30 - werkzeug - INFO -  * Debugger PIN: 846-804-586
+2025-09-08 22:19:26 - werkzeug - INFO - 127.0.0.1 - - [08/Sep/2025 22:19:26] "OPTIONS /parse HTTP/1.1" 200 -
+2025-09-08 22:19:30 - werkzeug - INFO - 127.0.0.1 - - [08/Sep/2025 22:19:30] "[35m[1mPOST /parse HTTP/1.1[0m" 500 -
+2025-09-08 22:19:36 - werkzeug - INFO - 127.0.0.1 - - [08/Sep/2025 22:19:36] "OPTIONS /parse HTTP/1.1" 200 -
+2025-09-08 22:19:36 - werkzeug - INFO - 127.0.0.1 - - [08/Sep/2025 22:19:36] "[35m[1mPOST /parse HTTP/1.1[0m" 500 -
+2025-09-08 22:20:24 - werkzeug - INFO - 127.0.0.1 - - [08/Sep/2025 22:20:24] "OPTIONS /parse HTTP/1.1" 200 -
+2025-09-08 22:20:25 - werkzeug - INFO - 127.0.0.1 - - [08/Sep/2025 22:20:25] "[35m[1mPOST /parse HTTP/1.1[0m" 500 -
+2025-09-08 22:20:32 - werkzeug - INFO - 127.0.0.1 - - [08/Sep/2025 22:20:32] "OPTIONS /parse HTTP/1.1" 200 -
+2025-09-08 22:20:33 - werkzeug - INFO - 127.0.0.1 - - [08/Sep/2025 22:20:33] "[35m[1mPOST /parse HTTP/1.1[0m" 500 -
+2025-09-08 22:20:39 - werkzeug - INFO - 127.0.0.1 - - [08/Sep/2025 22:20:39] "OPTIONS /parse HTTP/1.1" 200 -
+2025-09-08 22:20:41 - werkzeug - INFO - 127.0.0.1 - - [08/Sep/2025 22:20:41] "[35m[1mPOST /parse HTTP/1.1[0m" 500 -
+2025-09-08 22:28:26 - werkzeug - INFO -  * Detected change in 'C:\\Users\\kavya\\OneDrive\\Desktop\\flowlens2\\FlowLens\\backend\\run.py', reloading
+2025-09-08 22:28:26 - werkzeug - INFO -  * Restarting with stat
+2025-09-08 22:28:27 - root - INFO - Logging configured with level: INFO
+2025-09-08 22:28:27 - root - INFO - Logging configured with level: INFO
+2025-09-08 22:28:27 - werkzeug - WARNING -  * Debugger is active!
+2025-09-08 22:28:27 - werkzeug - INFO -  * Debugger PIN: 846-804-586
+2025-09-08 22:28:29 - werkzeug - INFO -  * Detected change in 'C:\\Users\\kavya\\OneDrive\\Desktop\\flowlens2\\FlowLens\\backend\\run.py', reloading
+2025-09-08 22:28:29 - werkzeug - INFO -  * Restarting with stat
+2025-09-08 22:28:30 - root - INFO - Logging configured with level: INFO
+2025-09-08 22:28:30 - root - INFO - Logging configured with level: INFO
+2025-09-08 22:28:30 - werkzeug - WARNING -  * Debugger is active!
+2025-09-08 22:28:30 - werkzeug - INFO -  * Debugger PIN: 846-804-586
+2025-09-08 22:29:52 - werkzeug - INFO -  * Detected change in 'C:\\Users\\kavya\\OneDrive\\Desktop\\flowlens2\\FlowLens\\backend\\run.py', reloading
+2025-09-08 22:29:52 - werkzeug - INFO -  * Restarting with stat
+2025-09-08 22:29:53 - root - INFO - Logging configured with level: INFO
+2025-09-08 22:29:53 - root - INFO - Logging configured with level: INFO
+2025-09-08 22:29:53 - werkzeug - WARNING -  * Debugger is active!
+2025-09-08 22:29:53 - werkzeug - INFO -  * Debugger PIN: 846-804-586
+2025-09-08 22:30:09 - root - INFO - Logging configured with level: INFO
+2025-09-08 22:30:09 - root - INFO - Logging configured with level: INFO
+2025-09-08 22:30:10 - werkzeug - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+2025-09-08 22:30:10 - werkzeug - INFO - [33mPress CTRL+C to quit[0m
+2025-09-08 22:30:10 - werkzeug - INFO -  * Restarting with stat
+2025-09-08 22:30:10 - root - INFO - Logging configured with level: INFO
+2025-09-08 22:30:10 - root - INFO - Logging configured with level: INFO
+2025-09-08 22:30:10 - werkzeug - WARNING -  * Debugger is active!
+2025-09-08 22:30:10 - werkzeug - INFO -  * Debugger PIN: 846-804-586
+2025-09-08 22:30:23 - werkzeug - INFO - 127.0.0.1 - - [08/Sep/2025 22:30:23] "OPTIONS /parse HTTP/1.1" 200 -
+2025-09-08 22:30:25 - werkzeug - INFO - 127.0.0.1 - - [08/Sep/2025 22:30:25] "[35m[1mPOST /parse HTTP/1.1[0m" 500 -
+2025-09-08 22:30:35 - werkzeug - INFO -  * Detected change in 'C:\\Users\\kavya\\OneDrive\\Desktop\\flowlens2\\FlowLens\\backend\\run.py', reloading
+2025-09-08 22:30:35 - werkzeug - INFO -  * Detected change in 'C:\\Users\\kavya\\OneDrive\\Desktop\\flowlens2\\FlowLens\\backend\\run.py', reloading
+2025-09-08 22:30:35 - werkzeug - INFO -  * Restarting with stat
+2025-09-08 22:30:35 - werkzeug - INFO -  * Restarting with stat
+2025-09-08 22:30:35 - root - INFO - Logging configured with level: INFO
+2025-09-08 22:30:35 - root - INFO - Logging configured with level: INFO
+2025-09-08 22:30:35 - werkzeug - WARNING -  * Debugger is active!
+2025-09-08 22:30:35 - werkzeug - INFO -  * Debugger PIN: 846-804-586
+2025-09-08 22:30:35 - root - INFO - Logging configured with level: INFO
+2025-09-08 22:30:35 - root - INFO - Logging configured with level: INFO
+2025-09-08 22:30:35 - werkzeug - WARNING -  * Debugger is active!
+2025-09-08 22:30:35 - werkzeug - INFO -  * Debugger PIN: 846-804-586
+2025-09-08 22:34:51 - werkzeug - INFO -  * Detected change in 'C:\\Users\\kavya\\OneDrive\\Desktop\\flowlens2\\FlowLens\\backend\\run.py', reloading
+2025-09-08 22:34:51 - werkzeug - INFO -  * Restarting with stat
+2025-09-08 22:34:51 - werkzeug - INFO -  * Detected change in 'C:\\Users\\kavya\\OneDrive\\Desktop\\flowlens2\\FlowLens\\backend\\run.py', reloading
+2025-09-08 22:34:51 - werkzeug - INFO -  * Restarting with stat
+2025-09-08 22:34:52 - root - INFO - Logging configured with level: INFO
+2025-09-08 22:34:52 - root - INFO - Logging configured with level: INFO
+2025-09-08 22:34:52 - root - INFO - Logging configured with level: INFO
+2025-09-08 22:34:52 - werkzeug - WARNING -  * Debugger is active!
+2025-09-08 22:34:52 - werkzeug - INFO -  * Debugger PIN: 846-804-586
+2025-09-08 22:38:47 - root - INFO - Logging configured with level: INFO
+2025-09-08 22:38:47 - root - INFO - Logging configured with level: INFO
+2025-09-08 22:38:47 - werkzeug - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+2025-09-08 22:38:47 - werkzeug - INFO - [33mPress CTRL+C to quit[0m
+2025-09-08 22:38:47 - werkzeug - INFO -  * Restarting with stat
+2025-09-08 22:38:48 - root - INFO - Logging configured with level: INFO
+2025-09-08 22:38:48 - root - INFO - Logging configured with level: INFO
+2025-09-08 22:38:48 - werkzeug - WARNING -  * Debugger is active!
+2025-09-08 22:38:48 - werkzeug - INFO -  * Debugger PIN: 846-804-586
+2025-09-08 22:39:13 - werkzeug - INFO - 127.0.0.1 - - [08/Sep/2025 22:39:13] "OPTIONS /parse HTTP/1.1" 200 -
+2025-09-08 22:39:15 - werkzeug - INFO - 127.0.0.1 - - [08/Sep/2025 22:39:15] "[35m[1mPOST /parse HTTP/1.1[0m" 500 -
+2025-09-08 22:52:37 - werkzeug - INFO - 127.0.0.1 - - [08/Sep/2025 22:52:37] "OPTIONS /parse HTTP/1.1" 200 -
+2025-09-08 22:52:38 - werkzeug - INFO - 127.0.0.1 - - [08/Sep/2025 22:52:38] "[35m[1mPOST /parse HTTP/1.1[0m" 500 -
+2025-09-18 22:24:34 - root - INFO - Logging configured with level: INFO
+2025-09-18 22:24:37 - root - INFO - Logging configured with level: INFO
+2025-09-18 22:25:38 - root - INFO - Logging configured with level: INFO
+2025-09-18 22:25:40 - root - INFO - Logging configured with level: INFO
+2025-09-18 22:25:40 - root - INFO - Logging configured with level: INFO
+2025-09-18 22:25:40 - werkzeug - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+2025-09-18 22:25:40 - werkzeug - INFO - [33mPress CTRL+C to quit[0m
+2025-09-18 22:25:40 - werkzeug - INFO -  * Restarting with watchdog (windowsapi)
+2025-09-18 22:25:41 - root - INFO - Logging configured with level: INFO
+2025-09-18 22:25:41 - root - INFO - Logging configured with level: INFO
+2025-09-18 22:25:41 - werkzeug - WARNING -  * Debugger is active!
+2025-09-18 22:25:41 - werkzeug - INFO -  * Debugger PIN: 600-396-804
+2025-09-18 22:25:55 - werkzeug - INFO - 127.0.0.1 - - [18/Sep/2025 22:25:55] "[33mGET / HTTP/1.1[0m" 404 -
+2025-09-18 22:25:55 - werkzeug - INFO - 127.0.0.1 - - [18/Sep/2025 22:25:55] "[33mGET /favicon.ico HTTP/1.1[0m" 404 -
+2025-09-18 22:32:12 - werkzeug - INFO -  * Detected change in 'C:\\Users\\kavya\\anaconda3\\Scripts\\conda-script.py', reloading
+2025-09-18 22:32:12 - werkzeug - INFO -  * Restarting with watchdog (windowsapi)
+2025-09-18 22:32:13 - root - INFO - Logging configured with level: INFO
+2025-09-18 22:32:13 - root - INFO - Logging configured with level: INFO
+2025-09-18 22:32:13 - werkzeug - WARNING -  * Debugger is active!
+2025-09-18 22:32:13 - werkzeug - INFO -  * Debugger PIN: 600-396-804
+2025-09-18 22:58:26 - root - INFO - Logging configured with level: INFO
+2025-09-18 22:58:27 - root - INFO - Logging configured with level: INFO
+2025-09-18 23:01:47 - root - INFO - Logging configured with level: INFO
+2025-09-18 23:01:48 - root - INFO - Logging configured with level: INFO
+2025-09-18 23:01:48 - root - INFO - Logging configured with level: INFO
+2025-09-18 23:01:48 - werkzeug - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+2025-09-18 23:01:48 - werkzeug - INFO - [33mPress CTRL+C to quit[0m
+2025-09-18 23:01:48 - werkzeug - INFO -  * Restarting with watchdog (windowsapi)
+2025-09-18 23:01:49 - root - INFO - Logging configured with level: INFO
+2025-09-18 23:01:49 - root - INFO - Logging configured with level: INFO
+2025-09-18 23:01:49 - werkzeug - WARNING -  * Debugger is active!
+2025-09-18 23:01:49 - werkzeug - INFO -  * Debugger PIN: 600-396-804
+2025-09-18 23:01:56 - werkzeug - INFO - 127.0.0.1 - - [18/Sep/2025 23:01:56] "[33mGET / HTTP/1.1[0m" 404 -
+2025-09-18 23:01:56 - werkzeug - INFO - 127.0.0.1 - - [18/Sep/2025 23:01:56] "[33mGET /favicon.ico HTTP/1.1[0m" 404 -
+2025-09-18 23:11:21 - root - INFO - Logging configured with level: INFO
+2025-09-18 23:11:22 - root - INFO - Logging configured with level: INFO
+2025-09-18 23:11:22 - root - INFO - Logging configured with level: INFO
+2025-09-18 23:11:22 - werkzeug - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+2025-09-18 23:11:22 - werkzeug - INFO - [33mPress CTRL+C to quit[0m
+2025-09-18 23:11:22 - werkzeug - INFO -  * Restarting with watchdog (windowsapi)
+2025-09-18 23:11:22 - root - INFO - Logging configured with level: INFO
+2025-09-18 23:11:23 - root - INFO - Logging configured with level: INFO
+2025-09-18 23:11:23 - root - INFO - Logging configured with level: INFO
+2025-09-18 23:11:23 - werkzeug - WARNING -  * Debugger is active!
+2025-09-18 23:11:23 - werkzeug - INFO -  * Debugger PIN: 600-396-804
+2025-09-18 23:24:38 - werkzeug - INFO -  * Detected change in 'C:\\Users\\kavya\\OneDrive\\Desktop\\flowlens2\\flowlens\\backend\\analyzer\\__init__.py', reloading
+2025-09-18 23:24:38 - werkzeug - INFO -  * Detected change in 'C:\\Users\\kavya\\OneDrive\\Desktop\\flowlens2\\flowlens\\backend\\analyzer\\entry_points.py', reloading
+2025-09-18 23:24:38 - werkzeug - INFO -  * Detected change in 'C:\\Users\\kavya\\OneDrive\\Desktop\\flowlens2\\flowlens\\backend\\analyzer\\entrypoint_plugins.py', reloading
+2025-09-18 23:24:38 - werkzeug - INFO -  * Detected change in 'C:\\Users\\kavya\\OneDrive\\Desktop\\flowlens2\\flowlens\\backend\\analyzer\\models.py', reloading
+2025-09-18 23:24:38 - werkzeug - INFO -  * Detected change in 'C:\\Users\\kavya\\OneDrive\\Desktop\\flowlens2\\flowlens\\backend\\analyzer\\parser.py', reloading
+2025-09-18 23:24:38 - werkzeug - INFO -  * Detected change in 'C:\\Users\\kavya\\OneDrive\\Desktop\\flowlens2\\flowlens\\backend\\analyzer\\plugins\\__init__.py', reloading
+2025-09-18 23:24:38 - werkzeug - INFO -  * Detected change in 'C:\\Users\\kavya\\OneDrive\\Desktop\\flowlens2\\flowlens\\backend\\analyzer\\plugins\\base.py', reloading
+2025-09-18 23:24:38 - werkzeug - INFO -  * Detected change in 'C:\\Users\\kavya\\OneDrive\\Desktop\\flowlens2\\flowlens\\backend\\analyzer\\plugins\\languages\\__init__.py', reloading
+2025-09-18 23:24:39 - werkzeug - INFO -  * Detected change in 'C:\\Users\\kavya\\OneDrive\\Desktop\\flowlens2\\flowlens\\backend\\analyzer\\plugins\\languages\\java_plugin.py', reloading
+2025-09-18 23:24:39 - werkzeug - INFO -  * Detected change in 'C:\\Users\\kavya\\OneDrive\\Desktop\\flowlens2\\flowlens\\backend\\analyzer\\plugins\\languages\\javascript_plugin.py', reloading
+2025-09-18 23:24:39 - werkzeug - INFO -  * Detected change in 'C:\\Users\\kavya\\OneDrive\\Desktop\\flowlens2\\flowlens\\backend\\analyzer\\plugins\\languages\\python_plugin.py', reloading
+2025-09-18 23:24:39 - werkzeug - INFO -  * Detected change in 'C:\\Users\\kavya\\OneDrive\\Desktop\\flowlens2\\flowlens\\backend\\analyzer\\plugins\\scanners\\__init__.py', reloading
+2025-09-18 23:24:39 - werkzeug - INFO -  * Detected change in 'C:\\Users\\kavya\\OneDrive\\Desktop\\flowlens2\\flowlens\\backend\\analyzer\\plugins\\scanners\\android_plugin.py', reloading
+2025-09-18 23:24:39 - werkzeug - INFO -  * Detected change in 'C:\\Users\\kavya\\OneDrive\\Desktop\\flowlens2\\flowlens\\backend\\analyzer\\plugins\\scanners\\angular_plugin.py', reloading
+2025-09-18 23:24:39 - werkzeug - INFO -  * Detected change in 'C:\\Users\\kavya\\OneDrive\\Desktop\\flowlens2\\flowlens\\backend\\analyzer\\plugins\\scanners\\django_plugin.py', reloading
+2025-09-18 23:24:39 - werkzeug - INFO -  * Detected change in 'C:\\Users\\kavya\\OneDrive\\Desktop\\flowlens2\\flowlens\\backend\\analyzer\\plugins\\scanners\\express_plugin.py', reloading
+2025-09-18 23:24:39 - werkzeug - INFO -  * Detected change in 'C:\\Users\\kavya\\OneDrive\\Desktop\\flowlens2\\flowlens\\backend\\analyzer\\plugins\\scanners\\maven_plugin.py', reloading
+2025-09-18 23:24:39 - werkzeug - INFO -  * Detected change in 'C:\\Users\\kavya\\OneDrive\\Desktop\\flowlens2\\flowlens\\backend\\analyzer\\plugins\\scanners\\spring_boot_plugin.py', reloading
+2025-09-18 23:24:39 - werkzeug - INFO -  * Detected change in 'C:\\Users\\kavya\\OneDrive\\Desktop\\flowlens2\\flowlens\\backend\\analyzer\\plugins\\scanners\\vite_plugin.py', reloading
+2025-09-18 23:24:39 - werkzeug - INFO -  * Detected change in 'C:\\Users\\kavya\\OneDrive\\Desktop\\flowlens2\\flowlens\\backend\\analyzer\\scanner.py', reloading
+2025-09-18 23:24:39 - werkzeug - INFO -  * Detected change in 'C:\\Users\\kavya\\OneDrive\\Desktop\\flowlens2\\flowlens\\backend\\analyzer\\semantic_analyzer.py', reloading
+2025-09-18 23:24:39 - werkzeug - INFO -  * Detected change in 'C:\\Users\\kavya\\OneDrive\\Desktop\\flowlens2\\flowlens\\backend\\build\\build_languages.py', reloading
+2025-09-18 23:24:39 - werkzeug - INFO -  * Detected change in 'C:\\Users\\kavya\\OneDrive\\Desktop\\flowlens2\\flowlens\\backend\\celery_app.py', reloading
+2025-09-18 23:24:39 - werkzeug - INFO -  * Detected change in 'C:\\Users\\kavya\\OneDrive\\Desktop\\flowlens2\\flowlens\\backend\\config.py', reloading
+2025-09-18 23:24:39 - werkzeug - INFO -  * Detected change in 'C:\\Users\\kavya\\OneDrive\\Desktop\\flowlens2\\flowlens\\backend\\start.py', reloading
+2025-09-18 23:24:39 - werkzeug - INFO -  * Detected change in 'C:\\Users\\kavya\\OneDrive\\Desktop\\flowlens2\\flowlens\\backend\\tasks.py', reloading
+2025-09-18 23:24:39 - werkzeug - INFO -  * Detected change in 'C:\\Users\\kavya\\OneDrive\\Desktop\\flowlens2\\flowlens\\backend\\test_analyzer.py', reloading
+2025-09-18 23:24:39 - werkzeug - INFO -  * Detected change in 'C:\\Users\\kavya\\OneDrive\\Desktop\\flowlens2\\flowlens\\backend\\test_edge_creation.py', reloading
+2025-09-18 23:24:39 - werkzeug - INFO -  * Detected change in 'C:\\Users\\kavya\\OneDrive\\Desktop\\flowlens2\\flowlens\\backend\\test_tree_sitter.py', reloading
+2025-09-18 23:24:39 - werkzeug - INFO -  * Restarting with watchdog (windowsapi)
+2025-09-18 23:24:41 - root - INFO - Logging configured with level: INFO
+2025-09-18 23:24:41 - root - INFO - Logging configured with level: INFO
+2025-09-18 23:24:41 - werkzeug - WARNING -  * Debugger is active!
+2025-09-18 23:24:41 - werkzeug - INFO -  * Debugger PIN: 600-396-804
+2025-09-18 23:38:41 - werkzeug - INFO - 127.0.0.1 - - [18/Sep/2025 23:38:41] "[33mGET /analyze HTTP/1.1[0m" 404 -
+2025-09-18 23:38:41 - werkzeug - INFO - 127.0.0.1 - - [18/Sep/2025 23:38:41] "[33mGET /favicon.ico HTTP/1.1[0m" 404 -
+2025-09-18 23:41:46 - root - INFO - Logging configured with level: INFO
+2025-09-18 23:41:47 - root - INFO - Logging configured with level: INFO
+2025-09-18 23:41:47 - root - INFO - Logging configured with level: INFO
+2025-09-18 23:41:47 - werkzeug - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+2025-09-18 23:41:47 - werkzeug - INFO - [33mPress CTRL+C to quit[0m
+2025-09-18 23:41:47 - werkzeug - INFO -  * Restarting with watchdog (windowsapi)
+2025-09-18 23:41:48 - root - INFO - Logging configured with level: INFO
+2025-09-18 23:41:48 - root - INFO - Logging configured with level: INFO
+2025-09-18 23:41:48 - root - INFO - Logging configured with level: INFO
+2025-09-18 23:41:48 - werkzeug - WARNING -  * Debugger is active!
+2025-09-18 23:41:48 - werkzeug - INFO -  * Debugger PIN: 600-396-804
+2025-09-18 23:43:05 - werkzeug - INFO - 127.0.0.1 - - [18/Sep/2025 23:43:05] "GET /health HTTP/1.1" 200 -
+2025-09-18 23:43:05 - werkzeug - INFO - 127.0.0.1 - - [18/Sep/2025 23:43:05] "[33mGET /favicon.ico HTTP/1.1[0m" 404 -
+2025-09-18 23:43:46 - werkzeug - INFO - 127.0.0.1 - - [18/Sep/2025 23:43:46] "[33mOPTIONS /analyze HTTP/1.1[0m" 404 -
+2025-09-18 23:44:24 - werkzeug - INFO - 127.0.0.1 - - [18/Sep/2025 23:44:24] "[33mGET / HTTP/1.1[0m" 404 -
+2025-09-18 23:44:24 - werkzeug - INFO - 127.0.0.1 - - [18/Sep/2025 23:44:24] "[33mGET /favicon.ico HTTP/1.1[0m" 404 -
+2025-09-18 23:49:06 - werkzeug - INFO - 127.0.0.1 - - [18/Sep/2025 23:49:06] "[33mOPTIONS /analyze HTTP/1.1[0m" 404 -
+2025-09-18 23:49:34 - werkzeug - INFO - 127.0.0.1 - - [18/Sep/2025 23:49:34] "[33mOPTIONS /analyze HTTP/1.1[0m" 404 -
+2025-09-18 23:51:16 - werkzeug - INFO -  * Detected change in 'C:\\Users\\kavya\\anaconda3\\Scripts\\conda-script.py', reloading
+2025-09-18 23:51:17 - werkzeug - INFO -  * Restarting with watchdog (windowsapi)
+2025-09-18 23:51:18 - root - INFO - Logging configured with level: INFO
+2025-09-18 23:51:18 - root - INFO - Logging configured with level: INFO
+2025-09-18 23:51:18 - werkzeug - WARNING -  * Debugger is active!
+2025-09-18 23:51:18 - werkzeug - INFO -  * Debugger PIN: 600-396-804
+2025-09-18 23:51:21 - werkzeug - INFO -  * Detected change in 'C:\\Users\\kavya\\OneDrive\\Desktop\\flowlens2\\flowlens\\backend\\analyzer\\main.py', reloading
+2025-09-18 23:51:22 - werkzeug - INFO -  * Restarting with watchdog (windowsapi)
+2025-09-18 23:51:23 - root - INFO - Logging configured with level: INFO
+2025-09-18 23:51:23 - root - INFO - Logging configured with level: INFO
+2025-09-18 23:51:23 - werkzeug - WARNING -  * Debugger is active!
+2025-09-18 23:51:23 - werkzeug - INFO -  * Debugger PIN: 600-396-804
+2025-09-18 23:58:26 - root - INFO - Logging configured with level: INFO
+2025-09-18 23:58:27 - root - INFO - Logging configured with level: INFO
+2025-09-18 23:58:27 - root - INFO - Logging configured with level: INFO
+2025-09-18 23:58:27 - werkzeug - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+2025-09-18 23:58:27 - werkzeug - INFO - [33mPress CTRL+C to quit[0m
+2025-09-18 23:58:27 - werkzeug - INFO -  * Restarting with watchdog (windowsapi)
+2025-09-18 23:58:27 - root - INFO - Logging configured with level: INFO
+2025-09-18 23:58:28 - root - INFO - Logging configured with level: INFO
+2025-09-18 23:58:28 - root - INFO - Logging configured with level: INFO
+2025-09-18 23:58:28 - werkzeug - WARNING -  * Debugger is active!
+2025-09-18 23:58:28 - werkzeug - INFO -  * Debugger PIN: 600-396-804
+2025-09-18 23:59:40 - werkzeug - INFO - 127.0.0.1 - - [18/Sep/2025 23:59:40] "GET /health HTTP/1.1" 200 -
+2025-09-19 00:00:18 - werkzeug - INFO - 127.0.0.1 - - [19/Sep/2025 00:00:18] "OPTIONS /parse HTTP/1.1" 200 -
+2025-09-19 00:00:21 - root - INFO - Starting codebase analysis for: C:\Users\kavya\AppData\Local\Temp\tmp7n56d2ts
+2025-09-19 00:00:21 - root - INFO - Scanning project at: C:\Users\kavya\AppData\Local\Temp\tmp7n56d2ts
+2025-09-19 00:00:21 - root - WARNING - No project type detected, marking as UNKNOWN
+2025-09-19 00:00:21 - root - INFO - Scan complete. Found 0 config files, detected types: ['unknown']
+2025-09-19 00:00:21 - root - INFO - Using fallback project type: unknown
+2025-09-19 00:00:21 - root - INFO - Identifying entry points for project type: unknown
+2025-09-19 00:00:21 - root - INFO - Found 0 entry points
+2025-09-19 00:00:22 - root - INFO - Starting parse for project: C:\Users\kavya\AppData\Local\Temp\tmp7n56d2ts
+2025-09-19 00:00:22 - root - INFO - Analyzing relationships between nodes
+2025-09-19 00:00:22 - root - INFO - Parse complete. Found 0 nodes and 0 edges
+2025-09-19 00:00:22 - root - INFO - Running semantic analysis (relationships)
+2025-09-19 00:00:22 - root - INFO - Analysis complete. Generated 0 nodes and 0 edges
+2025-09-19 00:00:22 - werkzeug - INFO - 127.0.0.1 - - [19/Sep/2025 00:00:22] "POST /parse HTTP/1.1" 200 -
+2025-09-19 00:02:41 - root - INFO - Logging configured with level: INFO
+2025-09-19 00:02:42 - root - INFO - Logging configured with level: INFO
+2025-09-19 00:02:42 - root - INFO - Logging configured with level: INFO
+2025-09-19 00:02:42 - werkzeug - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+2025-09-19 00:02:42 - werkzeug - INFO - [33mPress CTRL+C to quit[0m
+2025-09-19 00:02:42 - werkzeug - INFO -  * Restarting with watchdog (windowsapi)
+2025-09-19 00:02:42 - root - INFO - Logging configured with level: INFO
+2025-09-19 00:02:42 - root - INFO - Logging configured with level: INFO
+2025-09-19 00:02:43 - root - INFO - Logging configured with level: INFO
+2025-09-19 00:02:43 - werkzeug - WARNING -  * Debugger is active!
+2025-09-19 00:02:43 - werkzeug - INFO -  * Debugger PIN: 600-396-804
+2025-09-19 00:04:01 - werkzeug - INFO - 127.0.0.1 - - [19/Sep/2025 00:04:01] "[31m[1mGET /parse HTTP/1.1[0m" 405 -
+2025-09-19 00:12:08 - werkzeug - INFO - 127.0.0.1 - - [19/Sep/2025 00:12:08] "[31m[1mPOST /parse HTTP/1.1[0m" 415 -
+2025-09-19 00:12:25 - werkzeug - INFO - 127.0.0.1 - - [19/Sep/2025 00:12:25] "[31m[1mPOST /parse HTTP/1.1[0m" 415 -
+2025-09-19 00:15:27 - werkzeug - INFO - 127.0.0.1 - - [19/Sep/2025 00:15:27] "[31m[1mPOST /parse HTTP/1.1[0m" 415 -
+2025-09-19 00:15:47 - werkzeug - INFO - 127.0.0.1 - - [19/Sep/2025 00:15:47] "[31m[1mPOST /parse HTTP/1.1[0m" 415 -
+2025-09-19 00:16:02 - werkzeug - INFO - 127.0.0.1 - - [19/Sep/2025 00:16:02] "[31m[1mPOST /parse HTTP/1.1[0m" 415 -
+2025-09-19 00:16:17 - werkzeug - INFO - 127.0.0.1 - - [19/Sep/2025 00:16:17] "[31m[1mPOST /parse HTTP/1.1[0m" 415 -
+2025-09-19 00:17:22 - werkzeug - INFO - 127.0.0.1 - - [19/Sep/2025 00:17:22] "[31m[1mPOST /parse HTTP/1.1[0m" 415 -
+2025-09-19 00:18:08 - werkzeug - INFO - 127.0.0.1 - - [19/Sep/2025 00:18:08] "[31m[1mPOST /parse HTTP/1.1[0m" 415 -
+2025-09-19 00:20:35 - root - INFO - Starting codebase analysis for: C:\Users\kavya\AppData\Local\Temp\tmpngho8woc
+2025-09-19 00:20:35 - root - INFO - Scanning project at: C:\Users\kavya\AppData\Local\Temp\tmpngho8woc
+2025-09-19 00:20:35 - root - WARNING - No project type detected, marking as UNKNOWN
+2025-09-19 00:20:35 - root - INFO - Scan complete. Found 0 config files, detected types: ['unknown']
+2025-09-19 00:20:35 - root - INFO - Using fallback project type: unknown
+2025-09-19 00:20:35 - root - INFO - Identifying entry points for project type: unknown
+2025-09-19 00:20:35 - root - INFO - Found 0 entry points
+2025-09-19 00:20:35 - root - INFO - Starting parse for project: C:\Users\kavya\AppData\Local\Temp\tmpngho8woc
+2025-09-19 00:20:35 - root - INFO - Analyzing relationships between nodes
+2025-09-19 00:20:35 - root - INFO - Parse complete. Found 0 nodes and 0 edges
+2025-09-19 00:20:35 - root - INFO - Running semantic analysis (relationships)
+2025-09-19 00:20:35 - root - INFO - Analysis complete. Generated 0 nodes and 0 edges
+2025-09-19 00:20:35 - werkzeug - INFO - 127.0.0.1 - - [19/Sep/2025 00:20:35] "POST /parse HTTP/1.1" 200 -
+2025-09-19 00:22:08 - root - INFO - Starting codebase analysis for: C:\Users\kavya\AppData\Local\Temp\tmp_bw21gy0
+2025-09-19 00:22:08 - root - INFO - Scanning project at: C:\Users\kavya\AppData\Local\Temp\tmp_bw21gy0
+2025-09-19 00:22:08 - root - WARNING - No project type detected, marking as UNKNOWN
+2025-09-19 00:22:08 - root - INFO - Scan complete. Found 0 config files, detected types: ['unknown']
+2025-09-19 00:22:08 - root - INFO - Using fallback project type: unknown
+2025-09-19 00:22:08 - root - INFO - Identifying entry points for project type: unknown
+2025-09-19 00:22:08 - root - INFO - Found 0 entry points
+2025-09-19 00:22:08 - root - INFO - Starting parse for project: C:\Users\kavya\AppData\Local\Temp\tmp_bw21gy0
+2025-09-19 00:22:08 - root - INFO - Analyzing relationships between nodes
+2025-09-19 00:22:08 - root - INFO - Parse complete. Found 0 nodes and 0 edges
+2025-09-19 00:22:08 - root - INFO - Running semantic analysis (relationships)
+2025-09-19 00:22:08 - root - INFO - Analysis complete. Generated 0 nodes and 0 edges
+2025-09-19 00:22:08 - werkzeug - INFO - 127.0.0.1 - - [19/Sep/2025 00:22:08] "POST /parse HTTP/1.1" 200 -
+2025-09-19 11:04:49 - werkzeug - INFO -  * Detected change in 'C:\\Users\\kavya\\OneDrive\\Desktop\\flowlens2\\flowlens\\backend\\analyzer\\__init__.py', reloading
+2025-09-19 11:04:49 - werkzeug - INFO -  * Detected change in 'C:\\Users\\kavya\\OneDrive\\Desktop\\flowlens2\\flowlens\\backend\\analyzer\\entry_points.py', reloading
+2025-09-19 11:04:49 - werkzeug - INFO -  * Detected change in 'C:\\Users\\kavya\\OneDrive\\Desktop\\flowlens2\\flowlens\\backend\\analyzer\\entrypoint_plugins.py', reloading
+2025-09-19 11:04:49 - werkzeug - INFO -  * Detected change in 'C:\\Users\\kavya\\OneDrive\\Desktop\\flowlens2\\flowlens\\backend\\analyzer\\models.py', reloading
+2025-09-19 11:04:49 - werkzeug - INFO -  * Detected change in 'C:\\Users\\kavya\\OneDrive\\Desktop\\flowlens2\\flowlens\\backend\\analyzer\\parser.py', reloading
+2025-09-19 11:04:49 - werkzeug - INFO -  * Detected change in 'C:\\Users\\kavya\\OneDrive\\Desktop\\flowlens2\\flowlens\\backend\\analyzer\\plugins\\__init__.py', reloading
+2025-09-19 11:04:49 - werkzeug - INFO -  * Detected change in 'C:\\Users\\kavya\\OneDrive\\Desktop\\flowlens2\\flowlens\\backend\\analyzer\\plugins\\base.py', reloading
+2025-09-19 11:04:49 - werkzeug - INFO -  * Detected change in 'C:\\Users\\kavya\\OneDrive\\Desktop\\flowlens2\\flowlens\\backend\\analyzer\\plugins\\languages\\__init__.py', reloading
+2025-09-19 11:04:49 - werkzeug - INFO -  * Detected change in 'C:\\Users\\kavya\\OneDrive\\Desktop\\flowlens2\\flowlens\\backend\\analyzer\\plugins\\languages\\java_plugin.py', reloading
+2025-09-19 11:04:49 - werkzeug - INFO -  * Detected change in 'C:\\Users\\kavya\\OneDrive\\Desktop\\flowlens2\\flowlens\\backend\\analyzer\\plugins\\languages\\javascript_plugin.py', reloading
+2025-09-19 11:04:49 - werkzeug - INFO -  * Detected change in 'C:\\Users\\kavya\\OneDrive\\Desktop\\flowlens2\\flowlens\\backend\\analyzer\\plugins\\languages\\python_plugin.py', reloading
+2025-09-19 11:04:49 - werkzeug - INFO -  * Detected change in 'C:\\Users\\kavya\\OneDrive\\Desktop\\flowlens2\\flowlens\\backend\\analyzer\\plugins\\scanners\\__init__.py', reloading
+2025-09-19 11:04:49 - werkzeug - INFO -  * Detected change in 'C:\\Users\\kavya\\OneDrive\\Desktop\\flowlens2\\flowlens\\backend\\analyzer\\plugins\\scanners\\android_plugin.py', reloading
+2025-09-19 11:04:49 - werkzeug - INFO -  * Detected change in 'C:\\Users\\kavya\\OneDrive\\Desktop\\flowlens2\\flowlens\\backend\\analyzer\\plugins\\scanners\\angular_plugin.py', reloading
+2025-09-19 11:04:49 - werkzeug - INFO -  * Detected change in 'C:\\Users\\kavya\\OneDrive\\Desktop\\flowlens2\\flowlens\\backend\\analyzer\\plugins\\scanners\\django_plugin.py', reloading
+2025-09-19 11:04:49 - werkzeug - INFO -  * Detected change in 'C:\\Users\\kavya\\OneDrive\\Desktop\\flowlens2\\flowlens\\backend\\analyzer\\plugins\\scanners\\express_plugin.py', reloading
+2025-09-19 11:04:49 - werkzeug - INFO -  * Detected change in 'C:\\Users\\kavya\\OneDrive\\Desktop\\flowlens2\\flowlens\\backend\\analyzer\\plugins\\scanners\\maven_plugin.py', reloading
+2025-09-19 11:04:49 - werkzeug - INFO -  * Detected change in 'C:\\Users\\kavya\\OneDrive\\Desktop\\flowlens2\\flowlens\\backend\\analyzer\\plugins\\scanners\\spring_boot_plugin.py', reloading
+2025-09-19 11:04:49 - werkzeug - INFO -  * Detected change in 'C:\\Users\\kavya\\OneDrive\\Desktop\\flowlens2\\flowlens\\backend\\analyzer\\plugins\\scanners\\vite_plugin.py', reloading
+2025-09-19 11:04:49 - werkzeug - INFO -  * Detected change in 'C:\\Users\\kavya\\OneDrive\\Desktop\\flowlens2\\flowlens\\backend\\analyzer\\scanner.py', reloading
+2025-09-19 11:04:49 - werkzeug - INFO -  * Detected change in 'C:\\Users\\kavya\\OneDrive\\Desktop\\flowlens2\\flowlens\\backend\\analyzer\\semantic_analyzer.py', reloading
+2025-09-19 11:04:49 - werkzeug - INFO -  * Detected change in 'C:\\Users\\kavya\\OneDrive\\Desktop\\flowlens2\\flowlens\\backend\\build\\build_languages.py', reloading
+2025-09-19 11:04:49 - werkzeug - INFO -  * Detected change in 'C:\\Users\\kavya\\OneDrive\\Desktop\\flowlens2\\flowlens\\backend\\celery_app.py', reloading
+2025-09-19 11:04:49 - werkzeug - INFO -  * Detected change in 'C:\\Users\\kavya\\OneDrive\\Desktop\\flowlens2\\flowlens\\backend\\config.py', reloading
+2025-09-19 11:04:49 - werkzeug - INFO -  * Detected change in 'C:\\Users\\kavya\\OneDrive\\Desktop\\flowlens2\\flowlens\\backend\\start.py', reloading
+2025-09-19 11:04:49 - werkzeug - INFO -  * Detected change in 'C:\\Users\\kavya\\OneDrive\\Desktop\\flowlens2\\flowlens\\backend\\tasks.py', reloading
+2025-09-19 11:04:49 - werkzeug - INFO -  * Detected change in 'C:\\Users\\kavya\\OneDrive\\Desktop\\flowlens2\\flowlens\\backend\\test_analyzer.py', reloading
+2025-09-19 11:04:49 - werkzeug - INFO -  * Detected change in 'C:\\Users\\kavya\\OneDrive\\Desktop\\flowlens2\\flowlens\\backend\\test_edge_creation.py', reloading
+2025-09-19 11:04:49 - werkzeug - INFO -  * Detected change in 'C:\\Users\\kavya\\OneDrive\\Desktop\\flowlens2\\flowlens\\backend\\test_tree_sitter.py', reloading
+2025-09-19 11:04:50 - werkzeug - INFO -  * Restarting with watchdog (windowsapi)
+2025-09-19 11:04:52 - root - INFO - Logging configured with level: INFO
+2025-09-19 11:04:52 - root - INFO - Logging configured with level: INFO
+2025-09-19 11:04:52 - werkzeug - WARNING -  * Debugger is active!
+2025-09-19 11:04:52 - werkzeug - INFO -  * Debugger PIN: 600-396-804
+2025-09-19 11:06:57 - werkzeug - INFO - 127.0.0.1 - - [19/Sep/2025 11:06:57] "OPTIONS /parse HTTP/1.1" 200 -
+2025-09-19 11:07:01 - root - INFO - Starting codebase analysis for: C:\Users\kavya\AppData\Local\Temp\tmp60pzidbg
+2025-09-19 11:07:01 - root - INFO - Scanning project at: C:\Users\kavya\AppData\Local\Temp\tmp60pzidbg
+2025-09-19 11:07:01 - root - WARNING - No project type detected, marking as UNKNOWN
+2025-09-19 11:07:01 - root - INFO - Scan complete. Found 0 config files, detected types: ['unknown']
+2025-09-19 11:07:01 - root - INFO - Using fallback project type: unknown
+2025-09-19 11:07:01 - root - INFO - Identifying entry points for project type: unknown
+2025-09-19 11:07:01 - root - INFO - Found 0 entry points
+2025-09-19 11:07:01 - root - INFO - Starting parse for project: C:\Users\kavya\AppData\Local\Temp\tmp60pzidbg
+2025-09-19 11:07:01 - root - INFO - Analyzing relationships between nodes
+2025-09-19 11:07:01 - root - INFO - Parse complete. Found 0 nodes and 0 edges
+2025-09-19 11:07:01 - root - INFO - Running semantic analysis (relationships)
+2025-09-19 11:07:01 - root - INFO - Analysis complete. Generated 0 nodes and 0 edges
+2025-09-19 11:07:01 - werkzeug - INFO - 127.0.0.1 - - [19/Sep/2025 11:07:01] "POST /parse HTTP/1.1" 200 -
+2025-09-19 11:19:44 - werkzeug - INFO -  * Detected change in 'C:\\Users\\kavya\\OneDrive\\Desktop\\flowlens2\\flowlens\\backend\\analyzer\\main.py', reloading
+2025-09-19 11:19:44 - werkzeug - INFO -  * Restarting with watchdog (windowsapi)
+2025-09-19 11:19:45 - root - INFO - Logging configured with level: INFO
+2025-09-19 11:19:45 - root - INFO - Logging configured with level: INFO
+2025-09-19 11:19:46 - werkzeug - WARNING -  * Debugger is active!
+2025-09-19 11:19:46 - werkzeug - INFO -  * Debugger PIN: 600-396-804
+2025-09-19 11:32:26 - werkzeug - INFO - 127.0.0.1 - - [19/Sep/2025 11:32:26] "OPTIONS /parse HTTP/1.1" 200 -
+2025-09-19 11:32:38 - werkzeug - INFO - 127.0.0.1 - - [19/Sep/2025 11:32:38] "[35m[1mPOST /parse HTTP/1.1[0m" 500 -
+2025-09-19 12:48:23 - werkzeug - INFO -  * Detected change in 'C:\\Users\\kavya\\anaconda3\\cwp.py', reloading
+2025-09-19 12:48:23 - werkzeug - INFO -  * Restarting with watchdog (windowsapi)
+2025-09-19 12:48:27 - root - INFO - Logging configured with level: INFO
+2025-09-19 12:48:27 - root - INFO - Logging configured with level: INFO
+2025-09-19 12:48:28 - werkzeug - WARNING -  * Debugger is active!
+2025-09-19 12:48:28 - werkzeug - INFO -  * Debugger PIN: 600-396-804
+2025-09-19 23:01:44 - werkzeug - INFO -  * Detected change in 'C:\\Users\\kavya\\OneDrive\\Desktop\\flowlens2\\flowlens\\backend\\analyzer\\__init__.py', reloading
+2025-09-19 23:01:44 - werkzeug - INFO -  * Detected change in 'C:\\Users\\kavya\\OneDrive\\Desktop\\flowlens2\\flowlens\\backend\\analyzer\\entry_points.py', reloading
+2025-09-19 23:01:44 - werkzeug - INFO -  * Detected change in 'C:\\Users\\kavya\\OneDrive\\Desktop\\flowlens2\\flowlens\\backend\\analyzer\\entrypoint_plugins.py', reloading
+2025-09-19 23:01:44 - werkzeug - INFO -  * Detected change in 'C:\\Users\\kavya\\OneDrive\\Desktop\\flowlens2\\flowlens\\backend\\analyzer\\models.py', reloading
+2025-09-19 23:01:44 - werkzeug - INFO -  * Detected change in 'C:\\Users\\kavya\\OneDrive\\Desktop\\flowlens2\\flowlens\\backend\\analyzer\\parser.py', reloading
+2025-09-19 23:01:44 - werkzeug - INFO -  * Detected change in 'C:\\Users\\kavya\\OneDrive\\Desktop\\flowlens2\\flowlens\\backend\\analyzer\\plugins\\__init__.py', reloading
+2025-09-19 23:01:44 - werkzeug - INFO -  * Detected change in 'C:\\Users\\kavya\\OneDrive\\Desktop\\flowlens2\\flowlens\\backend\\analyzer\\plugins\\base.py', reloading
+2025-09-19 23:01:44 - werkzeug - INFO -  * Detected change in 'C:\\Users\\kavya\\OneDrive\\Desktop\\flowlens2\\flowlens\\backend\\analyzer\\plugins\\languages\\__init__.py', reloading
+2025-09-19 23:01:44 - werkzeug - INFO -  * Detected change in 'C:\\Users\\kavya\\OneDrive\\Desktop\\flowlens2\\flowlens\\backend\\analyzer\\plugins\\languages\\java_plugin.py', reloading
+2025-09-19 23:01:44 - werkzeug - INFO -  * Detected change in 'C:\\Users\\kavya\\OneDrive\\Desktop\\flowlens2\\flowlens\\backend\\analyzer\\plugins\\languages\\javascript_plugin.py', reloading
+2025-09-19 23:01:44 - werkzeug - INFO -  * Detected change in 'C:\\Users\\kavya\\OneDrive\\Desktop\\flowlens2\\flowlens\\backend\\analyzer\\plugins\\languages\\python_plugin.py', reloading
+2025-09-19 23:01:44 - werkzeug - INFO -  * Detected change in 'C:\\Users\\kavya\\OneDrive\\Desktop\\flowlens2\\flowlens\\backend\\analyzer\\plugins\\scanners\\__init__.py', reloading
+2025-09-19 23:01:44 - werkzeug - INFO -  * Detected change in 'C:\\Users\\kavya\\OneDrive\\Desktop\\flowlens2\\flowlens\\backend\\analyzer\\plugins\\scanners\\android_plugin.py', reloading
+2025-09-19 23:01:44 - werkzeug - INFO -  * Detected change in 'C:\\Users\\kavya\\OneDrive\\Desktop\\flowlens2\\flowlens\\backend\\analyzer\\plugins\\scanners\\angular_plugin.py', reloading
+2025-09-19 23:01:44 - werkzeug - INFO -  * Detected change in 'C:\\Users\\kavya\\OneDrive\\Desktop\\flowlens2\\flowlens\\backend\\analyzer\\plugins\\scanners\\django_plugin.py', reloading
+2025-09-19 23:01:44 - werkzeug - INFO -  * Detected change in 'C:\\Users\\kavya\\OneDrive\\Desktop\\flowlens2\\flowlens\\backend\\analyzer\\plugins\\scanners\\express_plugin.py', reloading
+2025-09-19 23:01:44 - werkzeug - INFO -  * Detected change in 'C:\\Users\\kavya\\OneDrive\\Desktop\\flowlens2\\flowlens\\backend\\analyzer\\plugins\\scanners\\maven_plugin.py', reloading
+2025-09-19 23:01:44 - werkzeug - INFO -  * Detected change in 'C:\\Users\\kavya\\OneDrive\\Desktop\\flowlens2\\flowlens\\backend\\analyzer\\plugins\\scanners\\spring_boot_plugin.py', reloading
+2025-09-19 23:01:44 - werkzeug - INFO -  * Detected change in 'C:\\Users\\kavya\\OneDrive\\Desktop\\flowlens2\\flowlens\\backend\\analyzer\\plugins\\scanners\\vite_plugin.py', reloading
+2025-09-19 23:01:44 - werkzeug - INFO -  * Detected change in 'C:\\Users\\kavya\\OneDrive\\Desktop\\flowlens2\\flowlens\\backend\\analyzer\\scanner.py', reloading
+2025-09-19 23:01:44 - werkzeug - INFO -  * Detected change in 'C:\\Users\\kavya\\OneDrive\\Desktop\\flowlens2\\flowlens\\backend\\analyzer\\semantic_analyzer.py', reloading
+2025-09-19 23:01:44 - werkzeug - INFO -  * Detected change in 'C:\\Users\\kavya\\OneDrive\\Desktop\\flowlens2\\flowlens\\backend\\build\\build_languages.py', reloading
+2025-09-19 23:01:44 - werkzeug - INFO -  * Detected change in 'C:\\Users\\kavya\\OneDrive\\Desktop\\flowlens2\\flowlens\\backend\\celery_app.py', reloading
+2025-09-19 23:01:44 - werkzeug - INFO -  * Detected change in 'C:\\Users\\kavya\\OneDrive\\Desktop\\flowlens2\\flowlens\\backend\\config.py', reloading
+2025-09-19 23:01:44 - werkzeug - INFO -  * Detected change in 'C:\\Users\\kavya\\OneDrive\\Desktop\\flowlens2\\flowlens\\backend\\start.py', reloading
+2025-09-19 23:01:44 - werkzeug - INFO -  * Detected change in 'C:\\Users\\kavya\\OneDrive\\Desktop\\flowlens2\\flowlens\\backend\\tasks.py', reloading
+2025-09-19 23:01:44 - werkzeug - INFO -  * Detected change in 'C:\\Users\\kavya\\OneDrive\\Desktop\\flowlens2\\flowlens\\backend\\test_analyzer.py', reloading
+2025-09-19 23:01:44 - werkzeug - INFO -  * Detected change in 'C:\\Users\\kavya\\OneDrive\\Desktop\\flowlens2\\flowlens\\backend\\test_edge_creation.py', reloading
+2025-09-19 23:01:44 - werkzeug - INFO -  * Detected change in 'C:\\Users\\kavya\\OneDrive\\Desktop\\flowlens2\\flowlens\\backend\\test_tree_sitter.py', reloading
+2025-09-19 23:01:45 - werkzeug - INFO -  * Restarting with watchdog (windowsapi)
+2025-09-20 22:25:42 - root - INFO - Logging configured with level: INFO
+2025-09-20 22:26:00 - root - INFO - Logging configured with level: INFO
+2025-09-20 22:26:01 - root - INFO - Logging configured with level: INFO
+2025-09-20 22:26:01 - root - INFO - Logging configured with level: INFO
+2025-09-20 22:26:01 - werkzeug - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+2025-09-20 22:26:01 - werkzeug - INFO - [33mPress CTRL+C to quit[0m
+2025-09-20 22:26:01 - werkzeug - INFO -  * Restarting with watchdog (windowsapi)
+2025-09-20 22:26:01 - root - INFO - Logging configured with level: INFO
+2025-09-20 22:26:02 - root - INFO - Logging configured with level: INFO
+2025-09-20 22:26:02 - root - INFO - Logging configured with level: INFO
+2025-09-20 22:26:02 - werkzeug - WARNING -  * Debugger is active!
+2025-09-20 22:26:02 - werkzeug - INFO -  * Debugger PIN: 600-396-804
+2025-09-20 22:40:35 - werkzeug - INFO - 127.0.0.1 - - [20/Sep/2025 22:40:35] "GET /health HTTP/1.1" 200 -
+2025-09-20 22:40:35 - werkzeug - INFO - 127.0.0.1 - - [20/Sep/2025 22:40:35] "[33mGET /favicon.ico HTTP/1.1[0m" 404 -
+2025-09-20 22:40:48 - werkzeug - INFO - 127.0.0.1 - - [20/Sep/2025 22:40:48] "[33mGET / HTTP/1.1[0m" 404 -
+2025-09-20 22:56:21 - werkzeug - INFO -  * Detected change in 'C:\\Users\\kavya\\OneDrive\\Desktop\\flowlens2\\flowlens\\backend\\analyzer\\main.py', reloading
+2025-09-20 22:56:21 - werkzeug - INFO -  * Restarting with watchdog (windowsapi)
+2025-09-20 22:56:23 - root - INFO - Logging configured with level: INFO
+2025-09-20 22:56:23 - root - INFO - Logging configured with level: INFO
+2025-09-20 22:56:23 - werkzeug - WARNING -  * Debugger is active!
+2025-09-20 22:56:23 - werkzeug - INFO -  * Debugger PIN: 600-396-804

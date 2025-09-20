@@ -1,0 +1,374 @@
+{
+  "projectMeta": {
+    "name": "FlowLens Demo",
+    "fileCount": 4,
+    "classCount": 6,
+    "methodCount": 18
+  },
+  "files": [
+    {
+      "id": "file-1",
+      "path": "src/services/userService.js",
+      "startLine": 1,
+      "endLine": 120,
+      "content": "import { ApiClient } from './apiClient.js';\nimport { Logger } from '../utils/logger.js';\n\n/**\n * Service for managing user operations\n */\nclass UserService {\n  constructor() {\n    this.apiClient = new ApiClient();\n    this.logger = new Logger('UserService');\n  }\n\n  /**\n   * Get user by ID\n   * @param {string} id - User ID\n   * @returns {Promise<User>} User object\n   */\n  async getUser(id) {\n    this.logger.info(`Fetching user ${id}`);\n    try {\n      const response = await this.apiClient.get(`/users/${id}`);\n      return response.data;\n    } catch (error) {\n      this.logger.error('Failed to fetch user', error);\n      throw error;\n    }\n  }\n\n  /**\n   * Create new user\n   * @param {Object} userData - User data\n   * @returns {Promise<User>} Created user\n   */\n  async createUser(userData) {\n    this.logger.info('Creating new user');\n    const validatedData = this.validateUserData(userData);\n    return await this.apiClient.post('/users', validatedData);\n  }\n\n  /**\n   * Update existing user\n   * @param {string} id - User ID\n   * @param {Object} updates - Updates to apply\n   * @returns {Promise<User>} Updated user\n   */\n  async updateUser(id, updates) {\n    this.logger.info(`Updating user ${id}`);\n    const validatedUpdates = this.validateUserData(updates, true);\n    return await this.apiClient.patch(`/users/${id}`, validatedUpdates);\n  }\n\n  /**\n   * Validate user data\n   * @private\n   */\n  validateUserData(data, isUpdate = false) {\n    // Validation logic here\n    return data;\n  }\n}\n\nexport { UserService };",
+      "classes": [
+        {
+          "id": "class-user-service",
+          "name": "UserService",
+          "startLine": 7,
+          "endLine": 56,
+          "methods": [
+            {
+              "id": "method-get-user",
+              "name": "getUser",
+              "startLine": 18,
+              "endLine": 26,
+              "code": "async getUser(id) {\n  this.logger.info(`Fetching user ${id}`);\n  try {\n    const response = await this.apiClient.get(`/users/${id}`);\n    return response.data;\n  } catch (error) {\n    this.logger.error('Failed to fetch user', error);\n    throw error;\n  }\n}",
+              "description": "Retrieves a user by their unique identifier from the API"
+            },
+            {
+              "id": "method-create-user",
+              "name": "createUser",
+              "startLine": 33,
+              "endLine": 37,
+              "code": "async createUser(userData) {\n  this.logger.info('Creating new user');\n  const validatedData = this.validateUserData(userData);\n  return await this.apiClient.post('/users', validatedData);\n}",
+              "description": "Creates a new user with validated data"
+            },
+            {
+              "id": "method-update-user",
+              "name": "updateUser",
+              "startLine": 44,
+              "endLine": 48,
+              "code": "async updateUser(id, updates) {\n  this.logger.info(`Updating user ${id}`);\n  const validatedUpdates = this.validateUserData(updates, true);\n  return await this.apiClient.patch(`/users/${id}`, validatedUpdates);\n}",
+              "description": "Updates an existing user with validated changes"
+            },
+            {
+              "id": "method-validate-user-data",
+              "name": "validateUserData",
+              "startLine": 53,
+              "endLine": 56,
+              "code": "validateUserData(data, isUpdate = false) {\n  // Validation logic here\n  return data;\n}",
+              "description": "Private method to validate user data before API calls"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "file-2",
+      "path": "src/utils/logger.js",
+      "startLine": 1,
+      "endLine": 80,
+      "content": "/**\n * Logging utility with different levels\n */\nclass Logger {\n  constructor(module) {\n    this.module = module;\n    this.levels = ['debug', 'info', 'warn', 'error'];\n  }\n\n  debug(message, ...args) {\n    this.log('debug', message, ...args);\n  }\n\n  info(message, ...args) {\n    this.log('info', message, ...args);\n  }\n\n  warn(message, ...args) {\n    this.log('warn', message, ...args);\n  }\n\n  error(message, ...args) {\n    this.log('error', message, ...args);\n  }\n\n  log(level, message, ...args) {\n    const timestamp = new Date().toISOString();\n    console[level](`[${timestamp}] [${this.module}] ${message}`, ...args);\n  }\n}\n\nexport { Logger };",
+      "classes": [
+        {
+          "id": "class-logger",
+          "name": "Logger",
+          "startLine": 4,
+          "endLine": 29,
+          "methods": [
+            {
+              "id": "method-debug",
+              "name": "debug",
+              "startLine": 9,
+              "endLine": 11,
+              "code": "debug(message, ...args) {\n  this.log('debug', message, ...args);\n}",
+              "description": "Logs debug level messages"
+            },
+            {
+              "id": "method-info",
+              "name": "info",
+              "startLine": 13,
+              "endLine": 15,
+              "code": "info(message, ...args) {\n  this.log('info', message, ...args);\n}",
+              "description": "Logs info level messages"
+            },
+            {
+              "id": "method-warn",
+              "name": "warn",
+              "startLine": 17,
+              "endLine": 19,
+              "code": "warn(message, ...args) {\n  this.log('warn', message, ...args);\n}",
+              "description": "Logs warning level messages"
+            },
+            {
+              "id": "method-error",
+              "name": "error",
+              "startLine": 21,
+              "endLine": 23,
+              "code": "error(message, ...args) {\n  this.log('error', message, ...args);\n}",
+              "description": "Logs error level messages"
+            },
+            {
+              "id": "method-log",
+              "name": "log",
+              "startLine": 25,
+              "endLine": 28,
+              "code": "log(level, message, ...args) {\n  const timestamp = new Date().toISOString();\n  console[level](`[${timestamp}] [${this.module}] ${message}`, ...args);\n}",
+              "description": "Core logging method with timestamp and module info"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "file-3",
+      "path": "src/services/apiClient.js",
+      "startLine": 1,
+      "endLine": 95,
+      "content": "/**\n * HTTP API client with common functionality\n */\nclass ApiClient {\n  constructor(baseURL = '/api') {\n    this.baseURL = baseURL;\n    this.headers = {\n      'Content-Type': 'application/json'\n    };\n  }\n\n  async get(endpoint) {\n    return this.request('GET', endpoint);\n  }\n\n  async post(endpoint, data) {\n    return this.request('POST', endpoint, data);\n  }\n\n  async patch(endpoint, data) {\n    return this.request('PATCH', endpoint, data);\n  }\n\n  async delete(endpoint) {\n    return this.request('DELETE', endpoint);\n  }\n\n  async request(method, endpoint, data = null) {\n    const url = `${this.baseURL}${endpoint}`;\n    const config = {\n      method,\n      headers: this.headers\n    };\n\n    if (data) {\n      config.body = JSON.stringify(data);\n    }\n\n    const response = await fetch(url, config);\n    \n    if (!response.ok) {\n      throw new Error(`HTTP ${response.status}: ${response.statusText}`);\n    }\n\n    return response.json();\n  }\n}\n\nexport { ApiClient };",
+      "classes": [
+        {
+          "id": "class-api-client",
+          "name": "ApiClient",
+          "startLine": 4,
+          "endLine": 46,
+          "methods": [
+            {
+              "id": "method-get",
+              "name": "get",
+              "startLine": 11,
+              "endLine": 13,
+              "code": "async get(endpoint) {\n  return this.request('GET', endpoint);\n}",
+              "description": "Performs HTTP GET request"
+            },
+            {
+              "id": "method-post",
+              "name": "post",
+              "startLine": 15,
+              "endLine": 17,
+              "code": "async post(endpoint, data) {\n  return this.request('POST', endpoint, data);\n}",
+              "description": "Performs HTTP POST request with data"
+            },
+            {
+              "id": "method-patch",
+              "name": "patch",
+              "startLine": 19,
+              "endLine": 21,
+              "code": "async patch(endpoint, data) {\n  return this.request('PATCH', endpoint, data);\n}",
+              "description": "Performs HTTP PATCH request with data"
+            },
+            {
+              "id": "method-delete",
+              "name": "delete",
+              "startLine": 23,
+              "endLine": 25,
+              "code": "async delete(endpoint) {\n  return this.request('DELETE', endpoint);\n}",
+              "description": "Performs HTTP DELETE request"
+            },
+            {
+              "id": "method-request",
+              "name": "request",
+              "startLine": 27,
+              "endLine": 45,
+              "code": "async request(method, endpoint, data = null) {\n  const url = `${this.baseURL}${endpoint}`;\n  const config = {\n    method,\n    headers: this.headers\n  };\n\n  if (data) {\n    config.body = JSON.stringify(data);\n  }\n\n  const response = await fetch(url, config);\n  \n  if (!response.ok) {\n    throw new Error(`HTTP ${response.status}: ${response.statusText}`);\n  }\n\n  return response.json();\n}",
+              "description": "Core HTTP request method with error handling"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "file-4",
+      "path": "src/components/dashboard.js",
+      "startLine": 1,
+      "endLine": 150,
+      "content": "import { UserService } from '../services/userService.js';\nimport { Logger } from '../utils/logger.js';\n\n/**\n * Main dashboard component\n */\nclass Dashboard {\n  constructor(container) {\n    this.container = container;\n    this.userService = new UserService();\n    this.logger = new Logger('Dashboard');\n    this.users = [];\n  }\n\n  async initialize() {\n    this.logger.info('Initializing dashboard');\n    await this.loadUsers();\n    this.render();\n    this.bindEvents();\n  }\n\n  async loadUsers() {\n    try {\n      this.users = await this.userService.getAllUsers();\n      this.logger.info(`Loaded ${this.users.length} users`);\n    } catch (error) {\n      this.logger.error('Failed to load users', error);\n      this.showError('Failed to load users');\n    }\n  }\n\n  render() {\n    const html = `\n      <div class=\"dashboard\">\n        <h1>User Dashboard</h1>\n        <div class=\"user-list\">\n          ${this.users.map(user => this.renderUser(user)).join('')}\n        </div>\n      </div>\n    `;\n    this.container.innerHTML = html;\n  }\n\n  renderUser(user) {\n    return `\n      <div class=\"user-card\" data-user-id=\"${user.id}\">\n        <h3>${user.name}</h3>\n        <p>${user.email}</p>\n        <button class=\"edit-btn\">Edit</button>\n        <button class=\"delete-btn\">Delete</button>\n      </div>\n    `;\n  }\n\n  bindEvents() {\n    this.container.addEventListener('click', (e) => {\n      if (e.target.classList.contains('edit-btn')) {\n        this.editUser(e.target.closest('.user-card').dataset.userId);\n      }\n      if (e.target.classList.contains('delete-btn')) {\n        this.deleteUser(e.target.closest('.user-card').dataset.userId);\n      }\n    });\n  }\n\n  async editUser(userId) {\n    this.logger.info(`Editing user ${userId}`);\n    // Edit logic here\n  }\n\n  async deleteUser(userId) {\n    this.logger.info(`Deleting user ${userId}`);\n    try {\n      await this.userService.deleteUser(userId);\n      await this.loadUsers();\n      this.render();\n    } catch (error) {\n      this.logger.error('Failed to delete user', error);\n      this.showError('Failed to delete user');\n    }\n  }\n\n  showError(message) {\n    // Show error message to user\n    console.error(message);\n  }\n}\n\nexport { Dashboard };",
+      "classes": [
+        {
+          "id": "class-dashboard",
+          "name": "Dashboard",
+          "startLine": 7,
+          "endLine": 77,
+          "methods": [
+            {
+              "id": "method-initialize",
+              "name": "initialize",
+              "startLine": 14,
+              "endLine": 19,
+              "code": "async initialize() {\n  this.logger.info('Initializing dashboard');\n  await this.loadUsers();\n  this.render();\n  this.bindEvents();\n}",
+              "description": "Initializes the dashboard component"
+            },
+            {
+              "id": "method-load-users",
+              "name": "loadUsers",
+              "startLine": 21,
+              "endLine": 29,
+              "code": "async loadUsers() {\n  try {\n    this.users = await this.userService.getAllUsers();\n    this.logger.info(`Loaded ${this.users.length} users`);\n  } catch (error) {\n    this.logger.error('Failed to load users', error);\n    this.showError('Failed to load users');\n  }\n}",
+              "description": "Loads users from the service with error handling"
+            },
+            {
+              "id": "method-render",
+              "name": "render",
+              "startLine": 31,
+              "endLine": 40,
+              "code": "render() {\n  const html = `\n    <div class=\"dashboard\">\n      <h1>User Dashboard</h1>\n      <div class=\"user-list\">\n        ${this.users.map(user => this.renderUser(user)).join('')}\n      </div>\n    </div>\n  `;\n  this.container.innerHTML = html;\n}",
+              "description": "Renders the dashboard HTML"
+            },
+            {
+              "id": "method-render-user",
+              "name": "renderUser",
+              "startLine": 42,
+              "endLine": 50,
+              "code": "renderUser(user) {\n  return `\n    <div class=\"user-card\" data-user-id=\"${user.id}\">\n      <h3>${user.name}</h3>\n      <p>${user.email}</p>\n      <button class=\"edit-btn\">Edit</button>\n      <button class=\"delete-btn\">Delete</button>\n    </div>\n  `;\n}",
+              "description": "Renders individual user card HTML"
+            },
+            {
+              "id": "method-bind-events",
+              "name": "bindEvents",
+              "startLine": 52,
+              "endLine": 60,
+              "code": "bindEvents() {\n  this.container.addEventListener('click', (e) => {\n    if (e.target.classList.contains('edit-btn')) {\n      this.editUser(e.target.closest('.user-card').dataset.userId);\n    }\n    if (e.target.classList.contains('delete-btn')) {\n      this.deleteUser(e.target.closest('.user-card').dataset.userId);\n    }\n  });\n}",
+              "description": "Binds event listeners for user interactions"
+            },
+            {
+              "id": "method-edit-user",
+              "name": "editUser",
+              "startLine": 62,
+              "endLine": 65,
+              "code": "async editUser(userId) {\n  this.logger.info(`Editing user ${userId}`);\n  // Edit logic here\n}",
+              "description": "Handles user editing functionality"
+            },
+            {
+              "id": "method-delete-user",
+              "name": "deleteUser",
+              "startLine": 67,
+              "endLine": 75,
+              "code": "async deleteUser(userId) {\n  this.logger.info(`Deleting user ${userId}`);\n  try {\n    await this.userService.deleteUser(userId);\n    await this.loadUsers();\n    this.render();\n  } catch (error) {\n    this.logger.error('Failed to delete user', error);\n    this.showError('Failed to delete user');\n  }\n}",
+              "description": "Handles user deletion with error handling"
+            },
+            {
+              "id": "method-show-error",
+              "name": "showError",
+              "startLine": 77,
+              "endLine": 80,
+              "code": "showError(message) {\n  // Show error message to user\n  console.error(message);\n}",
+              "description": "Displays error messages to users"
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "graphNodes": [
+    {
+      "id": "file-1",
+      "type": "file",
+      "position": { "x": 100, "y": 50 },
+      "data": {
+        "label": "userService.js",
+        "fileId": "file-1",
+        "description": "Service for managing user operations"
+      }
+    },
+    {
+      "id": "file-2",
+      "type": "file",
+      "position": { "x": 350, "y": 150 },
+      "data": {
+        "label": "logger.js",
+        "fileId": "file-2",
+        "description": "Logging utility with different levels"
+      }
+    },
+    {
+      "id": "file-3",
+      "type": "file",
+      "position": { "x": 100, "y": 250 },
+      "data": {
+        "label": "apiClient.js",
+        "fileId": "file-3",
+        "description": "HTTP API client with common functionality"
+      }
+    },
+    {
+      "id": "file-4",
+      "type": "file",
+      "position": { "x": 350, "y": 50 },
+      "data": {
+        "label": "dashboard.js",
+        "fileId": "file-4",
+        "description": "Main dashboard component"
+      }
+    },
+    {
+      "id": "class-user-service",
+      "type": "class",
+      "position": { "x": 50, "y": 100 },
+      "data": {
+        "label": "UserService",
+        "fileId": "file-1",
+        "classId": "class-user-service",
+        "description": "Service class for user operations"
+      },
+      "parentNode": "file-1",
+      "extent": "parent"
+    },
+    {
+      "id": "class-logger",
+      "type": "class",
+      "position": { "x": 50, "y": 100 },
+      "data": {
+        "label": "Logger",
+        "fileId": "file-2",
+        "classId": "class-logger",
+        "description": "Logging utility class"
+      },
+      "parentNode": "file-2",
+      "extent": "parent"
+    },
+    {
+      "id": "class-api-client",
+      "type": "class",
+      "position": { "x": 50, "y": 100 },
+      "data": {
+        "label": "ApiClient",
+        "fileId": "file-3",
+        "classId": "class-api-client",
+        "description": "HTTP API client class"
+      },
+      "parentNode": "file-3",
+      "extent": "parent"
+    },
+    {
+      "id": "class-dashboard",
+      "type": "class",
+      "position": { "x": 50, "y": 100 },
+      "data": {
+        "label": "Dashboard",
+        "fileId": "file-4",
+        "classId": "class-dashboard",
+        "description": "Main dashboard component class"
+      },
+      "parentNode": "file-4",
+      "extent": "parent"
+    }
+  ],
+  "graphEdges": [
+    {
+      "id": "edge-1",
+      "source": "file-1",
+      "target": "file-3",
+      "label": "imports"
+    },
+    {
+      "id": "edge-2",
+      "source": "file-1",
+      "target": "file-2",
+      "label": "imports"
+    },
+    {
+      "id": "edge-3",
+      "source": "file-4",
+      "target": "file-1",
+      "label": "imports"
+    },
+    {
+      "id": "edge-4",
+      "source": "file-4",
+      "target": "file-2",
+      "label": "imports"
+    }
+  ]
+}

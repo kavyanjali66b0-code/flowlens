@@ -1,73 +1,46 @@
-# Welcome to your Lovable project
+# FlowLens Code Explorer - Frontend
 
-## Project info
+FlowLens Code Explorer is a web-based frontend application that allows users to visualize and explore the structure of code. It provides an intuitive interface to upload, analyze, and navigate through different codebases.
 
-**URL**: https://lovable.dev/projects/667c6726-f029-4996-bbe5-78d77af3290f
+## Features
 
-## How can I edit this code?
+- **Upload Code**: Users can upload code files or folders to analyze.
+- **Visualize Code Structure**: Displays an interactive view of code files, functions, and classes.
+- **Multi-language Support**: Works with multiple programming languages (Java, Python, JavaScript, etc.).
+- **Responsive UI**: Designed with modern UI components for ease of use.
 
-There are several ways of editing your application.
+## Tech Stack
 
-**Use Lovable**
+- **Frontend Framework**: React
+- **Styling**: Tailwind CSS
+- **TypeScript** for type safety
+- **State Management**: React Hooks
+- **Services**: Custom APIs to fetch and process code analysis data
 
-Simply visit the [Lovable Project](https://lovable.dev/projects/667c6726-f029-4996-bbe5-78d77af3290f) and start prompting.
+## Installation
 
-Changes made via Lovable will be committed automatically to this repo.
+1. Clone the repository:
 
-**Use your preferred IDE**
+```bash
+git clone https://github.com/kavyanjali66b0-code/flowlens-code-explorer.git
 
-If you want to work locally using your own IDE, you can clone this repo and push changes. Pushed changes will also be reflected in Lovable.
+cd flowlens-code-explorer
 
-The only requirement is having Node.js & npm installed - [install with nvm](https://github.com/nvm-sh/nvm#installing-and-updating)
+Install dependencies:
 
-Follow these steps:
+npm install
 
-```sh
-# Step 1: Clone the repository using the project's Git URL.
-git clone <YOUR_GIT_URL>
+Run the development server:
 
-# Step 2: Navigate to the project directory.
-cd <YOUR_PROJECT_NAME>
+npm start
 
-# Step 3: Install the necessary dependencies.
-npm i
+Open your browser at http://localhost:8080 to see the app.
 
-# Step 4: Start the development server with auto-reloading and an instant preview.
-npm run dev
-```
 
-**Edit a file directly in GitHub**
+##Contributing:
 
-- Navigate to the desired file(s).
-- Click the "Edit" button (pencil icon) at the top right of the file view.
-- Make your changes and commit the changes.
+Contributions are welcome! Please open an issue or submit a pull request for new features, bug fixes, or improvements.
 
-**Use GitHub Codespaces**
+##License
 
-- Navigate to the main page of your repository.
-- Click on the "Code" button (green button) near the top right.
-- Select the "Codespaces" tab.
-- Click on "New codespace" to launch a new Codespace environment.
-- Edit files directly within the Codespace and commit and push your changes once you're done.
-
-## What technologies are used for this project?
-
-This project is built with:
-
-- Vite
-- TypeScript
-- React
-- shadcn-ui
-- Tailwind CSS
-
-## How can I deploy this project?
-
-Simply open [Lovable](https://lovable.dev/projects/667c6726-f029-4996-bbe5-78d77af3290f) and click on Share -> Publish.
-
-## Can I connect a custom domain to my Lovable project?
-
-Yes, you can!
-
-To connect a domain, navigate to Project > Settings > Domains and click Connect Domain.
-
-Read more here: [Setting up a custom domain](https://docs.lovable.dev/tips-tricks/custom-domain#step-by-step-guide)
+This project is licensed under the MIT License.

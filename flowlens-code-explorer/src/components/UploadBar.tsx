@@ -6,7 +6,7 @@ import { toast } from 'react-toastify';
 
 const UploadBar: React.FC = () => {
   const [mode, setMode] = useState<'upload' | 'github'>('upload');
-  const [repoUrl, setRepoUrl] = useState('');
+  const [repoUrl, setRepoUrl] = useState(''); // Initialize with empty string to avoid controlled/uncontrolled warning
   const { setProjectData, setLoading, isLoading } = useFlowLensStore();
 
   const handleAnalyze = async () => {

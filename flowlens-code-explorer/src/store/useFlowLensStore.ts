@@ -5,6 +5,8 @@ export interface ProjectMeta {
   fileCount: number;
   classCount: number;
   methodCount: number;
+  framework?: string;
+  language?: string;
 }
 
 export interface Method {
@@ -33,18 +35,23 @@ export interface File {
   classes: Class[];
 }
 
+export interface GraphNodeData {
+  label: string;
+  fileId?: string;
+  classId?: string;
+  methodId?: string;
+  description?: string;
+  dimmed?: boolean;
+  originalId?: string;
+  nodeType?: string;
+  type?: 'file' | 'class' | 'method';
+}
+
 export interface GraphNode {
   id: string;
   type: 'file' | 'class' | 'method';
   position: { x: number; y: number };
-  data: {
-    label: string;
-    fileId?: string;
-    classId?: string;
-    methodId?: string;
-    description?: string;
-    dimmed?: boolean;
-  };
+  data: GraphNodeData;
   parentNode?: string;
   extent?: 'parent';
 }
@@ -56,6 +63,11 @@ export interface GraphEdge {
   type?: string;
   animated?: boolean;
   label?: string;
+  style?: {
+    strokeWidth?: number;
+    stroke?: string;
+    opacity?: number;
+  };
 }
 
 export type ViewLevel = 'repo' | 'file' | 'class' | 'method';
@@ -74,13 +86,17 @@ interface FlowLensState {
   filterType: FilterType;
   viewLevel: ViewLevel;
   
-  // Selection
+  // Selection (for navigation)
   selectedFileId: string | null;
   selectedClassId: string | null;
   selectedMethodId: string | null;
   
+  // Inspection (for code viewing - separate from navigation)
+  inspectedNodeId: string | null;
+  
   // Loading
   isLoading: boolean;
+  error: string | null;
   
   // Actions
   setProjectData: (data: {
@@ -93,11 +109,24 @@ interface FlowLensState {
   setSearchQuery: (query: string) => void;
   setFilterType: (type: FilterType) => void;
   setViewLevel: (level: ViewLevel) => void;
+  
+  // Navigation actions (drill down into components)
   setSelectedFile: (fileId: string | null) => void;
   setSelectedClass: (classId: string | null) => void;
   setSelectedMethod: (methodId: string | null) => void;
   clearSelection: () => void;
+  
+  // Inspection actions (view code without navigation)
+  setInspectedNode: (nodeId: string | null) => void;
+  
   setLoading: (loading: boolean) => void;
+  setError: (error: string | null) => void;
+  
+  // Helper methods
+  getSelectedNode: () => GraphNode | null;
+  getInspectedNode: () => GraphNode | null;
+  getNodeById: (id: string) => GraphNode | null;
+  getRelatedNodes: (nodeId: string) => GraphNode[];
 }
 
 export const useFlowLensStore = create<FlowLensState>((set, get) => ({
@@ -115,11 +144,24 @@ export const useFlowLensStore = create<FlowLensState>((set, get) => ({
   selectedFileId: null,
   selectedClassId: null,
   selectedMethodId: null,
+  inspectedNodeId: null,
   
   isLoading: false,
+  error: null,
   
   // Actions
-  setProjectData: (data) => set(data),
+  setProjectData: (data) => {
+    console.log('Setting project data:', data);
+    set({ 
+      ...data,
+      viewLevel: 'repo',
+      selectedFileId: null,
+      selectedClassId: null,
+      selectedMethodId: null,
+      inspectedNodeId: null,
+      error: null
+    });
+  },
   
   setDarkMode: (darkMode) => {
     set({ darkMode });
@@ -133,29 +175,43 @@ export const useFlowLensStore = create<FlowLensState>((set, get) => ({
   
   setFilterType: (filterType) => set({ filterType }),
   
-  setViewLevel: (viewLevel) => set({ viewLevel }),
+  setViewLevel: (viewLevel) => {
+    console.log('Setting view level to:', viewLevel);
+    set({ viewLevel });
+  },
   
+  // Navigation actions (these change the view)
   setSelectedFile: (selectedFileId) => {
+    console.log('Setting selected file:', selectedFileId);
     set({ 
       selectedFileId,
       selectedClassId: null,
       selectedMethodId: null,
-      viewLevel: selectedFileId ? 'file' : 'repo'
+      viewLevel: selectedFileId ? 'file' : 'repo',
+      error: null
     });
   },
   
   setSelectedClass: (selectedClassId) => {
+    console.log('Setting selected class:', selectedClassId);
+    const state = get();
     set({ 
       selectedClassId,
       selectedMethodId: null,
-      viewLevel: selectedClassId ? 'class' : get().selectedFileId ? 'file' : 'repo'
+      viewLevel: selectedClassId ? 'class' : state.selectedFileId ? 'file' : 'repo',
+      error: null
     });
   },
   
   setSelectedMethod: (selectedMethodId) => {
+    console.log('Setting selected method:', selectedMethodId);
+    const state = get();
     set({ 
       selectedMethodId,
-      viewLevel: selectedMethodId ? 'method' : get().selectedClassId ? 'class' : get().selectedFileId ? 'file' : 'repo'
+      viewLevel: selectedMethodId ? 'method' : 
+                 state.selectedClassId ? 'class' : 
+                 state.selectedFileId ? 'file' : 'repo',
+      error: null
     });
   },
   
@@ -163,8 +219,68 @@ export const useFlowLensStore = create<FlowLensState>((set, get) => ({
     selectedFileId: null,
     selectedClassId: null,
     selectedMethodId: null,
-    viewLevel: 'repo'
+    viewLevel: 'repo',
+    searchQuery: '',
+    error: null
   }),
   
+  // Inspection action (for code viewing)
+  setInspectedNode: (inspectedNodeId) => {
+    console.log('Setting inspected node:', inspectedNodeId);
+    set({ inspectedNodeId });
+  },
+  
   setLoading: (isLoading) => set({ isLoading }),
+  
+  setError: (error) => set({ error }),
+  
+  // Helper methods
+  getSelectedNode: () => {
+    const state = get();
+    const selectedId = state.selectedMethodId || state.selectedClassId || state.selectedFileId;
+    if (!selectedId) return null;
+    
+    return state.graphNodes.find(node => node.id === selectedId) || null;
+  },
+  
+  getInspectedNode: () => {
+    const state = get();
+    if (!state.inspectedNodeId) return null;
+    
+    return state.graphNodes.find(node => node.id === state.inspectedNodeId) || null;
+  },
+  
+  getNodeById: (id: string) => {
+    const state = get();
+    return state.graphNodes.find(node => node.id === id) || null;
+  },
+  
+  getRelatedNodes: (nodeId: string) => {
+    const state = get();
+    const node = state.graphNodes.find(n => n.id === nodeId);
+    if (!node) return [];
+    
+    const related: GraphNode[] = [];
+    
+    if (node.type === 'file') {
+      related.push(...state.graphNodes.filter(n => n.data.fileId === nodeId));
+    } else if (node.type === 'class') {
+      related.push(...state.graphNodes.filter(n => n.data.classId === nodeId));
+      if (node.data.fileId) {
+        const parentFile = state.graphNodes.find(n => n.id === node.data.fileId);
+        if (parentFile) related.push(parentFile);
+      }
+    } else if (node.type === 'method') {
+      if (node.data.classId) {
+        const parentClass = state.graphNodes.find(n => n.id === node.data.classId);
+        if (parentClass) related.push(parentClass);
+      }
+      if (node.data.fileId) {
+        const parentFile = state.graphNodes.find(n => n.id === node.data.fileId);
+        if (parentFile) related.push(parentFile);
+      }
+    }
+    
+    return related;
+  },
 }));

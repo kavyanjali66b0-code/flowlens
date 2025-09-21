@@ -32,8 +32,10 @@ const App: React.FC = () => {
           <Overview />
           
           <ReactFlowProvider>
-            <GraphView />
-            <BottomToolbar />
+            <div className="flex-1 relative">
+              <GraphView />
+              <BottomToolbar />
+            </div>
           </ReactFlowProvider>
           
           <CodePanel />

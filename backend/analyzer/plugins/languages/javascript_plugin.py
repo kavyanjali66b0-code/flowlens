@@ -9,6 +9,7 @@ from typing import List, Dict, Any, Optional, Set
 
 from ..base import LanguagePlugin
 from ...models import Node, NodeType
+from ...symbol_table import Symbol, SymbolType, SymbolReference
 
 
 class JavaScriptPlugin(LanguagePlugin):
@@ -78,24 +79,61 @@ class JavaScriptPlugin(LanguagePlugin):
         
         return nodes, symbols
     
+    def parse_with_ast(self, file_path: Path, content: str, tree_sitter_ast: Any, is_entry: bool = False) -> tuple[List[Node], Dict[str, Any]]:
+        """Parse JavaScript/TypeScript file using pre-parsed tree-sitter AST.
+        
+        This optimized version uses existing AST instead of re-parsing.
+        """
+        nodes = []
+        symbols = {
+            'declared': [],
+            'imports': [],
+            'jsx_components': []
+        }
+        relative_path = str(file_path.relative_to(self.project_path))
+        
+        try:
+            # Create module node for the file
+            module_name = file_path.stem
+            module_id = self._generate_node_id(relative_path, 'module')
+            c4_level = self._determine_c4_level(NodeType.MODULE, relative_path, module_name, is_entry)
+            module_node = Node(
+                id=module_id,
+                type=NodeType.MODULE,
+                file=relative_path,
+                name=module_name,
+                metadata={"is_entry": is_entry, "c4_level": c4_level}
+            )
+            nodes.append(module_node)
+            
+            # Use provided AST directly
+            function_nodes, file_symbols = self._parse_with_tree_sitter(tree_sitter_ast, content, relative_path, file_path.suffix, is_entry)
+            nodes.extend(function_nodes)
+            symbols.update(file_symbols)
+            
+        except Exception as e:
+            logging.error(f"Failed to parse JavaScript file with AST {relative_path}: {e}")
+            # Fallback to regex parsing
+            try:
+                function_nodes, file_symbols = self._parse_with_regex(content, relative_path, file_path.suffix, is_entry)
+                nodes.extend(function_nodes)
+                symbols.update(file_symbols)
+            except Exception as fallback_error:
+                logging.error(f"Fallback parsing also failed for {relative_path}: {fallback_error}")
+        
+        return nodes, symbols
+    
     def _get_ts_language(self, ext: str):
         """Get TypeScript/JavaScript language for tree-sitter with multiple fallbacks."""
         try:
+            from tree_sitter import Language
+            
             if ext in ['.js', '.jsx']:
                 # Try JavaScript language
                 try:
                     import tree_sitter_javascript
-                    # Try different attribute names
-                    if hasattr(tree_sitter_javascript, 'language'):
-                        return tree_sitter_javascript.language()
-                    elif hasattr(tree_sitter_javascript, 'LANGUAGE'):
-                        return tree_sitter_javascript.LANGUAGE
-                    else:
-                        # Check what attributes are available
-                        attrs = [attr for attr in dir(tree_sitter_javascript) if not attr.startswith('_')]
-                        logging.debug(f"tree_sitter_javascript attributes: {attrs}")
-                        if 'language_javascript' in attrs:
-                            return getattr(tree_sitter_javascript, 'language_javascript')()
+                    # tree-sitter 0.21+ returns an int pointer that needs to be wrapped
+                    return Language(tree_sitter_javascript.language(), 'javascript')
                 except ImportError:
                     logging.debug("tree_sitter_javascript not available")
             
@@ -103,27 +141,12 @@ class JavaScriptPlugin(LanguagePlugin):
                 # Try TypeScript language
                 try:
                     import tree_sitter_typescript
-                    # Try different attribute names
-                    if hasattr(tree_sitter_typescript, 'language'):
-                        return tree_sitter_typescript.language()
-                    elif hasattr(tree_sitter_typescript, 'language_typescript'):
-                        return tree_sitter_typescript.language_typescript()
-                    elif hasattr(tree_sitter_typescript, 'language_tsx'):
-                        return tree_sitter_typescript.language_tsx()
-                    elif hasattr(tree_sitter_typescript, 'LANGUAGE'):
-                        return tree_sitter_typescript.LANGUAGE
-                    else:
-                        # Check what attributes are available
-                        attrs = [attr for attr in dir(tree_sitter_typescript) if not attr.startswith('_')]
-                        logging.debug(f"tree_sitter_typescript attributes: {attrs}")
-                        # Try common attribute patterns
-                        for attr_name in ['language_typescript', 'language_tsx', 'typescript', 'tsx']:
-                            if attr_name in attrs:
-                                attr = getattr(tree_sitter_typescript, attr_name)
-                                if callable(attr):
-                                    return attr()
-                                else:
-                                    return attr
+                    # tree-sitter 0.21+ returns an int pointer that needs to be wrapped
+                    # TypeScript has separate functions for .ts and .tsx
+                    if ext == '.tsx':
+                        return Language(tree_sitter_typescript.language_tsx(), 'tsx')
+                    else:  # .ts
+                        return Language(tree_sitter_typescript.language_typescript(), 'typescript')
                 except ImportError:
                     logging.debug("tree_sitter_typescript not available")
             
@@ -155,6 +178,10 @@ class JavaScriptPlugin(LanguagePlugin):
             'jsx_components': []
         }
         
+        # Import Symbol and SymbolType if symbol_table is available
+        if self.symbol_table:
+            from ...symbol_table import Symbol, SymbolType
+        
         # Extract imports using regex
         import_patterns = [
             r"import\s+.*?\s+from\s+['\"]([^'\"]+)['\"]",
@@ -168,43 +195,83 @@ class JavaScriptPlugin(LanguagePlugin):
         
         # Extract function declarations
         func_patterns = [
-            r"function\s+(\w+)\s*\(",
-            r"const\s+(\w+)\s*=\s*\([^)]*\)\s*=>\s*{",
-            r"let\s+(\w+)\s*=\s*\([^)]*\)\s*=>\s*{",
-            r"var\s+(\w+)\s*=\s*\([^)]*\)\s*=>\s*{",
-            r"const\s+(\w+)\s*=\s*function\s*\(",
-            r"export\s+function\s+(\w+)\s*\("
+            (r"export\s+function\s+(\w+)\s*\(", True, False),  # export function
+            (r"export\s+default\s+function\s+(\w+)\s*\(", True, True),  # export default function
+            (r"function\s+(\w+)\s*\(", False, False),  # function
+            (r"export\s+const\s+(\w+)\s*=\s*\([^)]*\)\s*=>\s*{", True, False),  # export const arrow
+            (r"const\s+(\w+)\s*=\s*\([^)]*\)\s*=>\s*{", False, False),  # const arrow
+            (r"let\s+(\w+)\s*=\s*\([^)]*\)\s*=>\s*{", False, False),  # let arrow
+            (r"var\s+(\w+)\s*=\s*\([^)]*\)\s*=>\s*{", False, False),  # var arrow
+            (r"const\s+(\w+)\s*=\s*function\s*\(", False, False),  # const function expression
         ]
         
         declared_names = set()
-        for pattern in func_patterns:
-            matches = re.findall(pattern, content, re.MULTILINE)
-            for match in matches:
-                if match and match not in declared_names:
-                    declared_names.add(match)
-                    is_component = match[0].isupper() and ext in ['.tsx', '.jsx']
+        for pattern, is_exported, is_default in func_patterns:
+            matches = re.finditer(pattern, content, re.MULTILINE)
+            for match_obj in matches:
+                func_name = match_obj.group(1)
+                if func_name and func_name not in declared_names:
+                    declared_names.add(func_name)
+                    is_component = func_name[0].isupper() and ext in ['.tsx', '.jsx']
                     node_type = NodeType.COMPONENT if is_component else NodeType.FUNCTION
-                    c4_level = self._determine_c4_level(node_type, relative_path, match, is_entry)
-                    node_id = self._generate_node_id(relative_path, match)
+                    c4_level = self._determine_c4_level(node_type, relative_path, func_name, is_entry)
+                    node_id = self._generate_node_id(relative_path, func_name)
                     graph_node = Node(
-                        id=node_id, type=node_type, file=relative_path, name=match,
+                        id=node_id, type=node_type, file=relative_path, name=func_name,
                         metadata={"is_entry": is_entry, "c4_level": c4_level}
                     )
                     nodes.append(graph_node)
+                    
+                    # Add to symbol table
+                    if self.symbol_table:
+                        line_number = content[:match_obj.start()].count('\n') + 1
+                        symbol = Symbol(
+                            name=func_name,
+                            symbol_type=SymbolType.FUNCTION,
+                            file_path=relative_path,
+                            line_number=line_number,
+                            scope="module",
+                            is_exported=is_exported,
+                            is_default_export=is_default,
+                            metadata={"is_component": is_component, "node_type": node_type.value}
+                        )
+                        self.symbol_table.add_symbol(symbol)
         
         # Extract class declarations
-        class_pattern = r"class\s+(\w+)\s*(?:extends\s+\w+)?\s*{"
-        class_matches = re.findall(class_pattern, content, re.MULTILINE)
-        for class_name in class_matches:
-            if class_name and class_name not in declared_names:
-                declared_names.add(class_name)
-                c4_level = self._determine_c4_level(NodeType.CLASS, relative_path, class_name, is_entry)
-                node_id = self._generate_node_id(relative_path, class_name)
-                graph_node = Node(
-                    id=node_id, type=NodeType.CLASS, file=relative_path, name=class_name,
-                    metadata={"is_entry": is_entry, "c4_level": c4_level}
-                )
-                nodes.append(graph_node)
+        class_patterns = [
+            (r"export\s+class\s+(\w+)\s*(?:extends\s+\w+)?\s*{", True, False),  # export class
+            (r"export\s+default\s+class\s+(\w+)\s*(?:extends\s+\w+)?\s*{", True, True),  # export default class
+            (r"class\s+(\w+)\s*(?:extends\s+\w+)?\s*{", False, False),  # class
+        ]
+        
+        for pattern, is_exported, is_default in class_patterns:
+            matches = re.finditer(pattern, content, re.MULTILINE)
+            for match_obj in matches:
+                class_name = match_obj.group(1)
+                if class_name and class_name not in declared_names:
+                    declared_names.add(class_name)
+                    c4_level = self._determine_c4_level(NodeType.CLASS, relative_path, class_name, is_entry)
+                    node_id = self._generate_node_id(relative_path, class_name)
+                    graph_node = Node(
+                        id=node_id, type=NodeType.CLASS, file=relative_path, name=class_name,
+                        metadata={"is_entry": is_entry, "c4_level": c4_level}
+                    )
+                    nodes.append(graph_node)
+                    
+                    # Add to symbol table
+                    if self.symbol_table:
+                        line_number = content[:match_obj.start()].count('\n') + 1
+                        symbol = Symbol(
+                            name=class_name,
+                            symbol_type=SymbolType.CLASS,
+                            file_path=relative_path,
+                            line_number=line_number,
+                            scope="module",
+                            is_exported=is_exported,
+                            is_default_export=is_default,
+                            metadata={"node_type": NodeType.CLASS.value}
+                        )
+                        self.symbol_table.add_symbol(symbol)
         
         # Extract JSX components for .tsx/.jsx files
         if ext in ['.tsx', '.jsx']:
@@ -258,6 +325,10 @@ class JavaScriptPlugin(LanguagePlugin):
         """Extract functions and classes from the AST."""
         declared_names = set()
         
+        # Import Symbol and SymbolType if symbol_table is available
+        if self.symbol_table:
+            from ...symbol_table import Symbol, SymbolType, SymbolReference
+        
         def walk_node(node):
             # Function declarations
             if node.type == 'function_declaration':
@@ -280,6 +351,24 @@ class JavaScriptPlugin(LanguagePlugin):
                             metadata={"is_entry": is_entry, "c4_level": c4_level}
                         )
                         nodes.append(graph_node)
+                        
+                        # Add to symbol table
+                        if self.symbol_table:
+                            # Check if it's exported
+                            is_exported = self._is_exported(node, content, tree)
+                            is_default = self._is_default_export(node, content, tree)
+                            
+                            symbol = Symbol(
+                                name=func_name,
+                                symbol_type=SymbolType.FUNCTION,
+                                file_path=relative_path,
+                                line_number=name_node.start_point[0] + 1,
+                                scope="module",
+                                is_exported=is_exported,
+                                is_default_export=is_default,
+                                metadata={"is_component": is_component, "node_type": node_type.value}
+                            )
+                            self.symbol_table.add_symbol(symbol)
             
             # Class declarations
             elif node.type == 'class_declaration':
@@ -300,9 +389,31 @@ class JavaScriptPlugin(LanguagePlugin):
                             metadata={"is_entry": is_entry, "c4_level": c4_level}
                         )
                         nodes.append(graph_node)
+                        
+                        # Add to symbol table
+                        if self.symbol_table:
+                            is_exported = self._is_exported(node, content, tree)
+                            is_default = self._is_default_export(node, content, tree)
+                            
+                            symbol = Symbol(
+                                name=class_name,
+                                symbol_type=SymbolType.CLASS,
+                                file_path=relative_path,
+                                line_number=name_node.start_point[0] + 1,
+                                scope="module",
+                                is_exported=is_exported,
+                                is_default_export=is_default,
+                                metadata={"node_type": NodeType.CLASS.value}
+                            )
+                            self.symbol_table.add_symbol(symbol)
+                
+                # NEW: Track class heritage (extends/implements)
+                if self.symbol_table:
+                    self._track_class_heritage(node, content, relative_path)
             
             # Variable declarations (arrow functions, function expressions)
-            elif node.type == 'variable_declaration':
+            # Handle both 'variable_declaration' (JS) and 'lexical_declaration' (TS)
+            elif node.type in ['variable_declaration', 'lexical_declaration']:
                 for child in node.children:
                     if child.type == 'variable_declarator':
                         var_name = None
@@ -313,6 +424,7 @@ class JavaScriptPlugin(LanguagePlugin):
                                 var_name = self._capture_text(content, grandchild)
                             elif grandchild.type in ['arrow_function', 'function_expression']:
                                 is_function = True
+                                func_node = grandchild  # Save function node for hook extraction
                         
                         if var_name and is_function:
                             declared_names.add(var_name)
@@ -320,11 +432,66 @@ class JavaScriptPlugin(LanguagePlugin):
                             node_type = NodeType.COMPONENT if is_component else NodeType.FUNCTION
                             c4_level = self._determine_c4_level(node_type, relative_path, var_name, is_entry)
                             node_id = self._generate_node_id(relative_path, var_name)
+                            
+                            # Extract hooks if it's a component
+                            hooks = []
+                            if is_component and ext in ['.tsx', '.jsx']:
+                                hooks = self._extract_hooks_from_function(func_node, content)
+                            
+                            # Create metadata with hooks
+                            metadata = {"is_entry": is_entry, "c4_level": c4_level}
+                            if hooks:
+                                metadata["hooks"] = hooks
+                            
                             graph_node = Node(
                                 id=node_id, type=node_type, file=relative_path, name=var_name,
-                                metadata={"is_entry": is_entry, "c4_level": c4_level}
+                                metadata=metadata
                             )
                             nodes.append(graph_node)
+                            
+                            # Add to symbol table
+                            if self.symbol_table:
+                                is_exported = self._is_exported(node.parent, content, tree)
+                                is_default = self._is_default_export(node.parent, content, tree)
+                                
+                                symbol = Symbol(
+                                    name=var_name,
+                                    symbol_type=SymbolType.FUNCTION,
+                                    file_path=relative_path,
+                                    line_number=child.start_point[0] + 1,
+                                    scope="module",
+                                    is_exported=is_exported,
+                                    is_default_export=is_default,
+                                    metadata={"is_component": is_component, "node_type": node_type.value}
+                                )
+                                self.symbol_table.add_symbol(symbol)
+                        elif var_name and not is_function:
+                            # Add constants and variables to symbol table
+                            if self.symbol_table:
+                                # Check if it's const or let to determine type
+                                is_const = node.type == 'const'
+                                parent_text = self._capture_text(content, node.parent) if node.parent else ""
+                                is_exported = 'export' in parent_text
+                                
+                                symbol = Symbol(
+                                    name=var_name,
+                                    symbol_type=SymbolType.CONSTANT if is_const else SymbolType.VARIABLE,
+                                    file_path=relative_path,
+                                    line_number=child.start_point[0] + 1,
+                                    scope="module",
+                                    is_exported=is_exported,
+                                    is_default_export=False,
+                                    metadata={}
+                                )
+                                self.symbol_table.add_symbol(symbol)
+            
+            # NEW: Track function calls
+            elif node.type == 'call_expression' and self.symbol_table:
+                self._track_function_call(node, content, relative_path)
+            
+            # NEW: Track class instantiation
+            elif node.type == 'new_expression' and self.symbol_table:
+                self._track_instantiation(node, content, relative_path)
             
             # Recursively walk children
             for child in node.children:
@@ -353,6 +520,40 @@ class JavaScriptPlugin(LanguagePlugin):
         
         walk_node(tree.root_node)
         return imports
+    
+    
+    def _extract_hooks_from_function(self, func_node, content: str) -> List[Dict[str, Any]]:
+        """Extract React hooks (useState, useEffect, etc.) from a function node."""
+        hooks = []
+        
+        def walk_node(node):
+            # Look for call expressions that are hooks (start with 'use')
+            if node.type == 'call_expression':
+                # Get the function being called
+                callee = node.children[0] if node.children else None
+                if callee and callee.type == 'identifier':
+                    hook_name = self._capture_text(content, callee)
+                    if hook_name and hook_name.startswith('use'):
+                        # Extract arguments if any
+                        args = []
+                        for child in node.children:
+                            if child.type == 'arguments':
+                                # Simple extraction - just get the text
+                                args_text = self._capture_text(content, child)
+                                args.append(args_text)
+                        
+                        hooks.append({
+                            'hook': hook_name,
+                            'args': args[0] if args else ''
+                        })
+            
+            # Recursively walk children
+            for child in node.children:
+                walk_node(child)
+        
+        # Walk the function body
+        walk_node(func_node)
+        return hooks
     
     def _extract_jsx_components(self, tree, content: str) -> List[str]:
         """Extract JSX component usage."""
@@ -425,3 +626,217 @@ class JavaScriptPlugin(LanguagePlugin):
             return "code"
         
         return "code"
+    
+    def _is_exported(self, node, content: str, tree) -> bool:
+        """Check if a node is exported."""
+        if not node:
+            return False
+        
+        # Check if parent is export_statement
+        current = node
+        while current:
+            if current.type in ['export_statement', 'export_declaration']:
+                return True
+            # Check if text around node contains 'export'
+            if current.parent and current.parent.type == 'program':
+                # Get a small window around the node
+                start = max(0, current.start_byte - 50)
+                end = min(len(content), current.start_byte + 10)
+                window = content[start:end]
+                if 'export' in window:
+                    return True
+            current = current.parent if hasattr(current, 'parent') else None
+        
+        return False
+    
+    def _is_default_export(self, node, content: str, tree) -> bool:
+        """Check if a node is a default export."""
+        if not node:
+            return False
+        
+        # Check parent chain for default export
+        current = node
+        while current:
+            if current.type in ['export_statement', 'export_declaration']:
+                # Check if it contains 'default'
+                export_text = self._capture_text(content, current)
+                if 'default' in export_text:
+                    return True
+            current = current.parent if hasattr(current, 'parent') else None
+        
+        return False
+    
+    def _track_function_call(self, node, content: str, relative_path: str):
+        """Track function call references for edge creation.
+        
+        Handles:
+        - Regular function calls: foo()
+        - Method calls: obj.method()
+        - Async calls: await foo()
+        """
+        if not self.symbol_table:
+            return
+        
+        # Extract function name from call_expression
+        function_node = node.child_by_field_name('function')
+        if not function_node:
+            return
+        
+        # Determine if this is an async call
+        is_async = False
+        parent = node.parent if hasattr(node, 'parent') else None
+        while parent:
+            if parent.type == 'await_expression':
+                is_async = True
+                break
+            # Also check if parent is async function
+            if parent.type in ['arrow_function', 'function_declaration', 'method_definition']:
+                # Check if parent has async modifier
+                parent_text = self._capture_text(content, parent)
+                if parent_text.strip().startswith('async '):
+                    is_async = True
+                break
+            parent = parent.parent if hasattr(parent, 'parent') else None
+        
+        # Extract target symbol name
+        target_name = None
+        if function_node.type == 'identifier':
+            # Simple call: foo()
+            target_name = self._capture_text(content, function_node)
+        elif function_node.type == 'member_expression':
+            # Method call: obj.method()
+            property_node = function_node.child_by_field_name('property')
+            if property_node:
+                target_name = self._capture_text(content, property_node)
+        
+        if not target_name:
+            return
+        
+        # Create reference with context
+        context_info = {
+            'is_async': is_async,
+            'call_type': 'async_call' if is_async else 'function_call',
+            'line': node.start_point[0] + 1
+        }
+        
+        # Add reference to symbol table
+        reference = SymbolReference(
+            symbol_name=target_name,
+            file_path=relative_path,
+            line_number=node.start_point[0] + 1,
+            context='async_call' if is_async else 'call',
+            metadata=context_info
+        )
+        self.symbol_table.add_reference(reference)
+    
+    def _track_instantiation(self, node, content: str, relative_path: str):
+        """Track class instantiation references for edge creation.
+        
+        Handles:
+        - new expressions: new ClassName()
+        - Constructor calls with arguments
+        """
+        if not self.symbol_table:
+            return
+        
+        # Extract class name from new_expression
+        # new_expression: new <constructor> ( <arguments> )
+        constructor_node = None
+        for child in node.children:
+            if child.type == 'identifier' or child.type == 'member_expression':
+                constructor_node = child
+                break
+        
+        if not constructor_node:
+            return
+        
+        # Extract class name
+        class_name = None
+        if constructor_node.type == 'identifier':
+            # Simple: new Foo()
+            class_name = self._capture_text(content, constructor_node)
+        elif constructor_node.type == 'member_expression':
+            # Namespaced: new module.Foo()
+            property_node = constructor_node.child_by_field_name('property')
+            if property_node:
+                class_name = self._capture_text(content, property_node)
+        
+        if not class_name:
+            return
+        
+        # Create reference with context
+        context_info = {
+            'instantiation': True,
+            'line': node.start_point[0] + 1
+        }
+        
+        # Add reference to symbol table
+        reference = SymbolReference(
+            symbol_name=class_name,
+            file_path=relative_path,
+            line_number=node.start_point[0] + 1,
+            context='instantiate',
+            metadata=context_info
+        )
+        self.symbol_table.add_reference(reference)
+    
+    def _track_class_heritage(self, node, content: str, relative_path: str):
+        """Track class inheritance and interface implementation.
+        
+        Handles:
+        - extends clause: class Foo extends Bar
+        - implements clause: class Foo implements IBar
+        """
+        if not self.symbol_table:
+            return
+        
+        # Find heritage clause (extends/implements)
+        heritage_clause = node.child_by_field_name('heritage')
+        if not heritage_clause:
+            return
+        
+        # Process each heritage type
+        for child in heritage_clause.children:
+            if child.type == 'extends_clause':
+                # Track extends relationship
+                for identifier in child.children:
+                    if identifier.type == 'identifier':
+                        parent_class = self._capture_text(content, identifier)
+                        
+                        context_info = {
+                            'relationship': 'extends',
+                            'line': child.start_point[0] + 1
+                        }
+                        
+                        reference = SymbolReference(
+                            symbol_name=parent_class,
+                            file_path=relative_path,
+                            line_number=child.start_point[0] + 1,
+                            context='extends',
+                            metadata=context_info
+                        )
+                        self.symbol_table.add_reference(reference)
+            
+            elif child.type == 'implements_clause' or child.type == 'class_heritage':
+                # Track implements relationship
+                for identifier in child.children:
+                    if identifier.type == 'identifier' or identifier.type == 'type_identifier':
+                        interface_name = self._capture_text(content, identifier)
+                        
+                        # Skip keywords
+                        if interface_name in ['implements', 'extends']:
+                            continue
+                        
+                        context_info = {
+                            'relationship': 'implements',
+                            'line': child.start_point[0] + 1
+                        }
+                        
+                        reference = SymbolReference(
+                            symbol_name=interface_name,
+                            file_path=relative_path,
+                            line_number=child.start_point[0] + 1,
+                            context='implements',
+                            metadata=context_info
+                        )
+                        self.symbol_table.add_reference(reference)

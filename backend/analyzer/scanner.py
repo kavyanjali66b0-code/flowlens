@@ -28,6 +28,11 @@ class ProjectScanner:
         self.config_files: List[ConfigFile] = []
         self.detected_types: Set[ProjectType] = set()
         
+        # Load user configuration
+        from .config_loader import ConfigLoader
+        self.user_config = ConfigLoader.load(self.project_path)
+        logging.info(f"Loaded config for scanner: {self.user_config.project_type or 'auto-detect'}")
+        
         # Initialize scanner plugins
         self.scanner_plugins = [
             VitePlugin(project_path),
@@ -53,11 +58,8 @@ class ProjectScanner:
         # Get all files in the project
         all_files = []
         for root, dirs, files in os.walk(self.project_path):
-            # Skip common directories that shouldn't be scanned
-            dirs[:] = [d for d in dirs if d not in {
-                '.git', 'node_modules', '_pycache_', '.venv', 'venv', 
-                'target', 'build', 'dist', '__pycache__'
-            }]
+            # Filter directories using user config exclusion patterns
+            dirs[:] = [d for d in dirs if not self._should_exclude(d)]
             
             for file in files:
                 file_path = Path(root) / file
@@ -97,6 +99,26 @@ class ProjectScanner:
             "config_files": [{"path": c.path, "type": c.type} for c in self.config_files],
             "detected_types": [t.value for t in self.detected_types] or [ProjectType.UNKNOWN.value]
         }
+    
+    def _should_exclude(self, directory_name: str) -> bool:
+        """Check if a directory should be excluded from scanning.
+        
+        Args:
+            directory_name: Name of the directory to check
+            
+        Returns:
+            bool: True if directory should be excluded, False otherwise
+        """
+        import fnmatch
+        
+        # Check against user-configured exclusion patterns
+        for pattern in self.user_config.exclude:
+            # Support both exact matches and glob patterns
+            if fnmatch.fnmatch(directory_name, pattern) or directory_name == pattern:
+                logging.debug(f"Excluding directory: {directory_name} (matched pattern: {pattern})")
+                return True
+        
+        return False
     
     def _enhance_detection_from_content(self):
         """Enhance project type detection based on config file content.

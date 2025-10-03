@@ -3,18 +3,23 @@ Base plugin classes for the analyzer system.
 """
 
 from abc import ABC, abstractmethod
-from typing import List, Dict, Any, Optional
+from typing import List, Dict, Any, Optional, TYPE_CHECKING
 from pathlib import Path
 
 from ..models import Node, Edge, NodeType, EdgeType, ProjectType
+
+if TYPE_CHECKING:
+    from ..symbol_table import SymbolTable
 
 
 class LanguagePlugin(ABC):
     """Base class for language-specific parsing plugins."""
     
-    def __init__(self, project_path: str, user_config: Optional[Dict[str, Any]] = None):
+    def __init__(self, project_path: str, user_config: Optional[Dict[str, Any]] = None, 
+                 symbol_table: Optional['SymbolTable'] = None):
         self.project_path = Path(project_path)
         self.user_config = user_config or {}
+        self.symbol_table = symbol_table
         self.queries = self._load_queries()
     
     @abstractmethod
@@ -26,6 +31,25 @@ class LanguagePlugin(ABC):
     def parse(self, file_path: Path, content: str, is_entry: bool = False) -> tuple[List[Node], Dict[str, Any]]:
         """Parse a file and return a list of nodes and symbols."""
         pass
+    
+    def parse_with_ast(self, file_path: Path, content: str, tree_sitter_ast: Any, is_entry: bool = False) -> tuple[List[Node], Dict[str, Any]]:
+        """Parse a file using pre-parsed AST from tree-sitter.
+        
+        This method allows plugins to leverage existing AST from parser
+        instead of re-parsing. Default implementation falls back to parse().
+        
+        Args:
+            file_path: Path to the file being parsed
+            content: File content as string
+            tree_sitter_ast: Pre-parsed tree-sitter AST object
+            is_entry: Whether this file is an entry point
+            
+        Returns:
+            tuple: (list of Node objects, dict of symbols)
+        """
+        # Default implementation: ignore AST and call parse()
+        # Subclasses can override to use AST directly
+        return self.parse(file_path, content, is_entry)
     
     def _load_queries(self) -> Dict[str, List[str]]:
         """Load tree-sitter queries from JSON files."""

@@ -3,28 +3,69 @@ Semantic analyzer module to derive relationships between nodes after parsing.
 """
 
 import logging
-from typing import List, Dict
+from typing import List, Dict, Optional
 
 from .models import Node, Edge, EdgeType, NodeType
+from .symbol_table import SymbolTable
+from .edge_builder import EdgeBuilder
 
 
 class SemanticAnalyzer:
     """Derives relationships (edges) from parsed nodes and symbols."""
 
-    def __init__(self, nodes: List[Node], file_symbols: Dict[str, Dict]):
+    def __init__(self, nodes: List[Node], file_symbols: Dict[str, Dict], symbol_table: Optional[SymbolTable] = None):
         self.nodes = nodes
         self.file_symbols = file_symbols or {}
+        self.symbol_table = symbol_table
         self.edges: List[Edge] = []
 
     def analyze(self) -> List[Edge]:
         logging.info("Running semantic analysis (relationships)")
+        
+        # Try EdgeBuilder first if symbol_table with references is available
+        if self.symbol_table and self._has_symbol_references():
+            logging.info("Using EdgeBuilder for context-aware edge creation")
+            self._analyze_with_edge_builder()
+        
+        # Run traditional analysis methods (these complement EdgeBuilder)
         self._analyze_renders()
         self._analyze_calls()
         self._analyze_imports()
+        
         # Placeholders for future analyses
         self._analyze_data_flow()
         self._resolve_dependency_injection()
+        
+        logging.info(f"Semantic analysis complete: {len(self.edges)} edges created")
         return self.edges
+    
+    def _has_symbol_references(self) -> bool:
+        """Check if symbol table has any references to process."""
+        if not self.symbol_table:
+            return False
+        return len(self.symbol_table.references) > 0
+    
+    def _analyze_with_edge_builder(self):
+        """
+        Use EdgeBuilder to create context-aware edges from symbol references.
+        This is the primary edge creation method when symbol tracking is available.
+        """
+        try:
+            builder = EdgeBuilder(self.symbol_table, self.nodes)
+            edges = builder.build_edges_from_references()
+            
+            # Add edges, avoiding duplicates
+            existing_edges = {(e.source, e.target, e.type.value) for e in self.edges}
+            for edge in edges:
+                edge_key = (edge.source, edge.target, edge.type.value)
+                if edge_key not in existing_edges:
+                    self.edges.append(edge)
+                    existing_edges.add(edge_key)
+            
+            logging.info(f"EdgeBuilder created {len(edges)} context-aware edges")
+        except Exception as e:
+            logging.warning(f"EdgeBuilder failed, falling back to traditional analysis: {e}")
+            # Continue with traditional methods as fallback
 
     def _analyze_renders(self):
         # RENDERS: use jsx_components captured per file

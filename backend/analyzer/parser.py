@@ -7,13 +7,16 @@ import ast
 import hashlib
 import logging
 from pathlib import Path
-from typing import Dict, List, Any, Optional, Set
+from typing import Dict, List, Any, Optional, Set, TYPE_CHECKING
 
 import tree_sitter
 from tree_sitter import Language, Parser
 
 from .models import Node, Edge, NodeType, EdgeType, ProjectType
 from .plugins.languages import JavaScriptPlugin, JavaPlugin, PythonPlugin
+
+if TYPE_CHECKING:
+    from .symbol_table import SymbolTable
 
 # -------------------------------------------------------------------
 # Tree-sitter language setup (package-first, compiled fallback)
@@ -49,15 +52,27 @@ def _load_from_compiled(name: str) -> Optional[Any]:
 class LanguageParser:
     """Parses source code files and extracts semantic information."""
 
-    def __init__(self, project_path: str, user_config: Optional[Dict[str, Any]] = None):
+    def __init__(
+        self, 
+        project_path: str, 
+        user_config: Optional[Dict[str, Any]] = None,
+        progress_callback: Optional[callable] = None,
+        symbol_table: Optional['SymbolTable'] = None,
+        enable_ast_cache: bool = True
+    ):
         """Initialize the language parser.
 
         Args:
             project_path: Path to the project directory
             user_config: Optional user configuration for C4 level overrides
+            progress_callback: Optional callback for progress updates (current, total)
+            symbol_table: Optional SymbolTable instance for tracking symbols across files
+            enable_ast_cache: Whether to enable AST caching (default: True)
         """
         self.project_path = Path(project_path)
         self.user_config = user_config or {}
+        self.progress_callback = progress_callback
+        self.symbol_table = symbol_table
         self.file_asts: Dict[str, Any] = {}
         self.nodes: List[Node] = []
         self.edges: List[Edge] = []
@@ -68,12 +83,38 @@ class LanguageParser:
         # Incremental parsing cache: relative_path -> md5 hash
         self.file_cache: Dict[str, str] = {}
         
-        # Initialize language plugins
+        # Initialize language plugins with symbol_table
         self.language_plugins = [
-            JavaScriptPlugin(project_path, user_config),
-            JavaPlugin(project_path, user_config),
-            PythonPlugin(project_path, user_config)
+            JavaScriptPlugin(project_path, user_config, symbol_table),
+            JavaPlugin(project_path, user_config, symbol_table),
+            PythonPlugin(project_path, user_config, symbol_table)
         ]
+        
+        # Create language_parsers mapping (ext -> plugin)
+        self.language_parsers = {}
+        for plugin in self.language_plugins:
+            for ext in plugin.supported_extensions:
+                self.language_parsers[ext] = plugin
+        
+        # NEW: Add memory monitoring
+        from .memory_monitor import MemoryMonitor
+        self.memory_monitor = MemoryMonitor(max_memory_mb=512)
+        self.memory_monitor.register_cleanup(self._cleanup_caches)
+        
+        # NEW: Initialize AST cache
+        from .ast_cache import ASTCache
+        self.enable_ast_cache = enable_ast_cache
+        if self.enable_ast_cache:
+            cache_dir = self.project_path / '.flowlens-cache' / 'ast'
+            self.ast_cache = ASTCache(cache_dir=cache_dir, max_size_mb=500)
+            logging.info("AST caching enabled")
+        else:
+            self.ast_cache = None
+            logging.info("AST caching disabled")
+        
+        # Progress tracking
+        self.files_to_parse_count = 0
+        self.files_parsed_count = 0
 
     def _get_ts_language(self, ext: str):
         """Return a Tree-sitter language for JS/TS/TSX using updated API."""
@@ -179,6 +220,11 @@ class LanguageParser:
         """Parse project files starting from entry points."""
         logging.info(f"Starting parse for project: {self.project_path}")
         
+        # NEW: Check memory before starting
+        exceeded, msg = self.memory_monitor.check_memory_threshold()
+        if exceeded:
+            raise MemoryError(f"Insufficient memory to start parsing: {msg}")
+        
         # Build index for module resolution
         self._build_module_index()
         
@@ -188,6 +234,9 @@ class LanguageParser:
             logging.debug(f"Checking entry point: {file_path} (exists: {file_path.exists()})")
             if file_path.exists() and file_path.is_file():
                 self._parse_file(file_path, is_entry=True)
+                
+                # NEW: Check memory after each entry point
+                self.memory_monitor.check_memory_threshold()
         
         # Parse other relevant files based on project type
         self._parse_additional_files(project_type)
@@ -195,7 +244,42 @@ class LanguageParser:
         # Perform semantic analysis
         self._analyze_relationships()
         
-        logging.info(f"Parse complete. Found {len(self.nodes)} nodes and {len(self.edges)} edges")
+        # NEW: Log memory statistics
+        stats = self.memory_monitor.get_statistics()
+        logging.info(f"Parse complete. Memory stats: {stats}")
+        logging.info(f"Found {len(self.nodes)} nodes and {len(self.edges)} edges")
+        
+        # NEW: Log AST cache statistics
+        if self.ast_cache:
+            self.ast_cache.print_statistics()
+        
+        # NEW: Final cleanup
+        self._cleanup_caches()
+    
+    def _cleanup_caches(self):
+        """Clean up parser caches to free memory."""
+        logging.info(f"Cleaning parser caches. Current items: ASTs={len(self.file_asts)}, Cache={len(self.file_cache)}")
+        
+        # CRITICAL FIX: Clear AST cache to prevent memory leak
+        # ASTs can be 50-200KB each, causing memory exhaustion on large projects
+        self.file_asts.clear()
+        
+        # Keep only recent cache entries (last 1000 files)
+        if len(self.file_cache) > 1000:
+            # Keep most recently accessed
+            sorted_cache = sorted(
+                self.file_cache.items(),
+                key=lambda x: hash(x[0]),  # Simple hash-based selection
+                reverse=True
+            )
+            self.file_cache = dict(sorted_cache[:1000])
+            logging.info(f"Trimmed file_cache from {len(self.file_cache)} to 1000 entries")
+        
+        # Force garbage collection
+        import gc
+        gc.collect()
+        
+        logging.info(f"Caches cleaned. Remaining: ASTs={len(self.file_asts)}, Cache={len(self.file_cache)}")
         
     def _parse_file(self, file_path: Path, is_entry: bool = False):
         """Parse individual file using appropriate language plugin."""
@@ -212,22 +296,58 @@ class LanguageParser:
             return
 
         try:
-            # --- Caching logic ---
+            # --- Read content ---
             content = file_path.read_text(encoding='utf-8')
             content_hash = hashlib.md5(content.encode('utf-8')).hexdigest()
+            
+            # --- Check simple file cache first (content hash only) ---
             if self.file_cache.get(relative_path) == content_hash:
-                logging.debug(f"Cache hit for {relative_path}. Skipping parse.")
+                logging.debug(f"Simple cache hit for {relative_path}. Skipping parse.")
                 self.parsed_files.add(relative_path)
                 return
 
             # Mark as parsed before parsing to avoid recursion issues
             self.parsed_files.add(relative_path)
 
+            # --- NEW: Check AST cache ---
+            tree_sitter_ast = None
+            if self.ast_cache:
+                cached_data = self.ast_cache.get(file_path, content)
+                if cached_data:
+                    tree_sitter_ast, ast_metadata = cached_data
+                    self.file_asts[relative_path] = tree_sitter_ast
+                    logging.debug(f"AST cache hit for {relative_path}")
+            
+            # --- Parse with tree-sitter if no cache hit ---
+            if tree_sitter_ast is None:
+                language_parser = self.language_parsers.get(ext)
+                if language_parser:
+                    try:
+                        tree_sitter_ast = language_parser.parse(bytes(content, 'utf8'))
+                        # Store AST for later semantic analysis
+                        self.file_asts[relative_path] = tree_sitter_ast
+                        
+                        # NEW: Store in AST cache
+                        if self.ast_cache:
+                            self.ast_cache.put(
+                                file_path, 
+                                tree_sitter_ast,
+                                metadata={'ext': ext, 'size': len(content)},
+                                content=content
+                            )
+                        
+                        logging.debug(f"Parsed and cached AST for {relative_path}")
+                    except Exception as ast_err:
+                        logging.warning(f"Failed to parse AST for {relative_path}: {ast_err}")
+            
             # Find the correct plugin
             plugin = self._find_plugin_for_file(file_path)
             if plugin:
-                # Call the plugin's parse method
-                plugin_nodes, plugin_symbols = plugin.parse(file_path, content, is_entry)
+                # Call plugin's parse_with_ast if AST exists, otherwise fallback to parse
+                if tree_sitter_ast:
+                    plugin_nodes, plugin_symbols = plugin.parse_with_ast(file_path, content, tree_sitter_ast, is_entry)
+                else:
+                    plugin_nodes, plugin_symbols = plugin.parse(file_path, content, is_entry)
 
                 # Integrate the results
                 if plugin_nodes:
@@ -385,7 +505,8 @@ class LanguageParser:
         elif project_type in [ProjectType.MAVEN_JAVA, ProjectType.GRADLE_JAVA, ProjectType.SPRING_BOOT]:
             extensions_to_parse.add('.java')
         
-        # Parse src directory and other common locations
+        # NEW: Count files first for progress tracking
+        files_to_parse = []
         for location in ['src', 'app', 'lib', 'components', 'pages', 'api', 'server']:
             location_path = self.project_path / location
             if location_path.exists():
@@ -398,7 +519,24 @@ class LanguageParser:
                     for file in files:
                         file_path = Path(root) / file
                         if file_path.suffix.lower() in extensions_to_parse:
-                            self._parse_file(file_path)
+                            files_to_parse.append(file_path)
+        
+        # NEW: Set total for progress tracking
+        self.files_to_parse_count = len(files_to_parse)
+        self.files_parsed_count = 0
+        
+        # Parse files with progress tracking and memory checks
+        for idx, file_path in enumerate(files_to_parse):
+            self._parse_file(file_path)
+            self.files_parsed_count += 1
+            
+            # Report progress if callback is set
+            if self.progress_callback and idx % 10 == 0:  # Every 10 files
+                self.progress_callback(self.files_parsed_count, self.files_to_parse_count)
+            
+            # Check memory every 50 files
+            if idx % 50 == 0:
+                self.memory_monitor.check_memory_threshold()
     
     def _analyze_relationships(self):
         """Analyze semantic relationships between nodes."""

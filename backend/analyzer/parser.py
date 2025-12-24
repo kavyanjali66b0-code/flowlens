@@ -12,8 +12,8 @@ from typing import Dict, List, Any, Optional, Set, TYPE_CHECKING
 import tree_sitter
 from tree_sitter import Language, Parser
 
-from .models import Node, Edge, NodeType, EdgeType, ProjectType
-from .plugins.languages import JavaScriptPlugin, JavaPlugin, PythonPlugin
+from .models import Node, Edge, NodeType, EdgeType, ProjectType, PathUtils
+from .plugins.loader import discover_language_plugins
 
 if TYPE_CHECKING:
     from .symbol_table import SymbolTable
@@ -57,8 +57,7 @@ class LanguageParser:
         project_path: str, 
         user_config: Optional[Dict[str, Any]] = None,
         progress_callback: Optional[callable] = None,
-        symbol_table: Optional['SymbolTable'] = None,
-        enable_ast_cache: bool = True
+        symbol_table: Optional['SymbolTable'] = None
     ):
         """Initialize the language parser.
 
@@ -67,7 +66,6 @@ class LanguageParser:
             user_config: Optional user configuration for C4 level overrides
             progress_callback: Optional callback for progress updates (current, total)
             symbol_table: Optional SymbolTable instance for tracking symbols across files
-            enable_ast_cache: Whether to enable AST caching (default: True)
         """
         self.project_path = Path(project_path)
         self.user_config = user_config or {}
@@ -82,35 +80,27 @@ class LanguageParser:
         self.parsed_files: Set[str] = set()
         # Incremental parsing cache: relative_path -> md5 hash
         self.file_cache: Dict[str, str] = {}
+        # Parse errors collection
+        self.parse_errors: List = []  # Will store ParseError objects
         
-        # Initialize language plugins with symbol_table
-        self.language_plugins = [
-            JavaScriptPlugin(project_path, user_config, symbol_table),
-            JavaPlugin(project_path, user_config, symbol_table),
-            PythonPlugin(project_path, user_config, symbol_table)
-        ]
+        # Auto-discover and initialize language plugins
+        self.language_plugins = discover_language_plugins(
+            project_path=str(project_path),
+            user_config=user_config,
+            symbol_table=symbol_table
+        )
+        logging.info(f"Loaded {len(self.language_plugins)} language plugins")
         
-        # Create language_parsers mapping (ext -> plugin)
-        self.language_parsers = {}
-        for plugin in self.language_plugins:
-            for ext in plugin.supported_extensions:
-                self.language_parsers[ext] = plugin
+        # NEW: Load path aliases from TypeScript config
+        from .config_reader import TsConfigReader
+        self.path_aliases = TsConfigReader.read_path_aliases(self.project_path)
+        if self.path_aliases:
+            logging.info(f"Loaded {len(self.path_aliases)} TypeScript path aliases")
         
         # NEW: Add memory monitoring
         from .memory_monitor import MemoryMonitor
         self.memory_monitor = MemoryMonitor(max_memory_mb=512)
         self.memory_monitor.register_cleanup(self._cleanup_caches)
-        
-        # NEW: Initialize AST cache
-        from .ast_cache import ASTCache
-        self.enable_ast_cache = enable_ast_cache
-        if self.enable_ast_cache:
-            cache_dir = self.project_path / '.flowlens-cache' / 'ast'
-            self.ast_cache = ASTCache(cache_dir=cache_dir, max_size_mb=500)
-            logging.info("AST caching enabled")
-        else:
-            self.ast_cache = None
-            logging.info("AST caching disabled")
         
         # Progress tracking
         self.files_to_parse_count = 0
@@ -249,10 +239,6 @@ class LanguageParser:
         logging.info(f"Parse complete. Memory stats: {stats}")
         logging.info(f"Found {len(self.nodes)} nodes and {len(self.edges)} edges")
         
-        # NEW: Log AST cache statistics
-        if self.ast_cache:
-            self.ast_cache.print_statistics()
-        
         # NEW: Final cleanup
         self._cleanup_caches()
     
@@ -260,8 +246,7 @@ class LanguageParser:
         """Clean up parser caches to free memory."""
         logging.info(f"Cleaning parser caches. Current items: ASTs={len(self.file_asts)}, Cache={len(self.file_cache)}")
         
-        # CRITICAL FIX: Clear AST cache to prevent memory leak
-        # ASTs can be 50-200KB each, causing memory exhaustion on large projects
+        # Clear AST cache (CRITICAL FIX for memory leak)
         self.file_asts.clear()
         
         # Keep only recent cache entries (last 1000 files)
@@ -273,18 +258,14 @@ class LanguageParser:
                 reverse=True
             )
             self.file_cache = dict(sorted_cache[:1000])
-            logging.info(f"Trimmed file_cache from {len(self.file_cache)} to 1000 entries")
-        
-        # Force garbage collection
-        import gc
-        gc.collect()
         
         logging.info(f"Caches cleaned. Remaining: ASTs={len(self.file_asts)}, Cache={len(self.file_cache)}")
         
     def _parse_file(self, file_path: Path, is_entry: bool = False):
         """Parse individual file using appropriate language plugin."""
         ext = file_path.suffix.lower()
-        relative_path = str(file_path.relative_to(self.project_path))
+        # Normalize path to use forward slashes for cross-platform consistency
+        relative_path = PathUtils.normalize(str(file_path.relative_to(self.project_path)))
 
         # Skip node_modules and TypeScript declaration files
         if "node_modules" in relative_path or relative_path.endswith(".d.ts"):
@@ -296,58 +277,22 @@ class LanguageParser:
             return
 
         try:
-            # --- Read content ---
+            # --- Caching logic ---
             content = file_path.read_text(encoding='utf-8')
             content_hash = hashlib.md5(content.encode('utf-8')).hexdigest()
-            
-            # --- Check simple file cache first (content hash only) ---
             if self.file_cache.get(relative_path) == content_hash:
-                logging.debug(f"Simple cache hit for {relative_path}. Skipping parse.")
+                logging.debug(f"Cache hit for {relative_path}. Skipping parse.")
                 self.parsed_files.add(relative_path)
                 return
 
             # Mark as parsed before parsing to avoid recursion issues
             self.parsed_files.add(relative_path)
 
-            # --- NEW: Check AST cache ---
-            tree_sitter_ast = None
-            if self.ast_cache:
-                cached_data = self.ast_cache.get(file_path, content)
-                if cached_data:
-                    tree_sitter_ast, ast_metadata = cached_data
-                    self.file_asts[relative_path] = tree_sitter_ast
-                    logging.debug(f"AST cache hit for {relative_path}")
-            
-            # --- Parse with tree-sitter if no cache hit ---
-            if tree_sitter_ast is None:
-                language_parser = self.language_parsers.get(ext)
-                if language_parser:
-                    try:
-                        tree_sitter_ast = language_parser.parse(bytes(content, 'utf8'))
-                        # Store AST for later semantic analysis
-                        self.file_asts[relative_path] = tree_sitter_ast
-                        
-                        # NEW: Store in AST cache
-                        if self.ast_cache:
-                            self.ast_cache.put(
-                                file_path, 
-                                tree_sitter_ast,
-                                metadata={'ext': ext, 'size': len(content)},
-                                content=content
-                            )
-                        
-                        logging.debug(f"Parsed and cached AST for {relative_path}")
-                    except Exception as ast_err:
-                        logging.warning(f"Failed to parse AST for {relative_path}: {ast_err}")
-            
             # Find the correct plugin
             plugin = self._find_plugin_for_file(file_path)
             if plugin:
-                # Call plugin's parse_with_ast if AST exists, otherwise fallback to parse
-                if tree_sitter_ast:
-                    plugin_nodes, plugin_symbols = plugin.parse_with_ast(file_path, content, tree_sitter_ast, is_entry)
-                else:
-                    plugin_nodes, plugin_symbols = plugin.parse(file_path, content, is_entry)
+                # Call the plugin's parse method
+                plugin_nodes, plugin_symbols = plugin.parse(file_path, content, is_entry)
 
                 # Integrate the results
                 if plugin_nodes:
@@ -358,9 +303,24 @@ class LanguageParser:
                 if plugin_symbols:
                     self.file_symbols[relative_path] = plugin_symbols
                     
+                    # DEBUG: Log JSX component storage
+                    jsx_comps = plugin_symbols.get('jsx_components', [])
+                    if jsx_comps:
+                        logging.info(f"DEBUG PARSER: Stored JSX components for {relative_path}: {jsx_comps}")
+                    
                     # Create import edges from plugin symbols
                     for imp in plugin_symbols.get('imports', []):
-                        self._add_import_edge(relative_path, imp)
+                        # Handle both old string format and new dict format
+                        if isinstance(imp, dict):
+                            self._add_import_edge(
+                                relative_path, 
+                                imp['path'], 
+                                line_number=imp.get('line'),
+                                imported_names=imp.get('names', [])
+                            )
+                        else:
+                            # Old string format (backward compatibility)
+                            self._add_import_edge(relative_path, imp)
 
                 logging.debug(f"Parsed {relative_path}: {len(plugin_nodes)} nodes created")
             else:
@@ -398,7 +358,8 @@ class LanguageParser:
             # Simple import extraction without queries for now
             imports = self._extract_js_imports_simple(tree, content)
             
-            for import_path in imports:
+            for import_info in imports:
+                import_path = import_info['path']
                 if import_path and import_path.startswith('.'):
                     target_rel = self._resolve_import_target(relative_path, import_path)
                     if target_rel:
@@ -406,29 +367,66 @@ class LanguageParser:
                         
                         # Check if target module exists
                         if target_module_id in self.node_registry:
-                            # Create edge
+                            # Create edge with enriched metadata
                             edge = Edge(
                                 source=source_module_id,
                                 target=target_module_id,
-                                type=EdgeType.DEPENDS_ON
+                                type=EdgeType.IMPORTS,
+                                metadata={
+                                    'reason': 'import_statement',
+                                    'import_path': import_path,
+                                    'line_number': import_info['line'],
+                                    'source_file': PathUtils.normalize(str(relative_path)),
+                                    'target_file': PathUtils.normalize(str(target_rel)),
+                                    'imported_names': import_info['imported_names'],
+                                    'is_default': import_info['is_default']
+                                }
                             )
                             self.edges.append(edge)
         except Exception as e:
             logging.error(f"Failed to create JS import edges for {relative_path}: {e}")
     
-    def _extract_js_imports_simple(self, tree, content: str) -> List[str]:
-        """Simple extraction of import paths by walking the tree."""
+    def _extract_js_imports_simple(self, tree, content: str) -> List[dict]:
+        """Simple extraction of import paths and line numbers by walking the tree."""
         imports = []
         
         def walk_node(node):
             if node.type == 'import_statement':
-                # Find the string literal with the import path
+                # Get line number (0-indexed, convert to 1-indexed)
+                line_number = node.start_point[0] + 1
+                
+                # Extract imported names
+                imported_names = []
+                import_path = None
+                is_default = False
+                
                 for child in node.children:
+                    # Get import path from string literal
                     if child.type == 'string':
                         import_path = self._capture_text(content, child).strip().strip('"\'')
-                        if import_path:
-                            imports.append(import_path)
-                        break
+                    
+                    # Get imported names from import clause
+                    elif child.type == 'import_clause':
+                        for subchild in child.children:
+                            if subchild.type == 'identifier':
+                                # Default import
+                                imported_names.append(self._capture_text(content, subchild))
+                                is_default = True
+                            elif subchild.type == 'named_imports':
+                                # Named imports
+                                for name_node in subchild.children:
+                                    if name_node.type == 'import_specifier':
+                                        for id_node in name_node.children:
+                                            if id_node.type == 'identifier':
+                                                imported_names.append(self._capture_text(content, id_node))
+                
+                if import_path:
+                    imports.append({
+                        'path': import_path,
+                        'line': line_number,
+                        'imported_names': imported_names,
+                        'is_default': is_default
+                    })
             
             # Recursively walk children
             for child in node.children:
@@ -454,7 +452,16 @@ class LanguageParser:
                                 edge = Edge(
                                     source=source_module_id,
                                     target=target_module_id,
-                                    type=EdgeType.DEPENDS_ON
+                                    type=EdgeType.IMPORTS,
+                                    metadata={
+                                        'reason': 'import_statement',
+                                        'import_path': alias.name,
+                                        'line_number': node.lineno,
+                                        'source_file': PathUtils.normalize(str(relative_path)),
+                                        'target_file': PathUtils.normalize(str(target_rel)),
+                                        'imported_names': [alias.asname if alias.asname else alias.name],
+                                        'is_default': False
+                                    }
                                 )
                                 self.edges.append(edge)
                 elif isinstance(node, ast.ImportFrom):
@@ -464,10 +471,24 @@ class LanguageParser:
                             target_module_id = self._generate_node_id(target_rel, 'module')
                             # Check if target module exists
                             if target_module_id in self.node_registry:
+                                # Collect imported names
+                                imported_names = [
+                                    alias.asname if alias.asname else alias.name 
+                                    for alias in node.names
+                                ]
                                 edge = Edge(
                                     source=source_module_id,
                                     target=target_module_id,
-                                    type=EdgeType.DEPENDS_ON
+                                    type=EdgeType.IMPORTS,
+                                    metadata={
+                                        'reason': 'import_statement',
+                                        'import_path': node.module,
+                                        'line_number': node.lineno,
+                                        'source_file': PathUtils.normalize(str(relative_path)),
+                                        'target_file': PathUtils.normalize(str(target_rel)),
+                                        'imported_names': imported_names,
+                                        'is_default': False
+                                    }
                                 )
                                 self.edges.append(edge)
         except Exception as e:
@@ -543,6 +564,8 @@ class LanguageParser:
         logging.info("Analyzing relationships between nodes")
         
         # RENDERS: use jsx_components captured per file
+        # NOTE: This is legacy code - most edge creation is now in SemanticAnalyzer
+        # Keeping this for backward compatibility but with self-reference protection
         for file, meta in list(self.file_symbols.items()):
             jsx_list = (meta or {}).get('jsx_components', [])
             if not jsx_list:
@@ -554,9 +577,23 @@ class LanguageParser:
                 targets = [n for n in self.nodes if n.name == jsx_name and n.type == NodeType.COMPONENT]
                 for src in source_components:
                     for tgt in targets:
-                        edge = Edge(source=src.id, target=tgt.id, type=EdgeType.RENDERS)
-                        self.edges.append(edge)
-                        logging.debug(f"Created RENDERS edge: {src.name} -> {tgt.name}")
+                        # CRITICAL: Prevent self-referencing edges
+                        if src.id == tgt.id:
+                            logging.debug(f"Skipping self-referencing RENDERS edge: {src.name} -> {tgt.name}")
+                            continue
+                        
+                        # Check if edge already exists
+                        edge_exists = any(
+                            e.source == src.id and 
+                            e.target == tgt.id and 
+                            e.type == EdgeType.RENDERS
+                            for e in self.edges
+                        )
+                        
+                        if not edge_exists:
+                            edge = Edge(source=src.id, target=tgt.id, type=EdgeType.RENDERS)
+                            self.edges.append(edge)
+                            logging.debug(f"Created RENDERS edge: {src.name} -> {tgt.name}")
 
         # CALLS: JS/TS
         for n in self.nodes:
@@ -568,8 +605,15 @@ class LanguageParser:
             if n.file.endswith('.py') and n.type in {NodeType.FUNCTION, NodeType.CLASS, NodeType.VIEW}:
                 self._analyze_py_calls(n.file, n)
     
-    def _add_import_edge(self, from_file: str, import_path: str):
-        """Add import edge between files."""
+    def _add_import_edge(self, from_file: str, import_path: str, line_number: int = None, imported_names: list = None):
+        """Add import edge between files with metadata.
+        
+        Args:
+            from_file: Source file path
+            import_path: Import path (e.g., './Component', 'react')
+            line_number: Optional line number where import occurs
+            imported_names: Optional list of imported symbol names
+        """
         try:
             target_rel = self._resolve_import_target(from_file, import_path)
             if not target_rel:
@@ -607,8 +651,27 @@ class LanguageParser:
                 self.nodes.append(tgt_node)
                 self.node_registry[target_module_id] = tgt_node
                 
-            # Create the edge
-            edge = Edge(source=source_module_id, target=target_module_id, type=EdgeType.DEPENDS_ON)
+            # Create the edge with metadata
+            metadata = {
+                'reason': 'import_statement',
+                'import_path': import_path,
+                'source_file': PathUtils.normalize(str(from_file)),
+                'target_file': PathUtils.normalize(str(target_rel))
+            }
+            
+            # Add line number if provided
+            if line_number is not None:
+                metadata['line_number'] = line_number
+            
+            # Add imported names if provided
+            if imported_names:
+                metadata['imported_names'] = imported_names
+                metadata['is_default'] = len(imported_names) == 1 and imported_names[0] != '*'
+            else:
+                metadata['imported_names'] = []
+                metadata['is_default'] = False
+            
+            edge = Edge(source=source_module_id, target=target_module_id, type=EdgeType.IMPORTS, metadata=metadata)
             self.edges.append(edge)
             logging.debug(f"Created import edge: {from_file} -> {target_rel}")
             
@@ -647,6 +710,33 @@ class LanguageParser:
     def _resolve_import_target(self, from_file: str, specifier: str) -> Optional[str]:
         """Resolve import target to actual file path."""
         try:
+            # NEW: Check TypeScript path aliases first
+            for alias, target_path in self.path_aliases.items():
+                if specifier.startswith(alias):
+                    # Replace alias with actual path
+                    remainder = specifier[len(alias):].lstrip('/')
+                    resolved = Path(target_path) / remainder
+                    
+                    # Try with extensions
+                    for ext in ['.ts', '.tsx', '.js', '.jsx']:
+                        candidate = resolved.with_suffix(ext)
+                        if candidate.exists():
+                            try:
+                                return str(candidate.relative_to(self.project_path))
+                            except ValueError:
+                                # Path might be outside project
+                                pass
+                    
+                    # Try index files
+                    for index_file in ['index.ts', 'index.tsx', 'index.js', 'index.jsx']:
+                        index_path = resolved / index_file
+                        if index_path.exists():
+                            try:
+                                return str(index_path.relative_to(self.project_path))
+                            except ValueError:
+                                pass
+            
+            # Original resolution logic
             base_dir = str((self.project_path / from_file).parent)
             candidates: List[Path] = []
 
@@ -765,7 +855,10 @@ class LanguageParser:
     
     def _generate_node_id(self, file_path: str, name: str) -> str:
         """Generate unique node ID using hash for better uniqueness."""
+        # Normalize path to forward slashes for cross-platform consistency
+        normalized_path = PathUtils.normalize(file_path)
+        
         # Use hash to avoid collisions and make IDs more stable
-        content = f"{file_path}:{name}"
+        content = f"{normalized_path}:{name}"
         hash_suffix = hashlib.md5(content.encode()).hexdigest()[:8]
-        return f"{file_path.replace('/', '_').replace('.', '_')}_{name}_{hash_suffix}"
+        return f"{normalized_path.replace('/', '_').replace('.', '_')}_{name}_{hash_suffix}"

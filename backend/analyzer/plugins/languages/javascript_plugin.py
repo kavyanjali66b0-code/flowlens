@@ -30,7 +30,8 @@ class JavaScriptPlugin(LanguagePlugin):
             'imports': [],
             'jsx_components': []
         }
-        relative_path = str(file_path.relative_to(self.project_path))
+        # Normalize path to use forward slashes for cross-platform consistency
+        relative_path = self._normalize_path(str(file_path.relative_to(self.project_path)))
         
         try:
             # Create module node for the file
@@ -77,78 +78,50 @@ class JavaScriptPlugin(LanguagePlugin):
             except Exception as fallback_error:
                 logging.error(f"Fallback parsing also failed for {relative_path}: {fallback_error}")
         
-        return nodes, symbols
-    
-    def parse_with_ast(self, file_path: Path, content: str, tree_sitter_ast: Any, is_entry: bool = False) -> tuple[List[Node], Dict[str, Any]]:
-        """Parse JavaScript/TypeScript file using pre-parsed tree-sitter AST.
-        
-        This optimized version uses existing AST instead of re-parsing.
-        """
-        nodes = []
-        symbols = {
-            'declared': [],
-            'imports': [],
-            'jsx_components': []
-        }
-        relative_path = str(file_path.relative_to(self.project_path))
-        
-        try:
-            # Create module node for the file
-            module_name = file_path.stem
-            module_id = self._generate_node_id(relative_path, 'module')
-            c4_level = self._determine_c4_level(NodeType.MODULE, relative_path, module_name, is_entry)
-            module_node = Node(
-                id=module_id,
-                type=NodeType.MODULE,
-                file=relative_path,
-                name=module_name,
-                metadata={"is_entry": is_entry, "c4_level": c4_level}
-            )
-            nodes.append(module_node)
-            
-            # Use provided AST directly
-            function_nodes, file_symbols = self._parse_with_tree_sitter(tree_sitter_ast, content, relative_path, file_path.suffix, is_entry)
-            nodes.extend(function_nodes)
-            symbols.update(file_symbols)
-            
-        except Exception as e:
-            logging.error(f"Failed to parse JavaScript file with AST {relative_path}: {e}")
-            # Fallback to regex parsing
-            try:
-                function_nodes, file_symbols = self._parse_with_regex(content, relative_path, file_path.suffix, is_entry)
-                nodes.extend(function_nodes)
-                symbols.update(file_symbols)
-            except Exception as fallback_error:
-                logging.error(f"Fallback parsing also failed for {relative_path}: {fallback_error}")
+        # DEBUG: Log what we're returning for ALL files
+        jsx_count = len(symbols.get('jsx_components', []))
+        logging.info(f"DEBUG PLUGIN: {relative_path} - {len(nodes)} nodes, {jsx_count} JSX components")
+        if jsx_count > 0:
+            logging.info(f"DEBUG PLUGIN: JSX list: {symbols['jsx_components']}")
         
         return nodes, symbols
     
     def _get_ts_language(self, ext: str):
         """Get TypeScript/JavaScript language for tree-sitter with multiple fallbacks."""
         try:
-            from tree_sitter import Language
-            
             if ext in ['.js', '.jsx']:
                 # Try JavaScript language
                 try:
                     import tree_sitter_javascript
-                    # tree-sitter 0.21+ returns an int pointer that needs to be wrapped
-                    return Language(tree_sitter_javascript.language(), 'javascript')
+                    # Try different attribute names
+                    if hasattr(tree_sitter_javascript, 'language'):
+                        return tree_sitter_javascript.language()
+                    elif hasattr(tree_sitter_javascript, 'LANGUAGE'):
+                        return tree_sitter_javascript.LANGUAGE
+                    else:
+                        # Check what attributes are available
+                        attrs = [attr for attr in dir(tree_sitter_javascript) if not attr.startswith('_')]
+                        logging.debug(f"tree_sitter_javascript attributes: {attrs}")
+                        if 'language_javascript' in attrs:
+                            return getattr(tree_sitter_javascript, 'language_javascript')()
                 except ImportError:
                     logging.debug("tree_sitter_javascript not available")
             
             elif ext in ['.ts', '.tsx']:
                 # Try TypeScript language
                 try:
+                    import tree_sitter
                     import tree_sitter_typescript
-                    # tree-sitter 0.21+ returns an int pointer that needs to be wrapped
-                    # TypeScript has separate functions for .ts and .tsx
-                    if ext == '.tsx':
-                        return Language(tree_sitter_typescript.language_tsx(), 'tsx')
-                    else:  # .ts
-                        return Language(tree_sitter_typescript.language_typescript(), 'typescript')
+                    # CRITICAL FIX: tree_sitter_typescript.language_typescript() returns a raw C pointer (integer),
+                    # not a Language object. We must wrap it with tree_sitter.Language(pointer, name) to create
+                    # a proper Language instance that set_language() expects. This fixes the "Argument to 
+                    # set_language must be a Language" error that was blocking all TypeScript/TSX parsing.
+                    lang_ptr = tree_sitter_typescript.language_typescript()
+                    return tree_sitter.Language(lang_ptr, 'typescript')
                 except ImportError:
                     logging.debug("tree_sitter_typescript not available")
+                except (AttributeError, TypeError) as e:
+                    logging.debug(f"tree_sitter_typescript error: {e}")
             
             # Fallback to tree-sitter-languages package
             try:
@@ -309,6 +282,15 @@ class JavaScriptPlugin(LanguagePlugin):
             jsx_components = []
             if ext in ['.tsx', '.jsx']:
                 jsx_components = self._extract_jsx_components(tree, content)
+                
+                # FALLBACK: If tree-sitter didn't find JSX (common with TypeScript), use regex
+                if not jsx_components:
+                    import re
+                    jsx_pattern = r'<([A-Z][a-zA-Z0-9]*)'  # Matches <ComponentName
+                    jsx_matches = re.findall(jsx_pattern, content)
+                    jsx_components = list(set(jsx_matches))  # Remove duplicates
+                    if jsx_components:
+                        logging.info(f"DEBUG JSX REGEX: Found {len(jsx_components)} components via regex: {jsx_components[:5]}")
             
             symbols = {
                 'declared': list(declared_names),
@@ -412,8 +394,7 @@ class JavaScriptPlugin(LanguagePlugin):
                     self._track_class_heritage(node, content, relative_path)
             
             # Variable declarations (arrow functions, function expressions)
-            # Handle both 'variable_declaration' (JS) and 'lexical_declaration' (TS)
-            elif node.type in ['variable_declaration', 'lexical_declaration']:
+            elif node.type == 'variable_declaration':
                 for child in node.children:
                     if child.type == 'variable_declarator':
                         var_name = None
@@ -424,7 +405,6 @@ class JavaScriptPlugin(LanguagePlugin):
                                 var_name = self._capture_text(content, grandchild)
                             elif grandchild.type in ['arrow_function', 'function_expression']:
                                 is_function = True
-                                func_node = grandchild  # Save function node for hook extraction
                         
                         if var_name and is_function:
                             declared_names.add(var_name)
@@ -432,20 +412,9 @@ class JavaScriptPlugin(LanguagePlugin):
                             node_type = NodeType.COMPONENT if is_component else NodeType.FUNCTION
                             c4_level = self._determine_c4_level(node_type, relative_path, var_name, is_entry)
                             node_id = self._generate_node_id(relative_path, var_name)
-                            
-                            # Extract hooks if it's a component
-                            hooks = []
-                            if is_component and ext in ['.tsx', '.jsx']:
-                                hooks = self._extract_hooks_from_function(func_node, content)
-                            
-                            # Create metadata with hooks
-                            metadata = {"is_entry": is_entry, "c4_level": c4_level}
-                            if hooks:
-                                metadata["hooks"] = hooks
-                            
                             graph_node = Node(
                                 id=node_id, type=node_type, file=relative_path, name=var_name,
-                                metadata=metadata
+                                metadata={"is_entry": is_entry, "c4_level": c4_level}
                             )
                             nodes.append(graph_node)
                             
@@ -500,19 +469,47 @@ class JavaScriptPlugin(LanguagePlugin):
         walk_node(tree.root_node)
         return declared_names
     
-    def _extract_imports(self, tree, content: str) -> List[str]:
-        """Extract import statements."""
+    def _extract_imports(self, tree, content: str) -> List[dict]:
+        """Extract import statements with metadata."""
         imports = []
         
         def walk_node(node):
             if node.type == 'import_statement':
-                # Find the source string
+                # Get line number
+                line_number = node.start_point[0] + 1
+                
+                # Extract import path and imported names
+                import_path = None
+                imported_names = []
+                is_default = False
+                
                 for child in node.children:
+                    # Get import path from string literal
                     if child.type == 'string':
                         import_path = self._capture_text(content, child).strip().strip('"\'')
-                        if import_path:
-                            imports.append(import_path)
-                        break
+                    
+                    # Get imported names from import clause
+                    elif child.type == 'import_clause':
+                        for subchild in child.children:
+                            if subchild.type == 'identifier':
+                                # Default import
+                                imported_names.append(self._capture_text(content, subchild))
+                                is_default = True
+                            elif subchild.type == 'named_imports':
+                                # Named imports
+                                for name_node in subchild.children:
+                                    if name_node.type == 'import_specifier':
+                                        for id_node in name_node.children:
+                                            if id_node.type == 'identifier':
+                                                imported_names.append(self._capture_text(content, id_node))
+                
+                if import_path:
+                    imports.append({
+                        'path': import_path,
+                        'line': line_number,
+                        'names': imported_names,
+                        'is_default': is_default
+                    })
             
             # Recursively walk children
             for child in node.children:
@@ -521,50 +518,18 @@ class JavaScriptPlugin(LanguagePlugin):
         walk_node(tree.root_node)
         return imports
     
-    
-    def _extract_hooks_from_function(self, func_node, content: str) -> List[Dict[str, Any]]:
-        """Extract React hooks (useState, useEffect, etc.) from a function node."""
-        hooks = []
-        
-        def walk_node(node):
-            # Look for call expressions that are hooks (start with 'use')
-            if node.type == 'call_expression':
-                # Get the function being called
-                callee = node.children[0] if node.children else None
-                if callee and callee.type == 'identifier':
-                    hook_name = self._capture_text(content, callee)
-                    if hook_name and hook_name.startswith('use'):
-                        # Extract arguments if any
-                        args = []
-                        for child in node.children:
-                            if child.type == 'arguments':
-                                # Simple extraction - just get the text
-                                args_text = self._capture_text(content, child)
-                                args.append(args_text)
-                        
-                        hooks.append({
-                            'hook': hook_name,
-                            'args': args[0] if args else ''
-                        })
-            
-            # Recursively walk children
-            for child in node.children:
-                walk_node(child)
-        
-        # Walk the function body
-        walk_node(func_node)
-        return hooks
-    
     def _extract_jsx_components(self, tree, content: str) -> List[str]:
         """Extract JSX component usage."""
         jsx_components = []
+        node_types_seen = set()
         
         def walk_node(node):
+            node_types_seen.add(node.type)
             # JSX opening elements
             if node.type in ['jsx_opening_element', 'jsx_self_closing_element']:
                 for child in node.children:
                     if child.type == 'identifier':
-                        jsx_name = self._capture_text(content, child)
+                        jsx_name = self._capture_text(content, child).strip()
                         if jsx_name and jsx_name[0].isupper():  # Component names start with uppercase
                             jsx_components.append(jsx_name)
                         break
@@ -574,7 +539,10 @@ class JavaScriptPlugin(LanguagePlugin):
                 walk_node(child)
         
         walk_node(tree.root_node)
-        return list(set(jsx_components))  # Remove duplicates
+        result = list(set(jsx_components))
+        if not result:
+            logging.info(f"DEBUG JSX: No components found. Node types seen: {sorted(list(node_types_seen))[:20]}")
+        return result  # Remove duplicates
     
     def _capture_text(self, content: str, node) -> str:
         """Extract text content from a tree-sitter node."""
@@ -728,6 +696,7 @@ class JavaScriptPlugin(LanguagePlugin):
             metadata=context_info
         )
         self.symbol_table.add_reference(reference)
+        logging.debug(f"DEBUG: Added function_call reference: {target_name} in {relative_path} (context: {'async_call' if is_async else 'call'})")
     
     def _track_instantiation(self, node, content: str, relative_path: str):
         """Track class instantiation references for edge creation.

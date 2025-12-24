@@ -4,7 +4,45 @@ Data models for the codebase analyzer.
 
 from enum import Enum
 from dataclasses import dataclass
-from typing import Dict, Optional
+from typing import Dict, Optional, Union, Any
+from pathlib import Path
+
+
+class PathUtils:
+    """Cross-platform path normalization utilities."""
+    
+    @staticmethod
+    def normalize(path: str) -> str:
+        """
+        Convert any path to forward slashes for consistency.
+        
+        Args:
+            path: Path string (may contain backslashes on Windows)
+            
+        Returns:
+            Path with forward slashes (POSIX style)
+        """
+        if not path:
+            return path
+        return str(Path(path).as_posix())
+    
+    @staticmethod
+    def to_relative(path: str, base: str) -> str:
+        """
+        Get relative path with forward slashes.
+        
+        Args:
+            path: Absolute or relative path
+            base: Base directory
+            
+        Returns:
+            Relative path with forward slashes
+        """
+        try:
+            rel = Path(path).relative_to(Path(base))
+            return str(rel.as_posix())
+        except (ValueError, TypeError):
+            return PathUtils.normalize(path)
 
 
 class ProjectType(Enum):
@@ -77,6 +115,11 @@ class EdgeType(Enum):
     REFERENCES = "references"        # A references B (generic)
     DECORATES = "decorates"          # Decorator A decorates B
     ANNOTATES = "annotates"          # Annotation A annotates B
+    
+    # ML/NLP Enhanced relationships
+    SEMANTICALLY_SIMILAR = "semantically_similar"  # A is semantically similar to B
+    SAME_INTENT = "same_intent"      # A and B have the same intent
+    PATTERN_RELATIONSHIP = "pattern_relationship"  # A relates to B via architectural pattern
 
 
 @dataclass
@@ -94,16 +137,22 @@ class Node:
     type: NodeType
     file: str
     name: str
-    metadata: Optional[Dict] = None
+    metadata: Optional[Union[Dict, Any]] = None  # Can be Dict (legacy) or NodeMetadata (new)
     
     def to_dict(self) -> Dict:
         """Convert node to dictionary representation."""
+        # Handle structured metadata
+        if self.metadata is not None and hasattr(self.metadata, 'to_dict'):
+            metadata_dict = self.metadata.to_dict()
+        else:
+            metadata_dict = self.metadata or {}
+        
         return {
             "id": self.id,
             "type": self.type.value,
-            "file": self.file,
+            "file": PathUtils.normalize(self.file),
             "name": self.name,
-            "metadata": self.metadata or {}
+            "metadata": metadata_dict
         }
 
 
@@ -113,13 +162,19 @@ class Edge:
     source: str
     target: str
     type: EdgeType
-    metadata: Optional[Dict] = None
+    metadata: Optional[Union[Dict, Any]] = None  # Can be Dict (legacy) or EdgeMetadata (new)
     
     def to_dict(self) -> Dict:
         """Convert edge to dictionary representation."""
+        # Handle structured metadata
+        if self.metadata is not None and hasattr(self.metadata, 'to_dict'):
+            metadata_dict = self.metadata.to_dict()
+        else:
+            metadata_dict = self.metadata or {}
+        
         return {
             "source": self.source,
             "target": self.target,
             "type": self.type.value,
-            "metadata": self.metadata or {}
+            "metadata": metadata_dict
         }

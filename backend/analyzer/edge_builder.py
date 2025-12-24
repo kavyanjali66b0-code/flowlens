@@ -10,10 +10,51 @@ This module provides the EdgeBuilder class that:
 
 from typing import List, Dict, Optional, Set
 from pathlib import Path
+import re
 
 from .models import Edge, EdgeType, Node
 from .symbol_table import SymbolTable, Symbol, SymbolReference, SymbolType
 from .edge_context import EdgeContext
+
+# Regex to validate valid JavaScript/TypeScript identifier names
+# Valid identifiers: start with letter, underscore, or $; followed by alphanumeric, _, or $
+VALID_IDENTIFIER = re.compile(r'^[a-zA-Z_$][a-zA-Z0-9_$]*$')
+
+# Common JavaScript built-in globals that should be tagged for optional filtering
+JS_BUILTINS = {
+    # Primitives & constructors
+    'Number', 'String', 'Boolean', 'Symbol', 'BigInt', 'Object', 'Array', 'Function',
+    'Date', 'RegExp', 'Error', 'Map', 'Set', 'WeakMap', 'WeakSet', 'Promise',
+    # Global functions
+    'parseInt', 'parseFloat', 'isNaN', 'isFinite', 'decodeURI', 'encodeURI',
+    'decodeURIComponent', 'encodeURIComponent', 'eval', 'setTimeout', 'setInterval',
+    'clearTimeout', 'clearInterval', 'fetch', 'alert', 'confirm', 'prompt',
+    # Array methods (common)
+    'map', 'filter', 'reduce', 'forEach', 'find', 'findIndex', 'some', 'every',
+    'includes', 'indexOf', 'slice', 'splice', 'concat', 'join', 'push', 'pop',
+    'shift', 'unshift', 'sort', 'reverse', 'flat', 'flatMap',
+    # String methods (common)
+    'toString', 'valueOf', 'charAt', 'charCodeAt', 'substring', 'substr', 'slice',
+    'replace', 'replaceAll', 'match', 'search', 'split', 'trim', 'toLowerCase', 'toUpperCase',
+    'startsWith', 'endsWith', 'includes', 'repeat', 'padStart', 'padEnd',
+    # Object methods
+    'keys', 'values', 'entries', 'assign', 'freeze', 'seal', 'hasOwnProperty',
+    # Math
+    'abs', 'ceil', 'floor', 'round', 'max', 'min', 'pow', 'sqrt', 'random',
+    # JSON
+    'parse', 'stringify',
+    # Console
+    'log', 'warn', 'error', 'info', 'debug', 'trace', 'table', 'dir',
+    # Events
+    'addEventListener', 'removeEventListener',
+    # DOM
+    'getElementById', 'querySelector', 'querySelectorAll', 'createElement', 'appendChild',
+    # Date methods
+    'getTime', 'getFullYear', 'getMonth', 'getDate', 'getDay', 'getHours', 'getMinutes',
+    'getSeconds', 'toISOString', 'toLocaleDateString', 'toLocaleTimeString',
+    # Number methods
+    'toFixed', 'toPrecision', 'toExponential'
+}
 
 
 class EdgeBuilder:
@@ -100,6 +141,9 @@ class EdgeBuilder:
         if not target_node:
             # Create a placeholder target for external references
             target_node = self._create_placeholder_node(reference)
+            # Skip if placeholder creation failed (malformed symbol)
+            if not target_node:
+                return None
         
         # Build EdgeContext with rich metadata
         edge_context = self._create_edge_context(
@@ -251,7 +295,7 @@ class EdgeBuilder:
         # Find node at the symbol's location
         return self._find_node_at_location(symbol.file_path, symbol.line_number)
     
-    def _create_placeholder_node(self, reference: SymbolReference) -> Node:
+    def _create_placeholder_node(self, reference: SymbolReference) -> Optional[Node]:
         """
         Create a placeholder node for external/unresolved references.
         
@@ -259,19 +303,35 @@ class EdgeBuilder:
             reference: SymbolReference object
             
         Returns:
-            Placeholder Node object
+            Placeholder Node object, or None if symbol is malformed
         """
         from .models import NodeType
         
+        symbol_name = reference.symbol_name
+        
+        # Validate symbol name - skip malformed identifiers
+        if not symbol_name or not VALID_IDENTIFIER.match(symbol_name):
+            # Skip malformed symbols like 'etFullYear(' or 'Fixed(2'
+            return None
+        
+        # Check if it's a JS built-in
+        is_builtin = symbol_name in JS_BUILTINS
+        
+        # Determine external type for better filtering
+        external_type = 'builtin' if is_builtin else 'library'
+        
         # Create a virtual node for the external reference
         node = Node(
-            id=f"external:{reference.symbol_name}",
-            name=reference.symbol_name,
+            id=f"external:{symbol_name}",
+            name=symbol_name,
             type=NodeType.MODULE,  # Default to MODULE for external refs
             file=reference.imported_from or "external",
             metadata={
                 'external': True,
-                'referenced_as': reference.symbol_name
+                'is_builtin': is_builtin,
+                'external_type': external_type,
+                'hide_by_default': is_builtin,  # UI hint: hide built-ins by default
+                'referenced_as': symbol_name
             }
         )
         

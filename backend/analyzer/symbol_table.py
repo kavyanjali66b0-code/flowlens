@@ -192,6 +192,18 @@ class SymbolTable:
         all_symbols = self.get_symbols_by_file(file_path)
         return [s for s in all_symbols if s.is_exported]
     
+    def get_references_by_type(self, context_type: str) -> List[SymbolReference]:
+        """
+        Get all references with a specific context type.
+        
+        Args:
+            context_type: Context type to filter by ('call', 'async_call', 'import', etc.)
+            
+        Returns:
+            List of references matching the context type
+        """
+        return [ref for ref in self.references if ref.context == context_type]
+    
     def build_import_map(
         self, 
         file_path: str, 

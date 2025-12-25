@@ -196,24 +196,6 @@ class DataFlowTracker:
             logger.debug(f"Registered node: {node_id} ({node_type}: {name})")
         return self.nodes[node_id]
     
-    def create_node(self, node_id: str, node_type: str, name: str, 
-                   scope: Optional[str] = None, 
-                   defined_at: Optional[int] = None, 
-                   data_type: Optional[str] = None) -> FlowNode:
-        """Create a node in the flow graph (alias for register_node with scope support)"""
-        if node_id not in self.nodes:
-            node = FlowNode(
-                node_id=node_id,
-                node_type=node_type,
-                name=name,
-                scope=scope or self.get_current_scope(),
-                defined_at=defined_at,
-                data_type=data_type
-            )
-            self.nodes[node_id] = node
-            logger.debug(f"Created node: {node_id} ({node_type}: {name})")
-        return self.nodes[node_id]
-    
     def track_assignment(self, 
                         target_id: str,
                         source_id: str,

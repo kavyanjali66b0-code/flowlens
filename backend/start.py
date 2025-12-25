@@ -52,13 +52,18 @@ def main():
         check_redis_connection()
         return
 
-    if not check_redis_connection():
-        return
+    use_async = config.get('ANALYZER_ASYNC', True)
+
+    if use_async:
+        if not check_redis_connection():
+            return
+    else:
+         print("✓ Running in SYNC mode (skipping Redis check).")
 
     processes = []
 
     try:
-        if not args.app_only:
+        if not args.app_only and use_async:
             print("Starting Celery worker...")
             # --- THE DEFINITIVE FIX FOR WINDOWS ---
             # Add "-P solo" to force a single-threaded worker pool that is Windows-compatible.

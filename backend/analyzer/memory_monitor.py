@@ -21,12 +21,12 @@ class MemorySnapshot:
 class MemoryMonitor:
     """Monitors and manages memory usage during analysis."""
     
-    def __init__(self, max_memory_mb: int = 512, warning_threshold: float = 0.8):
+    def __init__(self, max_memory_mb: int = 2048, warning_threshold: float = 0.8):
         """
         Initialize memory monitor.
         
         Args:
-            max_memory_mb: Maximum allowed memory in MB
+            max_memory_mb: Maximum allowed memory in MB (default 2GB for ML models)
             warning_threshold: Trigger warning at this percentage of max
         """
         self.max_memory_mb = max_memory_mb

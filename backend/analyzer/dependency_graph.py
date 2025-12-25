@@ -12,14 +12,8 @@ Classes:
 
 from dataclasses import dataclass
 from typing import Dict, List, Set, Optional, Any, Tuple
-import logging
-import json
-import hashlib
-from pathlib import Path
 import networkx as nx
 from analyzer.di_resolver import Dependency, DIType
-
-logger = logging.getLogger(__name__)
 
 
 @dataclass
@@ -52,207 +46,23 @@ class DependencyGraph:
         self._build_graph()
     
     def _build_graph(self) -> None:
-        """
-        Build optimized NetworkX graph from dependencies.
-        
-        Performance optimizations:
-        - Uses batch node addition
-        - Deduplicates edges using sets
-        - Pre-computes all components for O(1) lookup
-        """
-        logger.debug(f"Building dependency graph from {len(self.dependencies)} consumers")
-        
-        # Collect all unique components (consumers + providers)
+        """Build NetworkX graph from dependencies."""
+        # Add all components as nodes
         all_components = set(self.dependencies.keys())
+        
+        # Add providers as nodes too
         for deps in self.dependencies.values():
-            all_components.update(dep.provider for dep in deps)
+            for dep in deps:
+                all_components.add(dep.provider)
         
-        logger.debug(f"Found {len(all_components)} unique components")
+        for component in all_components:
+            self.graph.add_node(component)
         
-        # Batch add all nodes at once (faster than individual adds)
-        self.graph.add_nodes_from(all_components)
-        
-        # Build edges with deduplication
-        # Use set to track unique (source, target) pairs
-        seen_edges = set()
-        edges_to_add = []
-        duplicate_count = 0
-        
+        # Add edges for each dependency
         for consumer, deps in self.dependencies.items():
             for dep in deps:
-                edge_key = (consumer, dep.provider)
-                
-                # Skip duplicate edges (keep first occurrence)
-                if edge_key in seen_edges:
-                    duplicate_count += 1
-                    continue
-                
-                seen_edges.add(edge_key)
-                edges_to_add.append((
-                    consumer,
-                    dep.provider,
-                    {
-                        'injection_type': dep.injection_type.name,
-                        'location': dep.location,
-                        'metadata': dep.metadata
-                    }
-                ))
-        
-        # Batch add edges
-        self.graph.add_edges_from(edges_to_add)
-        
-        if duplicate_count > 0:
-            logger.info(f"Removed {duplicate_count} duplicate edges during graph building")
-        
-        logger.info(f"Built dependency graph: {len(all_components)} nodes, {len(edges_to_add)} edges")
-    
-    @staticmethod
-    def _compute_cache_key(dependencies: Dict[str, List[Dependency]]) -> str:
-        """
-        Compute a deterministic hash key for the dependency data.
-        
-        Args:
-            dependencies: Dependency dictionary to hash
-            
-        Returns:
-            SHA256 hash string
-        """
-        # Create deterministic representation
-        components = []
-        for consumer in sorted(dependencies.keys()):
-            deps = dependencies[consumer]
-            for dep in sorted(deps, key=lambda d: (d.provider, d.injection_type.name)):
-                components.append(f"{consumer}|{dep.provider}|{dep.injection_type.name}")
-        
-        data_str = "\n".join(components)
-        return hashlib.sha256(data_str.encode()).hexdigest()[:16]
-    
-    def save_to_cache(self, cache_dir: Path) -> bool:
-        """
-        Save the built graph to cache.
-        
-        Args:
-            cache_dir: Directory to store cache files
-            
-        Returns:
-            True if saved successfully
-        """
-        try:
-            cache_dir.mkdir(parents=True, exist_ok=True)
-            
-            # Compute cache key
-            cache_key = self._compute_cache_key(self.dependencies)
-            cache_file = cache_dir / f"graph-{cache_key}.json"
-            
-            # Serialize graph using NetworkX's node_link_data
-            graph_data = nx.node_link_data(self.graph)
-            
-            # Save to file
-            with open(cache_file, 'w') as f:
-                json.dump({
-                    'graph': graph_data,
-                    'cache_key': cache_key,
-                    'version': '1.0'
-                }, f)
-            
-            logger.info(f"Saved dependency graph to cache: {cache_file}")
-            return True
-            
-        except Exception as e:
-            logger.warning(f"Failed to save graph cache: {e}")
-            return False
-    
-    @classmethod
-    def load_from_cache(
-        cls,
-        dependencies: Dict[str, List[Dependency]],
-        cache_dir: Path
-    ) -> Optional['DependencyGraph']:
-        """
-        Load graph from cache if available and valid.
-        
-        Args:
-            dependencies: Current dependency data (for validation)
-            cache_dir: Directory containing cache files
-            
-        Returns:
-            DependencyGraph instance if loaded successfully, None otherwise
-        """
-        try:
-            # Compute expected cache key
-            cache_key = cls._compute_cache_key(dependencies)
-            cache_file = cache_dir / f"graph-{cache_key}.json"
-            
-            if not cache_file.exists():
-                logger.debug(f"Graph cache miss: {cache_key}")
-                return None
-            
-            # Load cache file
-            with open(cache_file, 'r') as f:
-                cache_data = json.load(f)
-            
-            # Validate cache key
-            if cache_data.get('cache_key') != cache_key:
-                logger.warning("Graph cache key mismatch")
-                return None
-            
-            # Deserialize graph
-            graph = nx.node_link_graph(cache_data['graph'])
-            
-            # Create instance without rebuilding
-            instance = cls.__new__(cls)
-            instance.dependencies = dependencies
-            instance.graph = graph
-            
-            logger.info(f"Loaded dependency graph from cache: {cache_key}")
-            return instance
-            
-        except Exception as e:
-            logger.warning(f"Failed to load graph cache: {e}")
-            return None
-    
-    def merge_incremental_changes(
-        self,
-        changed_dependencies: Dict[str, List[Dependency]],
-        removed_components: Set[str]
-    ) -> None:
-        """
-        Incrementally update graph with changes instead of full rebuild.
-        
-        Args:
-            changed_dependencies: Components with changed dependencies
-            removed_components: Components that were removed
-        """
-        logger.debug(f"Merging incremental changes: {len(changed_dependencies)} changed, {len(removed_components)} removed")
-        
-        # Remove deleted components
-        for component in removed_components:
-            if component in self.graph:
-                self.graph.remove_node(component)
-        
-        # Update changed components
-        for consumer, deps in changed_dependencies.items():
-            # Remove old edges from this consumer
-            if consumer in self.graph:
-                old_edges = list(self.graph.out_edges(consumer))
-                self.graph.remove_edges_from(old_edges)
-            else:
-                # Add new node
-                self.graph.add_node(consumer)
-            
-            # Add new edges with deduplication
-            seen_providers = set()
-            for dep in deps:
-                if dep.provider in seen_providers:
-                    continue
-                
-                seen_providers.add(dep.provider)
-                
-                # Add provider node if doesn't exist
-                if dep.provider not in self.graph:
-                    self.graph.add_node(dep.provider)
-                
-                # Add edge
+                # Add edge from consumer to provider
+                # Store dependency info as edge attribute
                 self.graph.add_edge(
                     consumer,
                     dep.provider,
@@ -260,53 +70,6 @@ class DependencyGraph:
                     location=dep.location,
                     metadata=dep.metadata
                 )
-        
-        # Update dependencies dictionary
-        self.dependencies.update(changed_dependencies)
-        for component in removed_components:
-            self.dependencies.pop(component, None)
-        
-        logger.info(f"Merged incremental changes: graph now has {self.graph.number_of_nodes()} nodes")
-    
-    def get_topological_order(self) -> List[str]:
-        """
-        Get components in topological order (dependencies before dependents).
-        
-        This is useful for:
-        - Visualizing dependency flow (bottom-up)
-        - Determining build/initialization order
-        - Organizing code structure
-        
-        Returns:
-            List of component names in topological order.
-            Returns empty list if graph has cycles.
-        """
-        try:
-            # NetworkX's topological_sort returns iterator
-            return list(nx.topological_sort(self.graph))
-        except nx.NetworkXError:
-            # Graph has cycles - cannot produce topological order
-            return []
-    
-    def get_layers(self) -> List[List[str]]:
-        """
-        Group components into dependency layers.
-        
-        Layer 0: Components with no dependencies (leaf nodes)
-        Layer 1: Components that only depend on Layer 0
-        Layer N: Components that depend on any layer < N
-        
-        Returns:
-            List of layers, where each layer is a list of component names.
-            Returns empty list if graph has cycles.
-        """
-        try:
-            # Get topological generations (layers)
-            layers = list(nx.topological_generations(self.graph))
-            return layers
-        except nx.NetworkXError:
-            # Graph has cycles
-            return []
     
     def find_circular_dependencies(self) -> List[CircularDependency]:
         """
@@ -595,72 +358,45 @@ class DependencyGraph:
         Returns:
             Dictionary with graph statistics
         """
-        # Calculate basic stats from graph structure
-        total_components = self.graph.number_of_nodes()
-        total_edges = self.graph.number_of_edges()
-        
         stats = {
-            'total_components': total_components,
-            'total_dependencies': total_edges,
+            'total_components': len(self.graph.nodes()),
+            'total_dependencies': len(self.graph.edges()),
             'circular_dependencies': len(self.find_circular_dependencies()),
             'unused_components': len(self.find_unused_dependencies()),
             'average_dependencies': 0.0,
             'max_dependencies': 0,
-            'max_dependency_depth': 0,
-            'has_cycles': not nx.is_directed_acyclic_graph(self.graph)
+            'max_dependency_depth': 0
         }
         
-        # Calculate dependency statistics efficiently
-        if total_components > 0:
-            # Use out_degree for dependency counts (more efficient than iterating self.dependencies)
-            out_degrees = [d for n, d in self.graph.out_degree()]
-            if out_degrees:
-                stats['average_dependencies'] = sum(out_degrees) / len(out_degrees)
-                stats['max_dependencies'] = max(out_degrees)
+        # Calculate average dependencies per component
+        if self.dependencies:
+            dep_counts = [len(deps) for deps in self.dependencies.values()]
+            stats['average_dependencies'] = sum(dep_counts) / len(dep_counts)
+            stats['max_dependencies'] = max(dep_counts) if dep_counts else 0
         
-        # Find maximum dependency depth (only for DAGs)
-        if not stats['has_cycles']:
-            # For DAGs, use longest path from source nodes
-            try:
-                stats['max_dependency_depth'] = nx.dag_longest_path_length(self.graph)
-            except:
-                stats['max_dependency_depth'] = 0
-        else:
-            # For cyclic graphs, sample some nodes
-            for component in list(self.dependencies.keys())[:10]:  # Sample first 10
-                depth = self.get_dependency_depth(component)
-                stats['max_dependency_depth'] = max(stats['max_dependency_depth'], depth)
+        # Find maximum dependency depth
+        for component in self.dependencies.keys():
+            depth = self.get_dependency_depth(component)
+            stats['max_dependency_depth'] = max(stats['max_dependency_depth'], depth)
         
         return stats
     
     def export_to_dict(self) -> Dict[str, Any]:
         """
-        Export graph to dictionary format with topological ordering.
+        Export graph to dictionary format.
         
         Returns:
             Dictionary representation of the graph
         """
-        # Get topological order for better visualization
-        topo_order = self.get_topological_order()
-        layers = self.get_layers()
-        
         nodes = []
         for node in self.graph.nodes():
             in_degree = self.graph.in_degree(node)
             out_degree = self.graph.out_degree(node)
             
-            # Find layer for this node
-            layer = -1
-            for idx, layer_nodes in enumerate(layers):
-                if node in layer_nodes:
-                    layer = idx
-                    break
-            
             nodes.append({
                 'id': node,
                 'dependents': in_degree,
-                'dependencies': out_degree,
-                'layer': layer  # Add layer information for visualization
+                'dependencies': out_degree
             })
         
         edges = []
@@ -674,8 +410,6 @@ class DependencyGraph:
         return {
             'nodes': nodes,
             'edges': edges,
-            'topological_order': topo_order,  # For build/init order
-            'layers': layers,  # For hierarchical visualization
             'stats': self.get_stats(),
             'suggestions': self.suggest_injection_improvements()
         }

@@ -18,5 +18,3 @@ tree-sitter-java==0.21.0
 # Additional dependencies for production
 python-dotenv>=1.0.0  # For environment variable management
 gunicorn>=21.0.0      # For production WSGI server
-psutil>=5.9.0         # For memory and system monitoring
-pyyaml>=6.0.0         # For YAML config file parsing

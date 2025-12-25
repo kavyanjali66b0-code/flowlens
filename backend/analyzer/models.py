@@ -150,7 +150,7 @@ class Node:
         return {
             "id": self.id,
             "type": self.type.value,
-            "file": PathUtils.normalize(self.file),
+            "file": self.file,
             "name": self.name,
             "metadata": metadata_dict
         }

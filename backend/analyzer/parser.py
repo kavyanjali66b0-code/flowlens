@@ -264,8 +264,8 @@ class LanguageParser:
     def _parse_file(self, file_path: Path, is_entry: bool = False):
         """Parse individual file using appropriate language plugin."""
         ext = file_path.suffix.lower()
-        # Normalize path to use forward slashes for cross-platform consistency
-        relative_path = PathUtils.normalize(str(file_path.relative_to(self.project_path)))
+        # Keep Windows-style paths with backslashes
+        relative_path = str(file_path.relative_to(self.project_path))
 
         # Skip node_modules and TypeScript declaration files
         if "node_modules" in relative_path or relative_path.endswith(".d.ts"):
@@ -376,8 +376,8 @@ class LanguageParser:
                                     'reason': 'import_statement',
                                     'import_path': import_path,
                                     'line_number': import_info['line'],
-                                    'source_file': PathUtils.normalize(str(relative_path)),
-                                    'target_file': PathUtils.normalize(str(target_rel)),
+                                    'source_file': str(relative_path).replace('/', '\\'),
+                                    'target_file': str(target_rel).replace('/', '\\'),
                                     'imported_names': import_info['imported_names'],
                                     'is_default': import_info['is_default']
                                 }
@@ -457,8 +457,8 @@ class LanguageParser:
                                         'reason': 'import_statement',
                                         'import_path': alias.name,
                                         'line_number': node.lineno,
-                                        'source_file': PathUtils.normalize(str(relative_path)),
-                                        'target_file': PathUtils.normalize(str(target_rel)),
+                                        'source_file': str(relative_path).replace('/', '\\'),
+                                        'target_file': str(target_rel).replace('/', '\\'),
                                         'imported_names': [alias.asname if alias.asname else alias.name],
                                         'is_default': False
                                     }
@@ -484,8 +484,8 @@ class LanguageParser:
                                         'reason': 'import_statement',
                                         'import_path': node.module,
                                         'line_number': node.lineno,
-                                        'source_file': PathUtils.normalize(str(relative_path)),
-                                        'target_file': PathUtils.normalize(str(target_rel)),
+                                        'source_file': str(relative_path).replace('/', '\\'),
+                                        'target_file': str(target_rel).replace('/', '\\'),
                                         'imported_names': imported_names,
                                         'is_default': False
                                     }
@@ -655,8 +655,8 @@ class LanguageParser:
             metadata = {
                 'reason': 'import_statement',
                 'import_path': import_path,
-                'source_file': PathUtils.normalize(str(from_file)),
-                'target_file': PathUtils.normalize(str(target_rel))
+                'source_file': str(from_file).replace('/', '\\\\'),
+                'target_file': str(target_rel).replace('/', '\\\\')
             }
             
             # Add line number if provided

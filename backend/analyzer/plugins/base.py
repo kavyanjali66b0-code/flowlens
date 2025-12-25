@@ -3,18 +3,24 @@ Base plugin classes for the analyzer system.
 """
 
 from abc import ABC, abstractmethod
-from typing import List, Dict, Any, Optional
+from typing import List, Dict, Any, Optional, TYPE_CHECKING
 from pathlib import Path
+import hashlib
 
-from ..models import Node, Edge, NodeType, EdgeType, ProjectType
+from ..models import Node, Edge, NodeType, EdgeType, ProjectType, PathUtils
+
+if TYPE_CHECKING:
+    from ..symbol_table import SymbolTable
 
 
 class LanguagePlugin(ABC):
     """Base class for language-specific parsing plugins."""
     
-    def __init__(self, project_path: str, user_config: Optional[Dict[str, Any]] = None):
+    def __init__(self, project_path: str, user_config: Optional[Dict[str, Any]] = None, 
+                 symbol_table: Optional['SymbolTable'] = None):
         self.project_path = Path(project_path)
         self.user_config = user_config or {}
+        self.symbol_table = symbol_table
         self.queries = self._load_queries()
     
     @abstractmethod
@@ -26,6 +32,19 @@ class LanguagePlugin(ABC):
     def parse(self, file_path: Path, content: str, is_entry: bool = False) -> tuple[List[Node], Dict[str, Any]]:
         """Parse a file and return a list of nodes and symbols."""
         pass
+    
+    def _normalize_path(self, file_path) -> str:
+        """Normalize a file path to use forward slashes consistently."""
+        if isinstance(file_path, Path):
+            file_path = str(file_path)
+        return PathUtils.normalize(file_path)
+    
+    def _generate_node_id(self, file_path: str, name: str) -> str:
+        """Generate unique node ID with normalized path."""
+        normalized_path = self._normalize_path(file_path)
+        content = f"{normalized_path}:{name}"
+        hash_suffix = hashlib.md5(content.encode()).hexdigest()[:8]
+        return f"{normalized_path.replace('/', '_').replace('.', '_')}_{name}_{hash_suffix}"
     
     def _load_queries(self) -> Dict[str, List[str]]:
         """Load tree-sitter queries from JSON files."""

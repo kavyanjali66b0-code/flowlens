@@ -68,7 +68,7 @@ def get_config():
     return {
         'CELERY_BROKER_URL': os.environ.get('CELERY_BROKER_URL', 'redis://localhost:6379/0'),
         'CELERY_RESULT_BACKEND': os.environ.get('CELERY_RESULT_BACKEND', 'redis://localhost:6379/0'),
-        'ANALYZER_ASYNC': os.environ.get('ANALYZER_ASYNC', '1') == '1',
+        'ANALYZER_ASYNC': os.environ.get('ANALYZER_ASYNC', '0') == '1',
         'LOG_LEVEL': os.environ.get('LOG_LEVEL', 'INFO'),
         'LOG_FILE': os.environ.get('LOG_FILE', 'logs/analyzer.log'),
         'FLASK_ENV': os.environ.get('FLASK_ENV', 'development'),

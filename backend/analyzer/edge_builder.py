@@ -310,8 +310,11 @@ class EdgeBuilder:
         symbol_name = reference.symbol_name
         
         # Validate symbol name - skip malformed identifiers
-        if not symbol_name or not VALID_IDENTIFIER.match(symbol_name):
-            # Skip malformed symbols like 'etFullYear(' or 'Fixed(2'
+        # TEMPORARILY DISABLED to test if this causes missing calls
+        # if not symbol_name or not VALID_IDENTIFIER.match(symbol_name):
+        #     # Skip malformed symbols like 'etFullYear(' or 'Fixed(2'
+        #     return None
+        if not symbol_name:
             return None
         
         # Check if it's a JS built-in

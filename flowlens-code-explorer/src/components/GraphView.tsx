@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect, useMemo } from 'react';
+import React, { useCallback, useEffect, useMemo, useState } from 'react';
 
 import {
   ReactFlow,
@@ -20,11 +20,12 @@ import '@xyflow/react/dist/style.css';
 import { useFlowLensStore } from '../store/useFlowLensStore';
 import { getNodesForView, getEdgesForView, filterNodesByQuery, filterNodesByType } from '../services/dataService';
 import { FileIcon, Box, Zap, GitBranch, ArrowRight } from 'lucide-react';
+import FolderNode from './FolderNode';
 
 // Custom node component with improved interaction
 const CustomNode: React.FC<{ data: any; selected: boolean }> = ({ data, selected }) => {
   const { setInspectedNode, inspectedNodeId, setSelectedFile, setSelectedClass, setSelectedMethod } = useFlowLensStore();
-  
+
   const isInspected = inspectedNodeId === data.nodeId;
 
   const getIcon = () => {
@@ -42,26 +43,26 @@ const CustomNode: React.FC<{ data: any; selected: boolean }> = ({ data, selected
 
   const getNodeStyle = () => {
     const baseStyle = 'px-4 py-3 rounded-lg border-2 bg-white min-w-[120px] transition-all duration-200 relative shadow-sm cursor-pointer group';
-    
+
     if (selected) {
       return `${baseStyle} border-blue-500 bg-blue-50 shadow-lg ring-2 ring-blue-200`;
     }
-    
+
     if (isInspected) {
       return `${baseStyle} border-green-400 bg-green-50 shadow-md ring-2 ring-green-200`;
     }
-    
+
     if (data.dimmed) {
       return `${baseStyle} border-gray-200 bg-gray-50 text-gray-400 opacity-50`;
     }
-    
+
     return `${baseStyle} border-gray-300 hover:border-blue-400 hover:bg-gray-50 hover:shadow-md`;
   };
 
   const getNodeColor = () => {
     if (selected) return '#3b82f6';
     if (isInspected) return '#22c55e';
-    
+
     switch (data.type) {
       case 'file':
         return '#6366f1';
@@ -113,8 +114,8 @@ const CustomNode: React.FC<{ data: any; selected: boolean }> = ({ data, selected
           height: 8,
         }}
       />
-      
-      <div 
+
+      <div
         className={getNodeStyle()}
         onMouseEnter={handleMouseEnter}
         onDoubleClick={handleDoubleClick}
@@ -135,7 +136,7 @@ const CustomNode: React.FC<{ data: any; selected: boolean }> = ({ data, selected
             <ArrowRight className="h-3 w-3 text-gray-400" />
           </div>
         </div>
-        
+
         {/* Inspection indicator */}
         {isInspected && (
           <div className="absolute -top-1 -right-1 w-3 h-3 bg-green-400 rounded-full border-2 border-white shadow-sm"></div>
@@ -159,6 +160,7 @@ const CustomNode: React.FC<{ data: any; selected: boolean }> = ({ data, selected
 
 const nodeTypes: NodeTypes = {
   custom: CustomNode,
+  folder: FolderNode,
 };
 
 const GraphView: React.FC = () => {
@@ -173,40 +175,45 @@ const GraphView: React.FC = () => {
     filterType,
     projectMeta,
     setInspectedNode,
+    visibleEdgeTypes,
+    toggleEdgeType,
   } = useFlowLensStore();
 
   const { fitView, zoomIn, zoomOut } = useReactFlow();
-  
+
+  // Focus + context: track selected node for highlighting
+  const [selectedNodeId, setSelectedNodeId] = useState<string | null>(null);
+
   // Get filtered nodes based on current view and filters
   const filteredNodes = useMemo(() => {
-    console.log('Computing filtered nodes...', { 
-      totalNodes: graphNodes.length, 
-      viewLevel, 
-      selectedFileId, 
+    console.log('Computing filtered nodes...', {
+      totalNodes: graphNodes.length,
+      viewLevel,
+      selectedFileId,
       selectedClassId,
       filterType,
-      searchQuery 
+      searchQuery
     });
-    
+
     // Start with view-level filtering
     let nodes = getNodesForView(graphNodes, viewLevel, selectedFileId, selectedClassId);
-    
+
     // Apply type filtering if not 'files' (which is default for repo view)
     if (filterType !== 'files' || viewLevel !== 'repo') {
-      const targetType = viewLevel === 'file' ? 'classes' : 
-                        viewLevel === 'class' || viewLevel === 'method' ? 'methods' : 
-                        filterType;
-      
+      const targetType = viewLevel === 'file' ? 'classes' :
+        viewLevel === 'class' || viewLevel === 'method' ? 'methods' :
+          filterType;
+
       if (targetType !== 'files') {
         nodes = filterNodesByType(nodes, targetType as 'files' | 'classes' | 'methods');
       }
     }
-    
+
     // Apply search query filtering
     if (searchQuery) {
       const matchingNodes = filterNodesByQuery(nodes, searchQuery);
       const matchingIds = new Set(matchingNodes.map(n => n.id));
-      
+
       // Mark non-matching nodes as dimmed instead of hiding them
       nodes = nodes.map(node => ({
         ...node,
@@ -216,33 +223,37 @@ const GraphView: React.FC = () => {
         }
       }));
     }
-    
+
     // Convert to React Flow format with proper selection state
     const reactFlowNodes = nodes.map(node => ({
       id: node.id,
-      type: 'custom',
+      type: node.type === 'folder' ? 'folder' : 'custom', // Preserve folder type!
       position: node.position,
       data: {
         ...node.data,
         type: node.type,
         nodeId: node.id, // Pass the actual node ID for inspection
       },
+      // Preserve dimensions for folder nodes
+      ...(node.width && { width: node.width }),
+      ...(node.height && { height: node.height }),
+      ...(node.style && { style: node.style }),
       parentNode: node.parentNode,
       extent: node.extent,
-      selected: 
+      selected:
         (node.type === 'file' && node.id === selectedFileId) ||
         (node.type === 'class' && node.id === selectedClassId) ||
         (node.type === 'method' && node.id === selectedMethodId)
     }));
-    
+
     console.log('Final React Flow nodes:', reactFlowNodes.length);
     return reactFlowNodes;
   }, [graphNodes, viewLevel, selectedFileId, selectedClassId, selectedMethodId, searchQuery, filterType]);
 
   const filteredEdges = useMemo(() => {
     const visibleNodeIds = new Set(filteredNodes.map(n => n.id));
-    const edges = getEdgesForView(graphEdges, visibleNodeIds);
-    
+    const edges = getEdgesForView(graphEdges, visibleNodeIds, viewLevel);
+
     const reactFlowEdges = edges.map(edge => ({
       id: edge.id,
       source: edge.source,
@@ -252,28 +263,84 @@ const GraphView: React.FC = () => {
       label: edge.label,
       style: edge.style || { strokeWidth: 2, stroke: '#94a3b8' },
     }));
-    
+
     console.log('Final React Flow edges:', reactFlowEdges.length);
     return reactFlowEdges;
-  }, [graphEdges, filteredNodes]);
+  }, [graphEdges, filteredNodes, viewLevel]);
 
   const [nodes, setNodes, onNodesChange] = useNodesState([]);
   const [edges, setEdges, onEdgesChange] = useEdgesState([]);
 
   // Update nodes and edges when filtered data changes
   useEffect(() => {
-    console.log('Updating nodes and edges...', { 
-      nodesLength: filteredNodes.length, 
-      edgesLength: filteredEdges.length 
+    console.log('Updating nodes and edges...', {
+      nodesLength: filteredNodes.length,
+      edgesLength: filteredEdges.length
     });
     setNodes(filteredNodes);
     setEdges(filteredEdges);
   }, [filteredNodes, filteredEdges, setNodes, setEdges]);
 
-  // Handle clicks on empty space to clear inspection
+  // Focus + Context: Highlight node connections on click
+  const handleNodeClick = useCallback((event: React.MouseEvent, clickedNode: Node) => {
+    event.stopPropagation();
+    setSelectedNodeId(clickedNode.id);
+
+    console.log('Node clicked:', clickedNode.id);
+
+    // Find all connected node IDs
+    const connectedIds = new Set<string>([clickedNode.id]);
+    graphEdges.forEach(edge => {
+      if (edge.source === clickedNode.id) connectedIds.add(edge.target);
+      if (edge.target === clickedNode.id) connectedIds.add(edge.source);
+    });
+
+    console.log('Connected nodes:', connectedIds.size, 'out of', nodes.length);
+
+    // Update edges: connected = 100% opacity, others = 20%
+    setEdges(edges.map(edge => ({
+      ...edge,
+      style: {
+        ...edge.style,
+        opacity: (edge.source === clickedNode.id || edge.target === clickedNode.id) ? 1 : 0.2,
+        strokeWidth: (edge.source === clickedNode.id || edge.target === clickedNode.id) ? 3 : 1.5,
+      }
+    })));
+
+    // Update nodes: connected = 100% opacity, others = 30%
+    setNodes(nodes.map(node => ({
+      ...node,
+      style: {
+        ...node.style,
+        opacity: connectedIds.has(node.id) ? 1 : 0.3,
+      }
+    })));
+  }, [graphEdges, nodes, setEdges, setNodes]);
+
+  // Reset highlight on background click
   const handlePaneClick = useCallback(() => {
+    console.log('Pane clicked - resetting highlight');
+    setSelectedNodeId(null);
     setInspectedNode(null);
-  }, [setInspectedNode]);
+
+    // Reset all opacities to 100%
+    setEdges(edges.map(edge => ({
+      ...edge,
+      style: {
+        ...edge.style,
+        opacity: 1,
+        strokeWidth: 1.5,
+      }
+    })));
+
+    setNodes(nodes.map(node => ({
+      ...node,
+      style: {
+        ...node.style,
+        opacity: 1,
+      }
+    })));
+  }, [setInspectedNode, edges, nodes, setEdges, setNodes]);
 
   const onConnect = useCallback((params: any) => setEdges((eds) => addEdge(params, eds)), [setEdges]);
 
@@ -286,7 +353,7 @@ const GraphView: React.FC = () => {
         console.error('Error zooming in:', error);
       }
     };
-    
+
     const handleZoomOut = () => {
       try {
         zoomOut();
@@ -294,7 +361,7 @@ const GraphView: React.FC = () => {
         console.error('Error zooming out:', error);
       }
     };
-    
+
     const handleFitView = () => {
       try {
         fitView({ padding: 0.2 });
@@ -347,13 +414,13 @@ const GraphView: React.FC = () => {
 
   // Show empty graph state if no nodes to display
   if (nodes.length === 0) {
-    const contextMessage = 
+    const contextMessage =
       selectedMethodId ? 'No methods found in the selected context' :
-      selectedClassId ? 'No items found in the selected class' :
-      selectedFileId ? 'No items found in the selected file' :
-      searchQuery ? `No nodes match "${searchQuery}"` : 
-      'No nodes found for the current filters';
-    
+        selectedClassId ? 'No items found in the selected class' :
+          selectedFileId ? 'No items found in the selected file' :
+            searchQuery ? `No nodes match "${searchQuery}"` :
+              'No nodes found for the current filters';
+
     return (
       <div className="flex-1 bg-white m-4 rounded-lg border overflow-hidden" style={{ minHeight: '600px' }}>
         <div className="w-full h-full flex items-center justify-center" style={{ height: '600px' }}>
@@ -371,7 +438,7 @@ const GraphView: React.FC = () => {
       </div>
     );
   }
-  
+
   return (
     <div className="flex-1 bg-white m-4 rounded-lg border overflow-hidden" style={{ minHeight: '600px' }}>
       {/* Enhanced status bar with interaction hints */}
@@ -388,11 +455,11 @@ const GraphView: React.FC = () => {
           {selectedMethodId && <span className="text-cyan-600">Method: {selectedMethodId.split('_').pop()}</span>}
         </div>
       </div>
-      
-      <div 
-        id="graph-root" 
+
+      <div
+        id="graph-root"
         className="w-full relative"
-        style={{ 
+        style={{
           height: '560px', // Account for status bar
           width: '100%',
           backgroundColor: '#fafafa'
@@ -404,6 +471,7 @@ const GraphView: React.FC = () => {
           onNodesChange={onNodesChange}
           onEdgesChange={onEdgesChange}
           onConnect={onConnect}
+          onNodeClick={handleNodeClick}
           onPaneClick={handlePaneClick}
           nodeTypes={nodeTypes}
           connectionMode={ConnectionMode.Loose}
@@ -420,15 +488,15 @@ const GraphView: React.FC = () => {
         >
           <Background />
           <Controls showInteractive={false} />
-          <MiniMap 
-            zoomable 
+          <MiniMap
+            zoomable
             pannable
             nodeColor={(node) => {
               if (node.selected) return '#3b82f6';
               // Check if this node is inspected
               const isInspected = node.data?.nodeId === useFlowLensStore.getState().inspectedNodeId;
               if (isInspected) return '#22c55e';
-              
+
               switch (node.data?.type) {
                 case 'file':
                   return '#6366f1';

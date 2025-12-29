@@ -6,6 +6,7 @@ from enum import Enum
 from dataclasses import dataclass
 from typing import Dict, Optional, Union, Any
 from pathlib import Path
+import numpy as np
 
 
 class PathUtils:
@@ -43,6 +44,32 @@ class PathUtils:
             return str(rel.as_posix())
         except (ValueError, TypeError):
             return PathUtils.normalize(path)
+
+
+def sanitize_for_json(obj: Any) -> Any:
+    """
+    Recursively convert numpy types to native Python types for JSON serialization.
+    
+    Args:
+        obj: Object to sanitize (can be dict, list, numpy type, etc.)
+        
+    Returns:
+        JSON-serializable version of the object
+    """
+    if isinstance(obj, dict):
+        return {k: sanitize_for_json(v) for k, v in obj.items()}
+    elif isinstance(obj, (list, tuple)):
+        return [sanitize_for_json(item) for item in obj]
+    elif isinstance(obj, np.integer):
+        return int(obj)
+    elif isinstance(obj, np.floating):
+        return float(obj)
+    elif isinstance(obj, np.ndarray):
+        return obj.tolist()
+    elif isinstance(obj, np.bool_):
+        return bool(obj)
+    else:
+        return obj
 
 
 class ProjectType(Enum):
@@ -147,13 +174,13 @@ class Node:
         else:
             metadata_dict = self.metadata or {}
         
-        return {
+        return sanitize_for_json({
             "id": self.id,
             "type": self.type.value,
             "file": self.file,
             "name": self.name,
             "metadata": metadata_dict
-        }
+        })
 
 
 @dataclass
@@ -172,9 +199,9 @@ class Edge:
         else:
             metadata_dict = self.metadata or {}
         
-        return {
+        return sanitize_for_json({
             "source": self.source,
             "target": self.target,
             "type": self.type.value,
             "metadata": metadata_dict
-        }
+        })
